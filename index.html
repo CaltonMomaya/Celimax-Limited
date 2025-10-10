@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CELIMAX MOTORS LTD | Mombasa's Largest Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FFFFFF;
+            --secondary: #FF6600;
+            --accent: #000000;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+            --transition: all 0.4s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        .dark-mode {
+            --primary: #121212;
+            --secondary: #FF8C00;
+            --accent: #E0E0E0;
+            --light-gray: #1E1E1E;
+            --medium-gray: #2D2D2D;
+            --dark-gray: #CCCCCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary);
+            color: var(--accent);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        /* Loading Bar */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        .loading-bar.active {
+            width: 100%;
+            transition: width 1.5s ease;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            animation: revealText 2s ease-out forwards;
+        }
+
+        @keyframes revealText {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: letterAnimation 0.5s ease-out forwards;
+        }
+
+        @keyframes letterAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotate(-10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary);
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        /* Floating Controls */
+        .floating-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1001;
+        }
+
+        .mode-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+        }
+
+        .mode-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .mode-toggle i {
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .whatsapp-fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+
+        .whatsapp-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--accent);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        /* Floating Back Button */
+        .floating-back {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            color: white;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1001;
+            font-size: 1.5rem;
+        }
+
+        .floating-back.active {
+            display: flex;
+        }
+
+        .floating-back:hover {
+            transform: scale(1.1);
+            background-color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeUp 1.5s ease-out;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: black;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-weight: 600;
+            font-family: "Bradley Hand ITC", cursive;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .shadow-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.03);
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .image-container {
+            position: relative;
+            margin: 1.5rem 0;
+            z-index: 1;
+        }
+
+        .mercedes-vector {
+            width: 400px;
+            max-width: 80%;
+            height: auto;
+            filter: grayscale(100%) contrast(120%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .reflection {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+            transform: scaleY(-1);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .explore-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            z-index: 2;
+        }
+
+        .explore-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .explore-btn:hover {
+            background-color: white;
+            color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .explore-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .explore-dropdown:hover .explore-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .explore-content a {
+            display: block;
+            color: var(--accent);
+            padding: 0.8rem 0;
+            text-decoration: none;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: var(--transition);
+        }
+
+        .explore-content a:hover {
+            color: var(--secondary);
+            padding-left: 10px;
+        }
+
+        .explore-content a:last-child {
+            border-bottom: none;
+        }
+
+        /* Find Your Dream Car Section */
+        .dream-car {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--accent);
+            position: relative;
+            line-height: 1.3;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--primary);
+            color: var(--accent);
+            border: 2px solid var(--secondary);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        /* Full Screen Filters */
+        .fullscreen-filter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .fullscreen-filter.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            line-height: 1.3;
+        }
+
+        .back-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn:hover {
+            background-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .brand-grid, .body-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .brand-item, .body-item {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-item:hover, .body-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+
+        .brand-logo, .body-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .brand-name, .body-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        /* Car Listing Window */
+        .car-listing-window {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 2rem 5%;
+        }
+
+        .car-listing-window.active {
+            display: flex;
+        }
+
+        .car-listing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .car-listing-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+        }
+
+        .back-to-home {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-to-home:hover {
+            background-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Body Type Filter in Car Listings */
+        .body-type-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .body-type-btn {
+            background-color: var(--primary);
+            color: var(--accent);
+            border: 2px solid var(--secondary);
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .body-type-btn.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .body-type-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .car-card {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-details {
+            padding: 1.5rem;
+        }
+
+        .car-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .car-body-type {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-condition {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .condition-stars {
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .star {
+            color: var(--medium-gray);
+            font-size: 1rem;
+        }
+
+        .star.filled {
+            color: #FFD700;
+        }
+
+        .condition-text {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .car-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 0.5rem;
+            background-color: rgba(255, 102, 0, 0.1);
+            border-radius: 8px;
+            animation: priceGlow 2s infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 102, 0, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(255, 102, 0, 0.7);
+            }
+        }
+
+        .car-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .details-btn, .package-btn, .quote-btn {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .details-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .details-btn:hover {
+            background-color: var(--accent);
+        }
+
+        .package-btn {
+            background-color: var(--medium-gray);
+            color: var(--accent);
+        }
+
+        .package-btn:hover {
+            background-color: var(--dark-gray);
+            color: white;
+        }
+
+        .quote-btn {
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .quote-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        /* Car Details Modal */
+        .car-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 4000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .car-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--primary);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .modal-price {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: rgba(255, 102, 0, 0.1);
+            border-radius: 12px;
+            animation: priceGlow 2s infinite alternate;
+        }
+
+        .modal-quote-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .modal-quote-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.02);
+        }
+
+        /* Car Package Modal */
+        .package-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 4000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .package-modal.active {
+            display: flex;
+        }
+
+        .package-content {
+            background-color: var(--primary);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .package-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .package-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .package-list li:last-child {
+            border-bottom: none;
+        }
+
+        .package-list li i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            background-color: white;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: var(--glow);
+        }
+
+        .subscribe-btn {
+            padding: 1rem 2rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .subscribe-btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--accent);
+            padding: 3rem 5%;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Crazy Animations */
+        .crazy-animation {
+            animation: crazy 0.5s ease-out;
+        }
+
+        @keyframes crazy {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(0.9) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .shake-animation {
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .pulse-animation {
+            animation: pulse 0.5s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .spin-animation {
+            animation: spin 0.5s ease-out;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .bounce-animation {
+            animation: bounce 0.5s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary);
+                padding: 2rem;
+                transition: var(--transition);
+                z-index: 1002;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-nav.active {
+                right: 0;
+            }
+
+            .mobile-nav a {
+                color: var(--accent);
+                text-decoration: none;
+                font-size: 1.2rem;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid var(--medium-gray);
+                transition: var(--transition);
+            }
+
+            .mobile-nav a:hover {
+                color: var(--secondary);
+                padding-left: 10px;
+            }
+
+            .close-menu {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 1.5rem;
+                color: var(--accent);
+                cursor: pointer;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .shadow-text {
+                font-size: 6rem;
+            }
+
+            .mercedes-vector {
+                width: 320px;
+                max-width: 90%;
+            }
+
+            .reflection {
+                bottom: -40px;
+                height: 40px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .floating-controls {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .floating-back {
+                bottom: 1rem;
+                left: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .brand-grid, .body-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .car-actions {
+                flex-direction: column;
+            }
+
+            .body-type-filter {
+                gap: 0.5rem;
+            }
+
+            .body-type-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .body-type-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .body-type-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text" id="loadingText">
+            CELIMAX MOTORS
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="images/celimax.png" alt="Celimax Motors Logo" class="logo-img" width="200">
+            <a href="#" class="logo-text">CELI<span>MAX</span> MOTORS</a>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <div class="dropdown">
+                <a href="#">Vehicles <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" class="yard-link">Available in the Yard</a>
+                    <a href="#">Direct Import</a>
+                </div>
+            </div>
+            <a href="#">Blogs</a>
+            <a href="#">Contact</a>
+            <a href="#">FAQ</a>
+        </nav>
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Floating Controls -->
+    <div class="floating-controls">
+        <div class="mode-toggle" id="modeToggle">
+            <i class="fas fa-moon"></i>
+        </div>
+        <a href="https://wa.me/254703913841" class="whatsapp-fab" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Floating Back Button -->
+    <div class="floating-back" id="floatingBack">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#" class="yard-link">Home</a>
+        <a href="#">About</a>
+        <a href="#" class="yard-link">Available in the Yard</a>
+        <a href="#">Direct Import</a>
+        <a href="#">Blogs</a>
+        <a href="#">Contact</a>
+        <a href="#">FAQ</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="shadow-text">CELIMAX MOTORS</div>
+        <div class="hero-content">
+            <h1>Mombasa's Largest Marketplace</h1>
+            <p>Walk in, Drive out.....</p>
+            <div class="image-container">
+                <img src="https://cdn.pixabay.com/photo/2020/02/29/17/00/car-4890611_1280.png" alt="Mercedes-Benz" class="mercedes-vector">
+                <div class="reflection"></div>
+            </div>
+            <div class="explore-dropdown">
+                <button class="explore-btn">Explore Vehicles</button>
+                <div class="explore-content">
+                    <a href="#" class="yard-link">Available in the Yard</a>
+                    <a href="#">Direct Import</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Your Dream Car Section -->
+    <section class="dream-car">
+        <h2 class="section-title">Find Your Dream Car</h2>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn" id="filterBrandBtn">
+                <i class="fas fa-car"></i> Filter by Brand
+            </button>
+            <button class="filter-btn" id="filterBodyBtn">
+                <i class="fas fa-shapes"></i> Filter by Body Type
+            </button>
+            <button class="filter-btn" id="searchNameBtn">
+                <i class="fas fa-search"></i> Search by Name (e.g., Vitz)
+            </button>
+        </div>
+    </section>
+
+    <!-- Full Screen Brand Filter -->
+    <div class="fullscreen-filter" id="brandFilter">
+        <div class="filter-header">
+            <h2 class="filter-title">Filter by Brand</h2>
+            <button class="back-btn" id="backFromBrands">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="brand-grid">
+            <div class="brand-item">
+                <img src="https://www.pngplay.com/wp-content/uploads/3/Toyota-Motor-Logo-Transparent-Images.png" alt="Toyota" class="brand-logo">
+                <div class="brand-name">Toyota</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://i0.wp.com/southernautomobiles.co.nz/wp-content/uploads/2023/05/Subaru-Logo-Grid-Web-Res-PNG.png?ssl=1" class="brand-logo">
+                <div class="brand-name">Subaru</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nissan-6-logo.png" class="brand-logo">
+                <div class="brand-name">Nissan</div>
+            </div>
+             <div class="brand-item">
+                <img src="https://logos-world.net/wp-content/uploads/2021/09/Isuzu-Logo-1991-present.png" class="brand-logo">
+                <div class="brand-name">ISUZU</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://logos-world.net/wp-content/uploads/2020/05/Mazda-Logo.png" class="brand-logo">
+                <div class="brand-name">Mazda</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://autopjesbajrami.com/wp-content/uploads/2025/07/BMW-Logo.wine_.png" class="brand-logo">
+                <div class="brand-name">BMW</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://cdn.pixabay.com/photo/2016/08/15/18/18/honda-1596081_1280.png" alt="Subaru" class="brand-logo">
+                <div class="brand-name">Honda</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://autopjesbajrami.com/wp-content/uploads/2025/07/Mercedes-Benz-Logo.png" alt="Mercedes-Benz" class="brand-logo">
+                <div class="brand-name">Mercedes-Benz</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/1200px-Audi-Logo_2016.svg.png" alt="Audi" class="brand-logo">
+                <div class="brand-name">Audi</div>
+            </div>
+            <div class="brand-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/2048px-Volkswagen_logo_2019.svg.png" alt="Volkswagen" class="brand-logo">
+                <div class="brand-name">Volkswagen</div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Body Type Filter -->
+    <div class="fullscreen-filter" id="bodyFilter">
+        <div class="filter-header">
+            <h2 class="filter-title">Filter by Body Type</h2>
+            <button class="back-btn" id="backFromBody">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="body-grid">
+            <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2012/04/12/19/54/automobile-30391_1280.png" alt="SUV" class="body-image">
+                <div class="body-name">SUV</div>
+            </div>
+            <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2014/04/03/09/59/car-309542_1280.png" alt="Sedan" class="body-image">
+                <div class="body-name">Sedan</div>
+            </div>
+             <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2024/12/19/06/01/sportscar-9276703_1280.png" alt="Sedan" class="body-image">
+                <div class="body-name">coupe</div>
+            </div>
+            <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png" alt="Hatchback" class="body-image">
+                <div class="body-name">Hatchback</div>
+            </div>
+            <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2016/03/31/20/18/car-1295675_1280.png" alt="Pickup" class="body-image">
+                <div class="body-name">Pickup</div>
+            </div>
+              <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2013/07/13/01/11/passenger-car-155267_1280.png" alt="Pickup" class="body-image">
+                <div class="body-name">Micro-car</div>
+            </div>
+             <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2023/08/18/19/25/jeep-8199183_1280.png" alt="Pickup" class="body-image">
+                <div class="body-name">Off-Roader</div>
+            </div>
+            <div class="body-item">
+                <img src="https://cdn.pixabay.com/photo/2018/01/20/12/32/bmw-3094436_1280.png" alt="Convertible" class="body-image">
+                <div class="body-name">Convertible</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car Listing Window -->
+    <div class="car-listing-window" id="carListingWindow">
+        <div class="car-listing-header">
+            <h2 class="car-listing-title">Available in the Yard</h2>
+            <button class="back-to-home" id="backToHome">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+        
+        <!-- Body Type Filter -->
+        <div class="body-type-filter" id="bodyTypeFilter">
+            <button class="body-type-btn active" data-body-type="all">All</button>
+            <button class="body-type-btn" data-body-type="SUV">SUV</button>
+            <button class="body-type-btn" data-body-type="Sedan">Sedan</button>
+            <button class="body-type-btn" data-body-type="Coupe">Coupe</button>
+            <button class="body-type-btn" data-body-type="Hatchback">Hatchback</button>
+            <button class="body-type-btn" data-body-type="Pickup">Pickup</button>
+            <button class="body-type-btn" data-body-type="Micro-car">Micro-car</button>
+            <button class="body-type-btn" data-body-type="Off-Roader">Off-Roader</button>
+            <button class="body-type-btn" data-body-type="Convertible">Convertible</button>
+        </div>
+        
+        <div class="cars-grid" id="carsGrid">
+            <!-- Cars will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Car Details Modal -->
+    <div class="car-modal" id="carDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="carDetailsTitle">Car Details</h3>
+                <button class="close-modal" id="closeDetailsModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="car-specs" id="carSpecs">
+                <!-- Car specifications will be dynamically added here -->
+            </div>
+            <div class="modal-price" id="modalPrice">
+                <!-- Price will be dynamically added here -->
+            </div>
+            <button class="modal-quote-btn" id="modalQuoteBtn">
+                <i class="fab fa-whatsapp"></i> Get Quote on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Car Package Modal -->
+    <div class="package-modal" id="carPackageModal">
+        <div class="package-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="packageTitle">Car Package</h3>
+                <button class="close-modal" id="closePackageModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="package-list" id="packageList">
+                <!-- Package items will be dynamically added here -->
+            </ul>
+            <div class="modal-price" id="packagePrice">
+                <!-- Price will be dynamically added here -->
+            </div>
+            <button class="modal-quote-btn" id="packageQuoteBtn">
+                <i class="fab fa-whatsapp"></i> Get Quote on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2 class="section-title">Stay Up to Date!</h2>
+            <p>Subscribe to our newsletter and never miss our car deals.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="subscribe-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Company Info</h3>
+                <p><strong>Celimax Motors Ltd</strong></p>
+                <p>Motor vehicle dealership / auto trading business</p>
+                <p>Location: Mombasa, Kenya</p>
+                <p>Contact: 070-391-3841</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Online Presence</h3>
+                <p>Facebook: Celimax Motors LTD</p>
+                <p>Instagram: celimax motors ltd</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Mission</h3>
+                <p>To provide a wide variety of vehicles to Kenyan customers through flexible payment options (cash, hire purchase, finance), meeting both quality and affordability needs.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Vision</h3>
+                <p>To be a trusted, reliable vehicle dealer in Mombasa and beyond, known for transparent dealings and excellent customer relationships.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 CELIMAX MOTORS LTD. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Bar Functionality
+        const loadingBar = document.getElementById('loadingBar');
+        
+        // Function to show loading bar
+        function showLoadingBar() {
+            loadingBar.classList.add('active');
+            
+            // Hide the loading bar after animation completes
+            setTimeout(() => {
+                loadingBar.classList.remove('active');
+            }, 1500);
+        }
+        
+        // Add click event listener to the entire document
+        document.addEventListener('click', function(e) {
+            // Don't trigger for the loading bar itself
+            if (e.target !== loadingBar) {
+                showLoadingBar();
+            }
+        });
+
+        // Enhanced Loading Animation
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingText = document.getElementById('loadingText');
+            const text = loadingText.textContent;
+            
+            // Split text into letters for animation
+            loadingText.innerHTML = '';
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                span.className = 'letter';
+                span.style.animationDelay = `${i * 0.1}s`;
+                loadingText.appendChild(span);
+            }
+            
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 1000);
+            }, 3000);
+        });
+
+        // Dark/Light Mode Toggle
+        const modeToggle = document.getElementById('modeToggle');
+        const modeIcon = modeToggle.querySelector('i');
+        
+        modeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+            } else {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+            }
+            
+            // Add crazy animation
+            this.classList.add('spin-animation');
+            setTimeout(() => {
+                this.classList.remove('spin-animation');
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileNav.classList.add('active');
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+        
+        closeMenu.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+        });
+
+        // Filter Buttons
+        const filterBrandBtn = document.getElementById('filterBrandBtn');
+        const filterBodyBtn = document.getElementById('filterBodyBtn');
+        const searchNameBtn = document.getElementById('searchNameBtn');
+        
+        const brandFilter = document.getElementById('brandFilter');
+        const bodyFilter = document.getElementById('bodyFilter');
+        
+        const backFromBrands = document.getElementById('backFromBrands');
+        const backFromBody = document.getElementById('backFromBody');
+        
+        // Show brand filter
+        filterBrandBtn.addEventListener('click', function() {
+            brandFilter.classList.add('active');
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+        
+        // Show body filter
+        filterBodyBtn.addEventListener('click', function() {
+            bodyFilter.classList.add('active');
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+        
+        // Search by name
+        searchNameBtn.addEventListener('click', function() {
+            const searchTerm = prompt('Enter car name to search (e.g., Vitz):');
+            if (searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            }
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+        
+        // Back buttons
+        backFromBrands.addEventListener('click', function() {
+            brandFilter.classList.remove('active');
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+        
+        backFromBody.addEventListener('click', function() {
+            bodyFilter.classList.remove('active');
+            this.classList.add('pulse-animation');
+            setTimeout(() => {
+                this.classList.remove('pulse-animation');
+            }, 500);
+        });
+
+        // Brand and Body Items Animation
+        const brandItems = document.querySelectorAll('.brand-item');
+        const bodyItems = document.querySelectorAll('.body-item');
+        
+        brandItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const brandName = this.querySelector('.brand-name').textContent;
+                alert(`You selected: ${brandName}`);
+                this.classList.add('bounce-animation');
+                setTimeout(() => {
+                    this.classList.remove('bounce-animation');
+                }, 500);
+            });
+        });
+        
+        bodyItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const bodyName = this.querySelector('.body-name').textContent;
+                alert(`You selected: ${bodyName}`);
+                this.classList.add('bounce-animation');
+                setTimeout(() => {
+                    this.classList.remove('bounce-animation');
+                }, 500);
+            });
+        });
+
+        // Newsletter Form Submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('.newsletter-input');
+            
+            if (emailInput.value) {
+                alert('Thank you for subscribing! You will now receive promotional emails from Celimax Motors.');
+                emailInput.value = '';
+                
+                // Add animation to button
+                const submitBtn = this.querySelector('.subscribe-btn');
+                submitBtn.classList.add('pulse-animation');
+                setTimeout(() => {
+                    submitBtn.classList.remove('pulse-animation');
+                }, 500);
+            }
+        });
+
+        // Page Load Animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Animate sections on scroll
+            const sections = document.querySelectorAll('.dream-car, .newsletter');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeUp 1s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                observer.observe(section);
+            });
+        });
+
+        // Add click animations to various elements
+        document.addEventListener('click', function(e) {
+            // Add animation to clicked elements with specific classes
+            if (e.target.classList.contains('filter-group') || 
+                e.target.classList.contains('explore-btn') || 
+                e.target.classList.contains('social-link')) {
+                
+                e.target.classList.add('pulse-animation');
+                setTimeout(() => {
+                    e.target.classList.remove('pulse-animation');
+                }, 500);
+            }
+        });
+
+        // Car Data
+        const cars = [
+            {
+                id: 1,
+                name: "Toyota Harrier",
+                bodyType: "SUV",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
+                condition: 5, // out of 5
+                price: "KES 3,400,000",
+                specs: {
+                    year: "2019",
+                    location: "Mombasa Yard",
+                    drive: "AWD",
+                    mileage: "81,000 km",
+                    engine: "1986cc 2.0L",
+                    fuel: "Petrol",
+                    horsepower: "155 hp",
+                    transmission: "Automatic",
+                    torque: "185 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "DVD Player",
+                    "Reverse Camera",
+                    "Fog Lights",
+                    "Keyless Start",
+                    "Auto Boot Door",
+                    "Premium Sound System"
+                ]
+            },
+            {
+                id: 2,
+                name: "Honda Fit",
+                bodyType: "SUV",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559555362_122104188555048875_5878919758931729128_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmT8Ygk57GCLef9XsB04KiPPnIFPgfRZc8-cgU-B9FlyunXHG8paGE0NFUu7LjMZ7NlUMDAS6We4wkpEah9jdk&_nc_ohc=5VaWMYtt3kYQ7kNvwFPcV3w&_nc_oc=AdkrYoXDs8ZMwWA1s-jFt5I7DoIsCizp1orBxCfwwmMzVfiEF6ddZVp-4LRW3vUHi0M&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=eHUhRUj5acCCp1nUHgAuyQ&oh=00_AfcVq4QbvrEF6pDbn-ARRZD5r_UgerrP5WURQmkwPGHNwg&oe=68EF53A2",
+                condition: 5,
+                price: "KES 2,100,000",
+                specs: {
+                    year: "2020",
+                    location: "Mombasa Yard",
+                    drive: "FWD",
+                    mileage: "46,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "130 hp",
+                    transmission: "CVT",
+                    torque: "114 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100) 8.9 sec"
+                },
+                package: [
+                    "5 seater",
+                    "Multiple trim levels",
+                    "5 inch Infotainment",
+                    "Reverse Camera",
+                    "Fog lights" ,
+                    "Keyless Start",
+                    "Premium Sound System",
+                    
+                ]
+            },
+            {
+                id: 3,
+                name: "MAzda CX-5",
+                bodyType: "SUV",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559116802_122104189107048875_1900550511953797789_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX35D8HPFz3Htnamjcj8a6cujH_3YlRily6Mf_diVGKUUZN5-FaBWqMJ4XAKRVxqL5KzQj8z9ZY_rGKD6U0FUW&_nc_ohc=Ij_OuYynOiUQ7kNvwEE1nhO&_nc_oc=Admft20dHXn3mlc3XDKdyfkqa6zHwjSXytTL-OcKjvix8VzbXETyiX2n2CQtQiqKJt8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4s_9xzB3ZR7a6fkABtOxmA&oh=00_Afc-BIBMvYiDWtFjH7psJ33Mu-wVYgxIOVA6Kpx991XzrQ&oe=68EF33AD",
+                condition: 4,
+                price: "KES 4,500,000",
+                specs: {
+                    year: "2017",
+                    location: "Mombasa Yard",
+                    drive: "4WD",
+                    mileage: "68,000 km",
+                    engine: "4.5L V8",
+                    fuel: "Diesel",
+                    horsepower: "232 hp",
+                    transmission: "Automatic",
+                    torque: "187 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "(0-100) 9sec"
+                },
+                package: [
+                    "Premium Leather Seats",
+                    "20-inch Alloy Wheels",
+                    "Advanced Infotainment",
+                    "360° Camera System",
+                    "LED Fog Lights",
+                    "Smart Key System",
+                    "Power Tailgate",
+                    "Premium Sound System",
+                    "Sunroof",
+                    "Heated Seats"
+                ]
+            },
+            {
+                id: 4,
+                name: "Mercedes-Benz C-Class",
+                bodyType: "Sedan",
+                image: "https://cdn.pixabay.com/photo/2016/12/03/18/57/amg-1880381_1280.png",
+                condition: 5,
+                price: "KES 3,800,000",
+                specs: {
+                    year: "2019",
+                    location: "Mombasa Yard",
+                    drive: "RWD",
+                    mileage: "28,000 km",
+                    engine: "2.0L",
+                    fuel: "Petrol",
+                    horsepower: "255 hp",
+                    transmission: "9-Speed Automatic",
+                    torque: "370 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "6.0 sec"
+                },
+                package: [
+                    "MB-Tex Upholstery",
+                    "18-inch Alloy Wheels",
+                    "MBUX Infotainment",
+                    "Reverse Camera",
+                    "LED Lighting Package",
+                    "Keyless-Go",
+                    "Power Boot Lid",
+                    "Burmester Sound System",
+                    "Panoramic Sunroof",
+                    "Ambient Lighting"
+                ]
+            },
+            {
+                id: 5,
+                name: "Nissan X-Trail",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2016/11/22/23/44/buildings-1851246_1280.png",
+                condition: 3,
+                price: "KES 1,750,000",
+                specs: {
+                    year: "2016",
+                    location: "Mombasa Yard",
+                    drive: "AWD",
+                    mileage: "72,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "170 hp",
+                    transmission: "CVT",
+                    torque: "237 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "9.5 sec"
+                },
+                package: [
+                    "Fabric Seats",
+                    "17-inch Alloy Wheels",
+                    "Touchscreen Display",
+                    "Reverse Camera",
+                    "Fog Lights",
+                    "Keyless Entry",
+                    "Manual Boot Door",
+                    "Standard Sound System"
+                ]
+            },
+            {
+                id: 6,
+                name: "Honda CR-V",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2016/11/18/17/20/car-1835504_1280.png",
+                condition: 4,
+                price: "KES 2,300,000",
+                specs: {
+                    year: "2018",
+                    location: "Mombasa Yard",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol",
+                    horsepower: "190 hp",
+                    transmission: "CVT",
+                    torque: "243 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "8.8 sec"
+                },
+                package: [
+                    "Leather Seats",
+                    "18-inch Alloy Wheels",
+                    "Honda Infotainment",
+                    "Multi-Angle Camera",
+                    "LED Fog Lights",
+                    "Smart Entry",
+                    "Power Tailgate",
+                    "Premium Audio System",
+                    "Dual-Zone Climate Control"
+                ]
+            },
+            {
+                id: 7,
+                name: "BMW 4 Series",
+                bodyType: "Coupe",
+                image: "https://cdn.pixabay.com/photo/2019/01/09/15/44/bmw-3923406_1280.png",
+                condition: 5,
+                price: "KES 4,200,000",
+                specs: {
+                    year: "2021",
+                    location: "Mombasa Yard",
+                    drive: "RWD",
+                    mileage: "18,000 km",
+                    engine: "2.0L",
+                    fuel: "Petrol",
+                    horsepower: "255 hp",
+                    transmission: "8-Speed Automatic",
+                    torque: "400 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "5.8 sec"
+                },
+                package: [
+                    "Premium Leather Seats",
+                    "19-inch Alloy Wheels",
+                    "iDrive Infotainment",
+                    "360° Camera",
+                    "Adaptive LED Headlights",
+                    "Comfort Access",
+                    "Power Boot Lid",
+                    "Harman Kardon Sound System",
+                    "Panoramic Sunroof",
+                    "Heated Seats"
+                ]
+            },
+            {
+                id: 8,
+                name: "Toyota Hilux",
+                bodyType: "Pickup",
+                image: "https://cdn.pixabay.com/photo/2021/06/04/07/59/toyota-6309156_1280.png",
+                condition: 4,
+                price: "KES 3,100,000",
+                specs: {
+                    year: "2019",
+                    location: "Mombasa Yard",
+                    drive: "4WD",
+                    mileage: "55,000 km",
+                    engine: "2.8L Diesel",
+                    fuel: "Diesel",
+                    horsepower: "204 hp",
+                    transmission: "6-Speed Automatic",
+                    torque: "500 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "10.5 sec"
+                },
+                package: [
+                    "Fabric Seats",
+                    "17-inch Alloy Wheels",
+                    "Touchscreen Display",
+                    "Reverse Camera",
+                    "LED Fog Lights",
+                    "Keyless Entry",
+                    "Manual Boot Door",
+                    "Standard Sound System",
+                    "Towing Package"
+                ]
+            },
+            {
+                id: 9,
+                name: "Jeep Wrangler",
+                bodyType: "Off-Roader",
+                image: "https://cdn.pixabay.com/photo/2023/08/18/19/25/jeep-8199183_1280.png",
+                condition: 4,
+                price: "KES 5,800,000",
+                specs: {
+                    year: "2020",
+                    location: "Mombasa Yard",
+                    drive: "4WD",
+                    mileage: "35,000 km",
+                    engine: "3.6L V6",
+                    fuel: "Petrol",
+                    horsepower: "285 hp",
+                    transmission: "8-Speed Automatic",
+                    torque: "353 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "7.5 sec"
+                },
+                package: [
+                    "Premium Leather Seats",
+                    "17-inch Alloy Wheels",
+                    "Uconnect Infotainment",
+                    "Rear Camera",
+                    "LED Lighting Group",
+                    "Keyless Entry",
+                    "Manual Boot Door",
+                    "Alpine Sound System",
+                    "Off-Road Package",
+                    "Removable Top"
+                ]
+            },
+            {
+                id: 10,
+                name: "Mazda MX-5",
+                bodyType: "Convertible",
+                image: "https://cdn.pixabay.com/photo/2018/01/20/12/32/bmw-3094436_1280.png",
+                condition: 5,
+                price: "KES 2,900,000",
+                specs: {
+                    year: "2021",
+                    location: "Mombasa Yard",
+                    drive: "RWD",
+                    mileage: "12,000 km",
+                    engine: "2.0L",
+                    fuel: "Petrol",
+                    horsepower: "181 hp",
+                    transmission: "6-Speed Manual",
+                    torque: "205 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "6.5 sec"
+                },
+                package: [
+                    "Leather Seats",
+                    "17-inch Alloy Wheels",
+                    "Mazda Connect Infotainment",
+                    "Rear Camera",
+                    "LED Headlights",
+                    "Keyless Entry",
+                    "Manual Soft Top",
+                    "Bose Sound System",
+                    "Limited Slip Differential"
+                ]
+            },
+            {
+                id: 11,
+                name: "Suzuki Alto",
+                bodyType: "Micro-car",
+                image: "https://cdn.pixabay.com/photo/2013/07/13/01/11/passenger-car-155267_1280.png",
+                condition: 3,
+                price: "KES 650,000",
+                specs: {
+                    year: "2017",
+                    location: "Mombasa Yard",
+                    drive: "FWD",
+                    mileage: "60,000 km",
+                    engine: "0.8L",
+                    fuel: "Petrol",
+                    horsepower: "48 hp",
+                    transmission: "5-Speed Manual",
+                    torque: "69 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "14.0 sec"
+                },
+                package: [
+                    "Fabric Seats",
+                    "14-inch Steel Wheels",
+                    "Radio with USB",
+                    "Manual Boot Door",
+                    "Basic Sound System"
+                ]
+            }
+        ];
+
+        // DOM Elements for Car Listings
+        const carListingWindow = document.getElementById('carListingWindow');
+        const backToHome = document.getElementById('backToHome');
+        const floatingBack = document.getElementById('floatingBack');
+        const bodyTypeFilter = document.getElementById('bodyTypeFilter');
+        const carsGrid = document.getElementById('carsGrid');
+        const carDetailsModal = document.getElementById('carDetailsModal');
+        const closeDetailsModal = document.getElementById('closeDetailsModal');
+        const carSpecs = document.getElementById('carSpecs');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalQuoteBtn = document.getElementById('modalQuoteBtn');
+        const carPackageModal = document.getElementById('carPackageModal');
+        const closePackageModal = document.getElementById('closePackageModal');
+        const packageList = document.getElementById('packageList');
+        const packagePrice = document.getElementById('packagePrice');
+        const packageQuoteBtn = document.getElementById('packageQuoteBtn');
+
+        // Function to render star rating
+        function renderStars(rating) {
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    starsHtml += '<i class="fas fa-star star filled"></i>';
+                } else {
+                    starsHtml += '<i class="fas fa-star star"></i>';
+                }
+            }
+            return starsHtml;
+        }
+
+        // Function to get condition text based on rating
+        function getConditionText(rating) {
+            if (rating >= 4.5) return 'Excellent';
+            if (rating >= 4) return 'Very Good';
+            if (rating >= 3) return 'Good';
+            if (rating >= 2) return 'Average';
+            return 'Fair';
+        }
+
+        // Function to display cars in the grid with filtering
+        function displayCars(bodyType = 'all') {
+            carsGrid.innerHTML = '';
+            
+            const filteredCars = bodyType === 'all' 
+                ? cars 
+                : cars.filter(car => car.bodyType === bodyType);
+            
+            if (filteredCars.length === 0) {
+                carsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--dark-gray);">
+                        <i class="fas fa-car" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h3>No cars found for this body type</h3>
+                        <p>Try selecting a different body type or check back later for new arrivals.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredCars.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                carCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="car-image">
+                    <div class="car-details">
+                        <h3 class="car-name">${car.name}</h3>
+                        <div class="car-body-type">${car.bodyType}</div>
+                        <div class="car-condition">
+                            <div class="condition-stars">
+                                ${renderStars(car.condition)}
+                            </div>
+                            <span class="condition-text">${getConditionText(car.condition)}</span>
+                        </div>
+                        <div class="car-price">${car.price}</div>
+                        <div class="car-actions">
+                            <button class="details-btn" data-id="${car.id}">See Full Details</button>
+                            <button class="package-btn" data-id="${car.id}">Car Package</button>
+                            <button class="quote-btn" data-id="${car.id}">
+                                <i class="fab fa-whatsapp"></i> Get Quote
+                            </button>
+                        </div>
+                    </div>
+                `;
+                carsGrid.appendChild(carCard);
+            });
+
+            // Add event listeners to the buttons
+            document.querySelectorAll('.details-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    showCarDetails(carId);
+                });
+            });
+
+            document.querySelectorAll('.package-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    showCarPackage(carId);
+                });
+            });
+
+            document.querySelectorAll('.quote-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    redirectToWhatsApp(carId);
+                });
+            });
+        }
+
+        // Function to show car details
+        function showCarDetails(carId) {
+            const car = cars.find(c => c.id === carId);
+            if (!car) return;
+
+            // Update modal title
+            document.getElementById('carDetailsTitle').textContent = `${car.name} - Full Details`;
+
+            // Clear previous specs
+            carSpecs.innerHTML = '';
+
+            // Add specs to modal
+            for (const [key, value] of Object.entries(car.specs)) {
+                const specItem = document.createElement('div');
+                specItem.className = 'spec-item';
+                specItem.innerHTML = `
+                    <span class="spec-label">${formatSpecLabel(key)}</span>
+                    <span class="spec-value">${value}</span>
+                `;
+                carSpecs.appendChild(specItem);
+            }
+
+            // Update price
+            modalPrice.textContent = car.price;
+
+            // Set WhatsApp redirect for this car
+            modalQuoteBtn.setAttribute('data-id', car.id);
+
+            // Show modal
+            carDetailsModal.classList.add('active');
+        }
+
+        // Function to show car package
+        function showCarPackage(carId) {
+            const car = cars.find(c => c.id === carId);
+            if (!car) return;
+
+            // Update modal title
+            document.getElementById('packageTitle').textContent = `${car.name} - Package`;
+
+            // Clear previous package items
+            packageList.innerHTML = '';
+
+            // Add package items to modal
+            car.package.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<i class="fas fa-check"></i> ${item}`;
+                packageList.appendChild(listItem);
+            });
+
+            // Update price
+            packagePrice.textContent = car.price;
+
+            // Set WhatsApp redirect for this car
+            packageQuoteBtn.setAttribute('data-id', car.id);
+
+            // Show modal
+            carPackageModal.classList.add('active');
+        }
+
+        // Function to redirect to WhatsApp
+        function redirectToWhatsApp(carId) {
+            const car = cars.find(c => c.id === carId);
+            if (!car) return;
+
+            const message = `Hello! I'm interested in the ${car.name} (${car.bodyType}) priced at ${car.price}. Can you provide more details?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/254703913841?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Helper function to format spec labels
+        function formatSpecLabel(label) {
+            return label
+                .split(/(?=[A-Z])/)
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        // Event Listeners for Available in the Yard links
+        document.querySelectorAll('.yard-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                carListingWindow.classList.add('active');
+                floatingBack.classList.add('active');
+                displayCars();
+                
+                // Close mobile nav if open
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Back to Home button
+        backToHome.addEventListener('click', function() {
+            carListingWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        // Floating back button
+        floatingBack.addEventListener('click', function() {
+            carListingWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        // Body type filter buttons
+        document.querySelectorAll('.body-type-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.body-type-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get body type and filter cars
+                const bodyType = this.getAttribute('data-body-type');
+                displayCars(bodyType);
+            });
+        });
+
+        // Close modals
+        closeDetailsModal.addEventListener('click', function() {
+            carDetailsModal.classList.remove('active');
+        });
+
+        closePackageModal.addEventListener('click', function() {
+            carPackageModal.classList.remove('active');
+        });
+
+        // WhatsApp buttons in modals
+        modalQuoteBtn.addEventListener('click', function() {
+            const carId = parseInt(this.getAttribute('data-id'));
+            redirectToWhatsApp(carId);
+        });
+
+        packageQuoteBtn.addEventListener('click', function() {
+            const carId = parseInt(this.getAttribute('data-id'));
+            redirectToWhatsApp(carId);
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === carDetailsModal) {
+                carDetailsModal.classList.remove('active');
+            }
+            if (e.target === carPackageModal) {
+                carPackageModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

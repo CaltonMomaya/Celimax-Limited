@@ -1315,8 +1315,13 @@
                 font-size: 1.3rem;
             }
 
+            /* Fix for the overlapping shadow text */
             .shadow-text {
-                font-size: 6rem;
+                font-size: 4rem;
+                white-space: normal;
+                text-align: center;
+                width: 90%;
+                line-height: 1.2;
             }
 
             .mercedes-vector {
@@ -1357,8 +1362,23 @@
                 justify-content: center;
             }
 
+            /* Fix for brand and body type logos on mobile */
             .brand-grid, .body-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .brand-item, .body-item {
+                padding: 1rem;
+            }
+
+            .brand-logo, .body-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .brand-name, .body-name {
+                font-size: 1rem;
             }
 
             .cars-grid {
@@ -1377,11 +1397,14 @@
                 padding: 0.6rem 1rem;
                 font-size: 0.9rem;
             }
-        }
-
-        @media (min-width: 769px) {
-            .menu-toggle {
-                display: none;
+            
+            /* Increase logo visibility on mobile */
+            .logo-img {
+                height: 60px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
             }
         }
 
@@ -1394,6 +1417,27 @@
             .body-type-btn {
                 width: 100%;
                 max-width: 200px;
+            }
+            
+            /* Further reduce shadow text size for very small screens */
+            .shadow-text {
+                font-size: 3rem;
+            }
+            
+            /* Further reduce brand and body type logos for very small screens */
+            .brand-grid, .body-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .brand-logo, .body-image {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
             }
         }
     </style>

@@ -1,6 +1,11 @@
+<script>
+  const API_KEY = "AIzaSy***************";
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CELIMAX MOTORS LTD | Mombasa's Largest Marketplace</title>
@@ -486,7 +491,7 @@
             z-index: 10;
         }
 
-        .explore-dropdown:hover .explore-content {
+        .explore-dropdown.active .explore-content {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -1322,7 +1327,7 @@
             display: block;
             width: 100%;
             height: 400px;
-            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Mombasa,Kenya&zoom=13&size=800x400&maptype=roadmap&markers=color:red%7Clabel:C%7CMombasa,Kenya&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8');
+            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Mombasa,Kenya&zoom=13&size=800x400&maptype=roadmap&markers=color:red%7Clabel:P%7C-4.0435,39.6682&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -2061,7 +2066,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-text" id="loadingText">
-            CELIMAX MOTORS
+            CELIMAX
         </div>
     </div>
 
@@ -2131,8 +2136,8 @@
                 <img src="https://cdn.pixabay.com/photo/2020/02/29/17/00/car-4890611_1280.png" alt="Mercedes-Benz" class="mercedes-vector">
                 <div class="reflection"></div>
             </div>
-            <div class="explore-dropdown">
-                <button class="explore-btn">Explore Vehicles <i class="fas fa-chevron-down"></i></button>
+            <div class="explore-dropdown" id="exploreDropdown">
+                <button class="explore-btn" id="exploreBtn">Explore Vehicles <i class="fas fa-chevron-down" id="exploreIcon"></i></button>
                 <div class="explore-content">
                     <a href="#" class="yard-link">Available in the Yard</a>
                     <a href="#">Direct Import</a>
@@ -2590,7 +2595,43 @@
             
             // NEW: Initialize testimonials slider
             initTestimonialsSlider();
+            
+            // NEW: Initialize explore dropdown toggle
+            initExploreDropdown();
         });
+
+        // NEW: Explore Dropdown Toggle Functionality
+        function initExploreDropdown() {
+            const exploreDropdown = document.getElementById('exploreDropdown');
+            const exploreBtn = document.getElementById('exploreBtn');
+            const exploreIcon = document.getElementById('exploreIcon');
+            
+            exploreBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                exploreDropdown.classList.toggle('active');
+                
+                // Toggle icon between down and up
+                if (exploreDropdown.classList.contains('active')) {
+                    exploreIcon.classList.remove('fa-chevron-down');
+                    exploreIcon.classList.add('fa-chevron-up');
+                } else {
+                    exploreIcon.classList.remove('fa-chevron-up');
+                    exploreIcon.classList.add('fa-chevron-down');
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                exploreDropdown.classList.remove('active');
+                exploreIcon.classList.remove('fa-chevron-up');
+                exploreIcon.classList.add('fa-chevron-down');
+            });
+            
+            // Prevent dropdown from closing when clicking inside
+            exploreDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
 
         // Dark/Light Mode Toggle
         const modeToggle = document.getElementById('modeToggle');
@@ -3976,5 +4017,7 @@
             });
         }
     </script>
+    <script src="script.js"></script>
+
 </body>
 </html>

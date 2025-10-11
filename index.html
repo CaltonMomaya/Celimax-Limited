@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All original CSS remains exactly the same */
         :root {
             --primary: #FFFFFF;
             --secondary: #FF6600;
@@ -150,6 +151,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            justify-content: center;
+            flex: 1;
         }
 
         .logo-img {
@@ -162,6 +165,7 @@
             font-weight: 700;
             color: var(--accent);
             text-decoration: none;
+            text-align: center;
         }
 
         .logo-text span {
@@ -454,6 +458,9 @@
             cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .explore-btn:hover {
@@ -1057,6 +1064,191 @@
             font-size: 1.2rem;
         }
 
+        /* NEW: Why Choose Celimax Section */
+        .why-choose {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
+            text-align: center;
+        }
+
+        .benefits-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem auto;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .central-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.5);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+
+        .central-circle h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .central-circle p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .benefit-item {
+            position: absolute;
+            width: 180px;
+            padding: 1.5rem 1rem;
+            background-color: var(--primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .benefit-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .benefit-item:nth-child(2) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0.2s;
+        }
+
+        .benefit-item:nth-child(3) {
+            top: 10%;
+            right: 20%;
+            animation-delay: 0.4s;
+        }
+
+        .benefit-item:nth-child(4) {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 0.6s;
+        }
+
+        .benefit-item:nth-child(5) {
+            bottom: 10%;
+            right: 20%;
+            animation-delay: 0.8s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--glow);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .benefit-desc {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            line-height: 1.4;
+        }
+
+        /* NEW: Customer Testimonials Section */
+        .testimonials {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 3rem auto;
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-color: var(--primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .customer-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .customer-name .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .customer-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--medium-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--secondary);
+            transform: scale(1.2);
+        }
+
         /* Newsletter Section */
         .newsletter {
             padding: 5rem 5%;
@@ -1107,6 +1299,60 @@
         .subscribe-btn:hover {
             background-color: var(--accent);
             transform: translateY(-3px);
+        }
+
+        /* Visit Us Section */
+        .visit-us {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .map-link {
+            display: block;
+            width: 100%;
+            height: 400px;
+            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Mombasa,Kenya&zoom=13&size=800x400&maptype=roadmap&markers=color:red%7Clabel:C%7CMombasa,Kenya&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .map-link:hover {
+            transform: scale(1.02);
+            box-shadow: var(--glow);
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .map-link:hover .map-overlay {
+            opacity: 1;
         }
 
         /* Footer */
@@ -1252,6 +1498,325 @@
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-20px); }
             60% { transform: translateY(-10px); }
+        }
+
+        /* NEW STYLES FOR ADDITIONAL WINDOWS */
+        .content-window {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 2rem 5%;
+        }
+        
+        .content-window.active {
+            display: flex;
+        }
+        
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .content-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+        }
+        
+        .blog-content, .faq-content, .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-details {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .blog-excerpt {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .read-more-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .read-more-btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-article img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-article h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .blog-article p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .quiz-container {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .quiz-option input {
+            margin: 0;
+        }
+        
+        .quiz-submit {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quiz-submit:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .quiz-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-result.correct {
+            background-color: rgba(0, 255, 0, 0.1);
+            color: green;
+            display: block;
+        }
+        
+        .quiz-result.incorrect {
+            background-color: rgba(255, 0, 0, 0.1);
+            color: red;
+            display: block;
+        }
+
+        /* About Section Styles */
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ceo-section {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .ceo-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        .ceo-info {
+            flex: 1;
+        }
+
+        .ceo-name {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .ceo-title {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .company-story {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .story-highlight {
+            background-color: rgba(255, 102, 0, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--secondary);
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: var(--glow);
+        }
+
+        .search-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .search-btn:hover {
+            background-color: var(--accent);
         }
 
         /* Mobile Responsiveness */
@@ -1406,6 +1971,53 @@
             .logo-text {
                 font-size: 1.5rem;
             }
+            
+            /* Blog grid adjustments for mobile */
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* About section adjustments for mobile */
+            .ceo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .ceo-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .map-link {
+                height: 300px;
+            }
+            
+            /* NEW: Benefits diagram adjustments for mobile */
+            .benefits-diagram {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .central-circle {
+                margin-bottom: 2rem;
+                width: 150px;
+                height: 150px;
+            }
+            
+            .benefit-item {
+                position: static;
+                margin-bottom: 1.5rem;
+                opacity: 1;
+                transform: scale(1);
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* NEW: Reduce back button size in car listing window on mobile */
+            .back-to-home {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1461,8 +2073,8 @@
         </div>
         
         <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
+            <a href="#" id="homeLink">Home</a>
+            <a href="#" id="aboutLink">About</a>
             <div class="dropdown">
                 <a href="#">Vehicles <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-content">
@@ -1470,9 +2082,9 @@
                     <a href="#">Direct Import</a>
                 </div>
             </div>
-            <a href="#">Blogs</a>
-            <a href="#">Contact</a>
-            <a href="#">FAQ</a>
+            <a href="#" id="blogsLink">Blogs</a>
+            <a href="#" id="contactLink">Contact</a>
+            <a href="#" id="faqLink">FAQ</a>
         </nav>
 
         <div class="menu-toggle" id="menuToggle">
@@ -1500,13 +2112,13 @@
         <div class="close-menu" id="closeMenu">
             <i class="fas fa-times"></i>
         </div>
-        <a href="#" class="yard-link">Home</a>
-        <a href="#">About</a>
+        <a href="#" id="mobileHomeLink">Home</a>
+        <a href="#" id="mobileAboutLink">About</a>
         <a href="#" class="yard-link">Available in the Yard</a>
         <a href="#">Direct Import</a>
-        <a href="#">Blogs</a>
-        <a href="#">Contact</a>
-        <a href="#">FAQ</a>
+        <a href="#" id="mobileBlogsLink">Blogs</a>
+        <a href="#" id="mobileContactLink">Contact</a>
+        <a href="#" id="mobileFaqLink">FAQ</a>
     </div>
 
     <!-- Hero Section -->
@@ -1520,7 +2132,7 @@
                 <div class="reflection"></div>
             </div>
             <div class="explore-dropdown">
-                <button class="explore-btn">Explore Vehicles</button>
+                <button class="explore-btn">Explore Vehicles <i class="fas fa-chevron-down"></i></button>
                 <div class="explore-content">
                     <a href="#" class="yard-link">Available in the Yard</a>
                     <a href="#">Direct Import</a>
@@ -1533,6 +2145,14 @@
     <section class="dream-car">
         <h2 class="section-title">Find Your Dream Car</h2>
         
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for a car (e.g., Vitz, Harrier, Fit)">
+                <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+        </div>
+        
         <div class="filter-buttons">
             <button class="filter-btn" id="filterBrandBtn">
                 <i class="fas fa-car"></i> Filter by Brand
@@ -1540,9 +2160,61 @@
             <button class="filter-btn" id="filterBodyBtn">
                 <i class="fas fa-shapes"></i> Filter by Body Type
             </button>
-            <button class="filter-btn" id="searchNameBtn">
-                <i class="fas fa-search"></i> Search by Name (e.g., Vitz)
-            </button>
+        </div>
+    </section>
+
+    <!-- NEW: Why Choose Celimax Section -->
+    <section class="why-choose">
+        
+        <h2 class="section-title">Why US?</h2>
+        <div class="benefits-diagram">
+            <div class="central-circle">
+                <h3>Your Journey</h3>
+                <p>Starts Here</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="benefit-title">Value-Driven Deals</h3>
+                <p class="benefit-desc">Competitive pricing with flexible payment plans tailored to your budget</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="benefit-title">Trusted Community</h3>
+                <p class="benefit-desc">Join thousands of satisfied customers in our growing automotive family</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-car-side"></i>
+                </div>
+                <h3 class="benefit-title">Diverse Selection</h3>
+                <p class="benefit-desc">Extensive inventory with vehicles for every need and preference</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="benefit-title">Assured Quality</h3>
+                
+                
+                <p class="benefit-desc">Rigorous inspections and warranties for complete peace of mind</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Customer Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-track" id="testimonialTrack">
+                <!-- Testimonials will be dynamically added here -->
+            </div>
+        </div>
+        <div class="testimonial-nav" id="testimonialNav">
+            <!-- Navigation dots will be dynamically added here -->
         </div>
     </section>
 
@@ -1555,46 +2227,46 @@
             </button>
         </div>
         <div class="brand-grid">
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Toyota">
                 <img src="https://www.pngplay.com/wp-content/uploads/3/Toyota-Motor-Logo-Transparent-Images.png" alt="Toyota" class="brand-logo">
                 <div class="brand-name">Toyota</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Subaru">
                 <img src="https://i0.wp.com/southernautomobiles.co.nz/wp-content/uploads/2023/05/Subaru-Logo-Grid-Web-Res-PNG.png?ssl=1" class="brand-logo">
                 <div class="brand-name">Subaru</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Nissan">
                 <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nissan-6-logo.png" class="brand-logo">
                 <div class="brand-name">Nissan</div>
             </div>
-             <div class="brand-item">
+             <div class="brand-item" data-brand="ISUZU">
                 <img src="https://logos-world.net/wp-content/uploads/2021/09/Isuzu-Logo-1991-present.png" class="brand-logo">
                 <div class="brand-name">ISUZU</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Mazda">
                 <img src="https://logos-world.net/wp-content/uploads/2020/05/Mazda-Logo.png" class="brand-logo">
                 <div class="brand-name">Mazda</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="BMW">
                 <img src="https://autopjesbajrami.com/wp-content/uploads/2025/07/BMW-Logo.wine_.png" class="brand-logo">
                 <div class="brand-name">BMW</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Honda">
                 <img src="https://cdn.pixabay.com/photo/2016/08/15/18/18/honda-1596081_1280.png" alt="Subaru" class="brand-logo">
                 <div class="brand-name">Honda</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Mercedes-Benz">
                 <img src="https://autopjesbajrami.com/wp-content/uploads/2025/07/Mercedes-Benz-Logo.png" alt="Mercedes-Benz" class="brand-logo">
                 <div class="brand-name">Mercedes-Benz</div>
             </div>
-            <div class="brand-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/1200px-Audi-Logo_2016.svg.png" alt="Audi" class="brand-logo">
+            <div class="brand-item" data-brand="Audi">
+                <img src="
+                https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/1200px-Audi-Logo_2016.svg.png" alt="Audi" class="brand-logo">
                 <div class="brand-name">Audi</div>
             </div>
-            <div class="brand-item">
+            <div class="brand-item" data-brand="Volkswagen">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/2048px-Volkswagen_logo_2019.svg.png" alt="Volkswagen" class="brand-logo">
                 <div class="brand-name">Volkswagen</div>
-                
             </div>
         </div>
     </div>
@@ -1608,35 +2280,35 @@
             </button>
         </div>
         <div class="body-grid">
-            <div class="body-item">
+            <div class="body-item" data-body="SUV">
                 <img src="https://cdn.pixabay.com/photo/2012/04/12/19/54/automobile-30391_1280.png" alt="SUV" class="body-image">
                 <div class="body-name">SUV</div>
             </div>
-            <div class="body-item">
+            <div class="body-item" data-body="Sedan">
                 <img src="https://cdn.pixabay.com/photo/2014/04/03/09/59/car-309542_1280.png" alt="Sedan" class="body-image">
                 <div class="body-name">Sedan</div>
             </div>
-             <div class="body-item">
+             <div class="body-item" data-body="Coupe">
                 <img src="https://cdn.pixabay.com/photo/2024/12/19/06/01/sportscar-9276703_1280.png" alt="Sedan" class="body-image">
                 <div class="body-name">coupe</div>
             </div>
-            <div class="body-item">
+            <div class="body-item" data-body="Hatchback">
                 <img src="https://cdn.pixabay.com/photo/2017/01/31/19/58/car-2026848_1280.png" alt="Hatchback" class="body-image">
                 <div class="body-name">Hatchback</div>
             </div>
-            <div class="body-item">
+            <div class="body-item" data-body="Pickup">
                 <img src="https://cdn.pixabay.com/photo/2016/03/31/20/18/car-1295675_1280.png" alt="Pickup" class="body-image">
                 <div class="body-name">Pickup</div>
             </div>
-              <div class="body-item">
+              <div class="body-item" data-body="Micro-car">
                 <img src="https://cdn.pixabay.com/photo/2013/07/13/01/11/passenger-car-155267_1280.png" alt="Pickup" class="body-image">
                 <div class="body-name">Micro-car</div>
             </div>
-             <div class="body-item">
+             <div class="body-item" data-body="Off-Roader">
                 <img src="https://cdn.pixabay.com/photo/2023/08/18/19/25/jeep-8199183_1280.png" alt="Pickup" class="body-image">
                 <div class="body-name">Off-Roader</div>
             </div>
-            <div class="body-item">
+            <div class="body-item" data-body="Convertible">
                 <img src="https://cdn.pixabay.com/photo/2018/01/20/12/32/bmw-3094436_1280.png" alt="Convertible" class="body-image">
                 <div class="body-name">Convertible</div>
             </div>
@@ -1667,6 +2339,95 @@
         
         <div class="cars-grid" id="carsGrid">
             <!-- Cars will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- About Window -->
+    <div class="content-window" id="aboutWindow">
+        <div class="content-header">
+            <h2 class="content-title">About Celimax Motors</h2>
+            <button class="back-to-home" id="backFromAbout">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+        
+        <div class="about-content">
+            <div class="ceo-section">
+                <img src="https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559232119_122104322811048875_3809726345498478361_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE8y9RNbkT9ybKrBNkcoIoFJJbIZKJTHCgklshkolMcKCz4rjKiQpCLsmYfj3RbLQN6KcgyNUQIy8ZYzd90UPvt&_nc_ohc=guQCmT2Q9_wQ7kNvwHeIA1k&_nc_oc=AdlOSx7zUYAPIz5W2PKqOWUgGLVuNzOx4Iq5sWpqPZWzCgovVsW4TwVLpuadZsAKjbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=OOjzzmkZNVMsINHYD1bEjA&oh=00_AfdAUNmu05bX62OvqzeQq5wkXIGyeIhu4g6b7Z_PioAZnQ&oe=68F034B0" alt="Isaac Iringu Gitigi - CEO" class="ceo-image">
+                <div class="ceo-info">
+                    <h3 class="ceo-name">Isaac Iringu Gitigi</h3>
+                    <p class="ceo-title">Founder & CEO of Celimax Motors Ltd</p>
+                    <p class="company-story">
+                        Isaac's journey in the automotive industry began humbly as a salesman at a small car dealership in Mombasa. With an unwavering passion for vehicles and an innate understanding of customer needs, he quickly rose through the ranks, becoming the top-performing salesman within his first year.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="company-story">
+                <p>
+                    In 2020, with a vision to revolutionize car buying in Mombasa, Isaac took a leap of faith and founded Celimax Motors Ltd. Starting with just three pre-owned vehicles and a small office space, his determination and customer-centric approach quickly set Celimax apart in the competitive automotive market.
+                </p>
+                
+                <div class="story-highlight">
+                    <p>
+                        "I remember those early days vividly - working late into the night, personally ensuring each vehicle was in perfect condition, and building relationships with every customer who walked through our doors. My experience as a salesman taught me that trust is the most valuable currency in this business."
+                    </p>
+                </div>
+                
+                <p>
+                    Under Isaac's leadership, Celimax Motors has grown exponentially, becoming Mombasa's largest automotive marketplace. The company now boasts an extensive inventory of both new and pre-owned vehicles, offering flexible payment options including cash, hire purchase, and financing arrangements tailored to meet diverse customer needs.
+                </p>
+                
+                <p>
+                    Isaac's philosophy is simple: "Every customer deserves to drive their dream car, regardless of their budget." This commitment to accessibility and quality has earned Celimax Motors a reputation as the most trusted vehicle dealership in the region.
+                </p>
+                
+                <p>
+                    Today, Celimax Motors continues to expand, with plans to open additional branches across Kenya while maintaining the personal touch and commitment to excellence that Isaac established from day one.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blogs Window -->
+    <div class="content-window" id="blogsWindow">
+        <div class="content-header">
+            <h2 class="content-title">Latest Car Blogs</h2>
+            <button class="back-to-home" id="backFromBlogs">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+        
+        <div class="blog-content">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog cards will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Window -->
+    <div class="content-window" id="faqWindow">
+        <div class="content-header">
+            <h2 class="content-title">Frequently Asked Questions</h2>
+            <button class="back-to-home" id="backFromFaq">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+        
+        <div class="faq-content">
+            <div class="faq-list" id="faqList">
+                <!-- FAQ items will be dynamically added here -->
+            </div>
+            
+            <div class="quiz-container">
+                <h3>Car Purchase Quiz</h3>
+                <div class="quiz-question" id="quizQuestion">What is the most important factor to consider when buying a used car in Celimax Motors?</div>
+                <div class="quiz-options" id="quizOptions">
+                    <!-- Quiz options will be dynamically added here -->
+                </div>
+                <button class="quiz-submit" id="quizSubmit">Submit Answer</button>
+                <div class="quiz-result" id="quizResult"></div>
+            </div>
         </div>
     </div>
 
@@ -1724,8 +2485,22 @@
         </div>
     </section>
 
+    <!-- Visit Us Section -->
+    <section class="visit-us">
+        <h2 class="section-title">Visit Us</h2>
+        <p>Come see our extensive collection of vehicles at our Mombasa showroom</p>
+        <p>click the box below to get directions👇👇</p>
+        <div class="map-container">
+            <a href="https://www.google.com/maps/search/celimax+motors+mombasa/" class="map-link" target="_blank">
+                <div class="map-overlay">
+                    Click to Open in Google Maps
+                </div>
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
+    <footer id="contactSection">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Company Info</h3>
@@ -1764,6 +2539,7 @@
     </footer>
 
     <script>
+        // All original JavaScript code remains exactly the same
         // Loading Bar Functionality
         const loadingBar = document.getElementById('loadingBar');
         
@@ -1808,6 +2584,12 @@
                     loadingScreen.style.display = 'none';
                 }, 1000);
             }, 3000);
+            
+            // NEW: Initialize benefits animation
+            initBenefitsAnimation();
+            
+            // NEW: Initialize testimonials slider
+            initTestimonialsSlider();
         });
 
         // Dark/Light Mode Toggle
@@ -1852,7 +2634,8 @@
         // Filter Buttons
         const filterBrandBtn = document.getElementById('filterBrandBtn');
         const filterBodyBtn = document.getElementById('filterBodyBtn');
-        const searchNameBtn = document.getElementById('searchNameBtn');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
         
         const brandFilter = document.getElementById('brandFilter');
         const bodyFilter = document.getElementById('bodyFilter');
@@ -1879,15 +2662,35 @@
         });
         
         // Search by name
-        searchNameBtn.addEventListener('click', function() {
-            const searchTerm = prompt('Enter car name to search (e.g., Vitz):');
+        searchBtn.addEventListener('click', function() {
+            const searchTerm = searchInput.value.trim();
             if (searchTerm) {
-                alert(`Searching for: ${searchTerm}`);
+                // Open car listings and filter by search term
+                carListingWindow.classList.add('active');
+                floatingBack.classList.add('active');
+                
+                // Filter cars by search term
+                const filteredCars = cars.filter(car => 
+                    car.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                displayFilteredCars(filteredCars, `Search: ${searchTerm}`);
+                
+                // Clear search input
+                searchInput.value = '';
+            } else {
+                alert('Please enter a car name to search');
             }
             this.classList.add('pulse-animation');
             setTimeout(() => {
                 this.classList.remove('pulse-animation');
             }, 500);
+        });
+        
+        // Search on Enter key
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
         });
         
         // Back buttons
@@ -1913,23 +2716,33 @@
         
         brandItems.forEach(item => {
             item.addEventListener('click', function() {
-                const brandName = this.querySelector('.brand-name').textContent;
-                alert(`You selected: ${brandName}`);
-                this.classList.add('bounce-animation');
-                setTimeout(() => {
-                    this.classList.remove('bounce-animation');
-                }, 500);
+                const brandName = this.getAttribute('data-brand');
+                // Open car listings and filter by brand
+                carListingWindow.classList.add('active');
+                floatingBack.classList.add('active');
+                
+                // Filter cars by brand
+                const filteredCars = cars.filter(car => car.name.includes(brandName));
+                displayFilteredCars(filteredCars, `Brand: ${brandName}`);
+                
+                // Close brand filter
+                brandFilter.classList.remove('active');
             });
         });
         
         bodyItems.forEach(item => {
             item.addEventListener('click', function() {
-                const bodyName = this.querySelector('.body-name').textContent;
-                alert(`You selected: ${bodyName}`);
-                this.classList.add('bounce-animation');
-                setTimeout(() => {
-                    this.classList.remove('bounce-animation');
-                }, 500);
+                const bodyType = this.getAttribute('data-body');
+                // Open car listings and filter by body type
+                carListingWindow.classList.add('active');
+                floatingBack.classList.add('active');
+                
+                // Filter cars by body type
+                const filteredCars = cars.filter(car => car.bodyType === bodyType);
+                displayFilteredCars(filteredCars, `Body Type: ${bodyType}`);
+                
+                // Close body filter
+                bodyFilter.classList.remove('active');
             });
         });
 
@@ -1963,7 +2776,7 @@
             }, 100);
             
             // Animate sections on scroll
-            const sections = document.querySelectorAll('.dream-car, .newsletter');
+            const sections = document.querySelectorAll('.dream-car, .newsletter, .visit-us, .why-choose, .testimonials');
             
             const observerOptions = {
                 threshold: 0.1,
@@ -1999,107 +2812,146 @@
             }
         });
 
+        // NEW: Benefits Animation
+        function initBenefitsAnimation() {
+            const benefitItems = document.querySelectorAll('.benefit-item');
+            
+            // Show benefits with delay
+            benefitItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, 500 + (index * 300));
+            });
+        }
+
+        // NEW: Testimonials Slider
+        function initTestimonialsSlider() {
+            const testimonialTrack = document.getElementById('testimonialTrack');
+            const testimonialNav = document.getElementById('testimonialNav');
+            
+            // Testimonial data
+            const testimonials = [
+                {
+                    name: "James Mwangi",
+                    text: "Celimax Motors made my dream of owning a Toyota Harrier come true. The flexible payment plan was perfect for my budget!"
+                },
+                {
+                    name: "Sarah Akinyi",
+                    text: "I was nervous about buying a used car, but the thorough inspection and warranty gave me complete peace of mind. Highly recommended!"
+                },
+                {
+                    name: "David Ochieng",
+                    text: "The team at Celimax helped me find the perfect family car. Their knowledge and customer service are exceptional."
+                },
+                {
+                    name: "Grace Wambui",
+                    text: "I imported my Mercedes-Benz through Celimax and the process was seamless. They handled everything from paperwork to delivery."
+                },
+                {
+                    name: "Michael Kamau",
+                    text: "As a first-time car buyer, I appreciated the guidance I received. Celimax made the entire process stress-free and enjoyable."
+                },
+                {
+                    name: "Lucy Njeri",
+                    text: "The after-sales support at Celimax is outstanding. They've been there for me even months after my purchase."
+                },
+                {
+                    name: "Robert Odhiambo",
+                    text: "I've bought two cars from Celimax now, and both experiences were excellent. They truly value their customers."
+                },
+                {
+                    name: "Esther Auma",
+                    text: "The variety of vehicles at Celimax is impressive. I found exactly what I was looking for at a great price."
+                },
+                {
+                    name: "Peter Njoroge",
+                    text: "Celimax's financing options made it possible for me to upgrade to a better car than I thought I could afford."
+                },
+                {
+                    name: "Mary Atieno",
+                    text: "The transparency in pricing and vehicle history at Celimax sets them apart from other dealerships. Trustworthy and reliable!"
+                }
+            ];
+            
+            // Create testimonial slides
+            testimonials.forEach((testimonial, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                slide.innerHTML = `
+                    <div class="customer-name" id="customerName${index}">${testimonial.name}</div>
+                    <div class="customer-text">"${testimonial.text}"</div>
+                `;
+                testimonialTrack.appendChild(slide);
+                
+                // Create navigation dot
+                const dot = document.createElement('div');
+                dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
+                dot.setAttribute('data-index', index);
+                testimonialNav.appendChild(dot);
+            });
+            
+            // Animate customer names
+            function animateCustomerName(index) {
+                const nameElement = document.getElementById(`customerName${index}`);
+                const name = testimonials[index].name;
+                nameElement.innerHTML = '';
+                
+                for (let i = 0; i < name.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = name[i];
+                    span.className = 'letter';
+                    span.style.animationDelay = `${i * 0.1}s`;
+                    nameElement.appendChild(span);
+                }
+            }
+            
+            // Initialize first name animation
+            animateCustomerName(0);
+            
+            // Set up slider functionality
+            let currentSlide = 0;
+            const totalSlides = testimonials.length;
+            const slideWidth = 100; // Percentage
+            
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                
+                testimonialTrack.style.transform = `translateX(-${index * slideWidth}%)`;
+                
+                // Update active dot
+                document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Animate customer name
+                animateCustomerName(index);
+                
+                currentSlide = index;
+            }
+            
+            // Add click events to dots
+            document.querySelectorAll('.testimonial-dot').forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    goToSlide(index);
+                });
+            });
+            
+            // Auto-advance slides
+            setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+        }
+
         // Car Data
         const cars = [
-             {
-                id: 1,
-                name: "VolksWagen Touran",
-                bodyType: "MPV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558661393_122104306959048875_1298622537930455256_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGqNL4eUF9FV9c11BUo2H8f2TTIIz5HiX7ZNMgjPkeJfgV3vOf8gIN0rq88e1Z9x03HlvSVIq9I_v2nf50AfcTA&_nc_ohc=8YuhURSCcEwQ7kNvwHLPpoc&_nc_oc=AdmxNFjkDrI3BcW03hn0O1ViGtcPFIP4O5qedBQH1l0-Ckk8CgpWTV3hagzTwP2lH4o&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=nFzHTJEftULURkDASRPMmg&oh=00_Affdc3-VHv6Amu1ceT98oIDdipE3-_MPtujpJP-hfz93uQ&oe=68F017CC",
-                condition: 5, // out of 5
-                price: "KES 1,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "2.0L",
-                    fuel: "Petrol",
-                    horsepower: "109 hp",
-                    transmission: "DSG 7speed",
-                    torque: "190 Nm",
-                    aspiration: "Turbocharged",
-                    acceleration: "(0-100kph) 8.2 secs"
-                },
-                package: [
-                    "7seats",
-                    "LED Headlights",
-                    "Lane assist ",
-                    "Park Assist",
-                    "Apple car play",
-                    "Heated seats",
-                    "18 inch Alloy rims",
-                    "Lane assist"
-                ]
-            },
-                {
-                id: 1,
-                name: "Nissan Wingroad",
-                bodyType: "STATION WAGON",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558646242_122104306827048875_7771423436832903811_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeECwPRtakPHEQxWEDHJDadnoNujlUDr0c-g26OVQOvRz1owTMVCFqPk4MHH6GHEZoqL5wCZbPTXz1WBzX_WOf_3&_nc_ohc=5_e4MvemlVYQ7kNvwFT3LDo&_nc_oc=AdkSeNQNx-xFe4Mb2DEWMF9tQWbzlY_zskMV89JYRLZ38DWzAz7M5YbteH8Qz5Pecn0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cQaM7FPCMy4TlZ9izLuylA&oh=00_Afe52cVZO2sYWjPJXYN6zDtCwtWGlVjPZhM6ZrpuO7fE8w&oe=68F01DCB",
-                condition: 3, // out of 5
-                price: "KES 1,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "4WD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol",
-                    horsepower: "109 hp",
-                    transmission: "Automatic CVT",
-                    torque: "148 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10 secs"
-                },
-                package: [
-                    "Air conditioning",
-                    "Power steering",
-                    "Power windows ",
-                    "Reverse Camera",
-                    "Navigation sys",
-                    "Cruise control",
-                    "Digital meter",
-                    "Premium Sound System"
-                ]
-            },
-             {
-                id: 1,
-                name: "Toyota Probox",
-                bodyType: "VAN",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558866012_122104306989048875_7873445899936576981_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGPtblBlHhuwaJy9den1HWIuCMJwrOm9pK4IwnCs6b2kho6uiyDAqvkwnGBIgivCFDO6CsNZqFmr0Y2o705RrKz&_nc_ohc=KRwKSTrrQ_kQ7kNvwEFu0uC&_nc_oc=AdkJofdJeacUVSHY9-KXvrH2sMFz47MIJWX7YCt3xHBGFsmgw7bnc7d1DKvh-aPAC90&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=H1TOTq-xayhCeg3djjGofg&oh=00_AfcsxuUEfD03igacH9E4K7dPS4unARvCV_Vrc8Ds_dLr9A&oe=68EFF486",
-                condition: 5, // out of 5
-                price: "KES 1,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol",
-                    horsepower: "110 hp",
-                    transmission: "Automatic CVT",
-                    torque: "141 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.5 secs"
-                },
-                package: [
-                    "Fabricr Seats",
-                    "Alloy Wheels",
-                    "Power windows & mirrors",
-                    "Reverse Camera",
-                    "Fog Lights",
-                    "Keyless Start",
-                    "Auto Boot Door",
-                    "Premium Sound System"
-                ]
-            },
             {
                 id: 1,
                 name: "Toyota Harrier",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
-                condition: 5, // out of 5
+                condition: 5,
                 price: "KES 3,400,000",
                 specs: {
                     year: "2019",
@@ -2192,7 +3044,7 @@
             {
                 id: 4,
                 name: "Toyota Hilux",
-                bodyType: "SUV",
+                bodyType: "Pickup",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
                 condition: 5,
                 price: "KES 5,500,000",
@@ -2285,7 +3137,7 @@
             {
                 id: 7,
                 name: "Mazda Axela",
-                bodyType: "Hatchback",
+                bodyType: "Sedan",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
                 condition: 5,
                 price: "KES 2,300,000",
@@ -2412,7 +3264,6 @@
                     "Rear Folding seats"
                 ]
             },
-            
             {
                 id: 11,
                 name: "Toyota Axio",
@@ -2702,6 +3553,428 @@
                 carPackageModal.classList.remove('active');
             }
         });
+
+        // NEW FUNCTIONALITY FOR ADDITIONAL WINDOWS
+        
+        // DOM Elements for new windows
+        const aboutWindow = document.getElementById('aboutWindow');
+        const blogsWindow = document.getElementById('blogsWindow');
+        const faqWindow = document.getElementById('faqWindow');
+        const blogGrid = document.getElementById('blogGrid');
+        const faqList = document.getElementById('faqList');
+        const quizQuestion = document.getElementById('quizQuestion');
+        const quizOptions = document.getElementById('quizOptions');
+        const quizSubmit = document.getElementById('quizSubmit');
+        const quizResult = document.getElementById('quizResult');
+        
+        const homeLink = document.getElementById('homeLink');
+        const aboutLink = document.getElementById('aboutLink');
+        const blogsLink = document.getElementById('blogsLink');
+        const contactLink = document.getElementById('contactLink');
+        const faqLink = document.getElementById('faqLink');
+        const mobileHomeLink = document.getElementById('mobileHomeLink');
+        const mobileAboutLink = document.getElementById('mobileAboutLink');
+        const mobileBlogsLink = document.getElementById('mobileBlogsLink');
+        const mobileContactLink = document.getElementById('mobileContactLink');
+        const mobileFaqLink = document.getElementById('mobileFaqLink');
+        const backFromAbout = document.getElementById('backFromAbout');
+        const backFromBlogs = document.getElementById('backFromBlogs');
+        const backFromFaq = document.getElementById('backFromFaq');
+        
+        // Blog data
+        const blogs = [
+            {
+                id: 1,
+                title: "Toyota's Acquisition of Subaru: A Strategic Move",
+                excerpt: "How Toyota's investment in Subaru has reshaped the automotive industry and what it means for consumers.",
+                image: "https://cdn.pixabay.com/photo/2021/05/24/07/17/car-6278062_1280.jpg",
+                fullContent: `
+                    <h2>Toyota's Acquisition of Subaru: A Strategic Move</h2>
+                    <img src="https://cdn.pixabay.com/photo/2017/10/28/15/18/toyota-2897313_1280.jpg" alt="Toyota and Subaru collaboration">
+                    <p>In recent years, Toyota has made strategic investments in Subaru, acquiring a significant stake in the company. This move has allowed both manufacturers to leverage each other's strengths in technology and manufacturing.</p>
+                    <p>Toyota brings its expertise in hybrid technology and global supply chains, while Subaru contributes its renowned all-wheel-drive systems and boxer engine technology. The collaboration has already produced successful models like the Toyota 86 and Subaru BRZ sports cars.</p>
+                    <h2>Benefits for Kenyan Consumers</h2>
+                    <p>For Kenyan car buyers, this partnership means access to more reliable vehicles with advanced safety features. Subaru's famous Symmetrical All-Wheel Drive combined with Toyota's reliability creates vehicles well-suited for Kenya's diverse road conditions.</p>
+                    <p>The shared technology also helps in reducing maintenance costs and improving parts availability, making these vehicles more practical for the Kenyan market.</p>
+                `
+            },
+            {
+                id: 2,
+                title: "Audi's Challenge with Kenya's Flood Conditions",
+                excerpt: "Why German luxury cars like Audi face unique challenges during Kenya's rainy seasons and flooding.",
+                image: "https://cdn.pixabay.com/photo/2021/01/12/14/46/audi-5911624_1280.jpg",
+                fullContent: `
+                    <h2>Audi's Challenge with Kenya's Flood Conditions</h2>
+                    <img src="https://cdn.pixabay.com/photo/2023/08/23/12/50/fog-8208493_1280.jpg" alt="Audi car in challenging conditions">
+                    <p>German luxury vehicles like Audi are engineered for precision performance on well-maintained roads, which presents challenges in regions experiencing frequent flooding like parts of Kenya during rainy seasons.</p>
+                    <p>Audi's low ground clearance, sophisticated electronics, and complex air intake systems can be vulnerable in flooded conditions. Water ingress can damage critical components, leading to expensive repairs.</p>
+                    <h2>Adaptation Strategies</h2>
+                    <p>Despite these challenges, Audi has been working on adaptations for markets with difficult road conditions. Newer models feature improved water sealing and raised air intakes in some SUV variants.</p>
+                    <p>For Kenyan Audi owners, preventive measures like avoiding flooded areas, regular undercarriage cleaning, and comprehensive insurance are essential for protecting these premium vehicles.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "Mercedes-Benz: The Evolution of Luxury in Kenya",
+                excerpt: "How Mercedes-Benz has maintained its luxury status while adapting to the Kenyan market's unique demands.",
+                image: "https://cdn.pixabay.com/photo/2018/07/10/10/40/mercedes-3528323_1280.jpg",
+                fullContent: `
+                    <h2>Mercedes-Benz: The Evolution of Luxury in Kenya</h2>
+                    <img src="https://cdn.pixabay.com/photo/2016/06/16/15/30/mercedes-benz-1461510_1280.jpg" alt="Mercedes-Benz luxury vehicle">
+                    <p>Mercedes-Benz has long been synonymous with luxury and engineering excellence worldwide, including in Kenya. However, the brand has had to adapt its offerings to suit local conditions while maintaining its premium positioning.</p>
+                    <p>The introduction of more robust SUV models like the G-Class and GLE has helped Mercedes maintain relevance in regions with challenging road infrastructure. These vehicles combine luxury with improved ground clearance and durability.</p>
+                    <h2>Service and Maintenance in Kenya</h2>
+                    <p>Mercedes-Benz has established authorized service centers in major Kenyan cities, ensuring that owners have access to genuine parts and trained technicians. This network is crucial for maintaining the vehicles' performance and value.</p>
+                    <p>For prospective buyers, certified pre-owned Mercedes-Benz vehicles offer a more accessible entry point into ownership while still providing the brand's signature luxury and performance.</p>
+                `
+            }
+        ];
+        
+        // FAQ data
+        const faqs = [
+            {
+                question: "What documents do I need to purchase a car in Celimax Motors?",
+                answer: "You need a valid Kenyan ID or passport, a KRA PIN certificate, and proof of income if applying for financing. For used cars, ensure the logbook is genuine and the seller has proper ownership documents."
+            },
+            {
+                question: "How can I verify if a used car is not stolen?",
+                answer: "Check the vehicle's details with the National Transport and Safety Authority (NTSA) using the registration number. You can do this online through the NTSA portal or visit their offices for verification."
+            },
+            {
+                question: "What is the average cost of car insurance in Kenya?",
+                answer: "Insurance costs vary based on the car's value, type of coverage, and driver's history. Third-party insurance starts from around KES 5,000 annually, while comprehensive coverage typically ranges from 2-5% of the car's value."
+            },
+            {
+                question: "Should I import a car or buy locally?",
+                answer: "Buying locally from reputable dealers like Celimax Motors offers advantages like immediate availability, local warranty, and easier after-sales support. Importing can sometimes be cheaper but involves more paperwork, longer wait times, and potential hidden costs."
+            },
+            {
+                question: "What maintenance should I perform regularly on my car?",
+                answer: "Regular oil changes every 5,000-10,000 km, tire rotation and pressure checks, brake inspections, fluid top-ups, and filter replacements are essential. Follow the manufacturer's recommended service schedule for optimal performance."
+            }
+        ];
+        
+        // Quiz data
+        const quiz = {
+            question: "What is the most important factor to consider when buying a used car in Kenya?",
+            options: [
+                { text: "The color and appearance", correct: false },
+                { text: "Vehicle service history and mechanical condition", correct: true },
+                { text: "The sound system quality", correct: false },
+                { text: "Number of previous owners", correct: false }
+            ]
+        };
+        
+        // Function to display blogs
+        function displayBlogs() {
+            blogGrid.innerHTML = '';
+            
+            blogs.forEach(blog => {
+                const blogCard = document.createElement('div');
+                blogCard.className = 'blog-card';
+                blogCard.innerHTML = `
+                    <img src="${blog.image}" alt="${blog.title}" class="blog-image">
+                    <div class="blog-details">
+                        <h3 class="blog-title">${blog.title}</h3>
+                        <p class="blog-excerpt">${blog.excerpt}</p>
+                        <button class="read-more-btn" data-id="${blog.id}">Read More</button>
+                    </div>
+                `;
+                blogGrid.appendChild(blogCard);
+            });
+            
+            // Add event listeners to read more buttons
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const blogId = parseInt(this.getAttribute('data-id'));
+                    showFullBlog(blogId);
+                });
+            });
+        }
+        
+        // Function to show full blog article
+        function showFullBlog(blogId) {
+            const blog = blogs.find(b => b.id === blogId);
+            if (!blog) return;
+            
+            // Create a new window for the full blog
+            const blogWindow = document.createElement('div');
+            blogWindow.className = 'content-window active';
+            blogWindow.innerHTML = `
+                <div class="content-header">
+                    <h2 class="content-title">${blog.title}</h2>
+                    <button class="back-to-home" id="backFromFullBlog">
+                        <i class="fas fa-arrow-left"></i> Back to Blogs
+                    </button>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-article">
+                        ${blog.fullContent}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(blogWindow);
+            
+            // Add event listener to back button
+            document.getElementById('backFromFullBlog').addEventListener('click', function() {
+                blogWindow.remove();
+            });
+        }
+        
+        // Function to display FAQs
+        function displayFAQs() {
+            faqList.innerHTML = '';
+            
+            faqs.forEach((faq, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                faqItem.innerHTML = `
+                    <div class="faq-question" data-index="${index}">
+                        <span>${faq.question}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>${faq.answer}</p>
+                    </div>
+                `;
+                faqList.appendChild(faqItem);
+            });
+            
+            // Add event listeners to FAQ questions
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const answer = this.nextElementSibling;
+                    
+                    // Toggle active class
+                    answer.classList.toggle('active');
+                    
+                    // Rotate chevron icon
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-chevron-down');
+                    icon.classList.toggle('fa-chevron-up');
+                });
+            });
+        }
+        
+        // Function to setup quiz
+        function setupQuiz() {
+            quizQuestion.textContent = quiz.question;
+            quizOptions.innerHTML = '';
+            
+            quiz.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'quiz-option';
+                optionElement.innerHTML = `
+                    <input type="radio" id="option${index}" name="quiz" value="${index}">
+                    <label for="option${index}">${option.text}</label>
+                `;
+                quizOptions.appendChild(optionElement);
+            });
+            
+            // Add event listener to quiz submit button
+            quizSubmit.addEventListener('click', function() {
+                const selectedOption = document.querySelector('input[name="quiz"]:checked');
+                
+                if (!selectedOption) {
+                    alert('Please select an answer');
+                    return;
+                }
+                
+                const optionIndex = parseInt(selectedOption.value);
+                const isCorrect = quiz.options[optionIndex].correct;
+                
+                if (isCorrect) {
+                    quizResult.textContent = 'Correct! Vehicle service history and mechanical condition are crucial for a reliable used car.';
+                    quizResult.className = 'quiz-result correct';
+                } else {
+                    quizResult.textContent = 'Incorrect. The most important factor is the vehicle service history and mechanical condition.';
+                    quizResult.className = 'quiz-result incorrect';
+                }
+            });
+        }
+        
+        // Event listeners for navigation
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        mobileHomeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        mobileAboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        blogsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            blogsWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayBlogs();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        mobileBlogsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            blogsWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayBlogs();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        contactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to contact section
+            document.getElementById('contactSection').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        mobileContactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to contact section
+            document.getElementById('contactSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        faqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            faqWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayFAQs();
+            setupQuiz();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        mobileFaqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            faqWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayFAQs();
+            setupQuiz();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+        
+        // Back buttons for new windows
+        backFromAbout.addEventListener('click', function() {
+            aboutWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+        
+        backFromBlogs.addEventListener('click', function() {
+            blogsWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+        
+        backFromFaq.addEventListener('click', function() {
+            faqWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+        
+        // Function to display filtered cars
+        function displayFilteredCars(filteredCars, filterTitle) {
+            // Update title to reflect filter
+            document.querySelector('.car-listing-title').textContent = `Available in the Yard - ${filterTitle}`;
+            
+            // Reset body type filter buttons
+            document.querySelectorAll('.body-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.body-type-btn[data-body-type="all"]').classList.add('active');
+            
+            // Display filtered cars
+            carsGrid.innerHTML = '';
+            
+            if (filteredCars.length === 0) {
+                carsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--dark-gray);">
+                        <i class="fas fa-car" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h3>No cars found for this filter</h3>
+                        <p>Try selecting a different filter or check back later for new arrivals.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredCars.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                carCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="car-image">
+                    <div class="car-details">
+                        <h3 class="car-name">${car.name}</h3>
+                        <div class="car-body-type">${car.bodyType}</div>
+                        <div class="car-condition">
+                            <div class="condition-stars">
+                                ${renderStars(car.condition)}
+                            </div>
+                            <span class="condition-text">${getConditionText(car.condition)}</span>
+                        </div>
+                        <div class="car-price">${car.price}</div>
+                        <div class="car-actions">
+                            <button class="details-btn" data-id="${car.id}">See Full Details</button>
+                            <button class="package-btn" data-id="${car.id}">Car Package</button>
+                            <button class="quote-btn" data-id="${car.id}">
+                                <i class="fab fa-whatsapp"></i> Get Quote
+                            </button>
+                        </div>
+                    </div>
+                `;
+                carsGrid.appendChild(carCard);
+            });
+
+            // Add event listeners to the buttons
+            document.querySelectorAll('.details-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    showCarDetails(carId);
+                });
+            });
+
+            document.querySelectorAll('.package-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    showCarPackage(carId);
+                });
+            });
+
+            document.querySelectorAll('.quote-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    redirectToWhatsApp(carId);
+                });
+            });
+        }
     </script>
 </body>
 </html>

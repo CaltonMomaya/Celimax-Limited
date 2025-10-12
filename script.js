@@ -1,4 +1,4 @@
-// All original JavaScript code remains exactly the same
+  // All original JavaScript code remains exactly the same
         // Loading Bar Functionality
         const loadingBar = document.getElementById('loadingBar');
         
@@ -722,8 +722,8 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559569963_122104524621048875_657513977709521163_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFmwwTYTvxLL7Z19oN7RCiSVUZGm4-98FFVRkabj73wUR0GpBtPSpDZGcvdHjY7nHFGwNVWQpGATos1klMM3Zov&_nc_ohc=oC-77tsQTigQ7kNvwEHYpXr&_nc_oc=AdlF6o782mcgt5WCd1KBtcAg_hdHCrY4zn4VNkTLnkXBe4W-cQOmGorwME70ic3VSU0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=CVJMEGoiavwas5kyXDewIw&oh=00_AfeyDIhWswxbZ-W4IuH3ymN6UQHNXkHlRry4QOSLYcfXUA&oe=68F16D04",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Demio+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Demio+Side",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558915980_122104635099048875_1937216994013379711_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFIhjJFgRu239UkV5r6m4f-LxfIZ8QNV_QvF8hnxA1X9DcKR_8Cisv16HANw0MAU1txiwl6pFKgtgXj49zjLlKI&_nc_ohc=hCy6HkU_OvEQ7kNvwEbvBzn&_nc_oc=AdkGXtAL1lre1sDEaDG0Vj5FfxSXDuh5T6gtWW9wPbXSsHISnN9Uov97MbKNxrGedp8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=1WnFlBUyA12P80PM65a-KQ&oh=00_AffYN1fmqmkgfmrRX8EUrd40oE4jmBKU98RHAP29f1_38Q&oe=68F1E0F1",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559012609_122104635297048875_7567493869077144614_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF-8sG3E40k_dzjJXF8c7WzAfM9bAn-u30B8z1sCf67fWbwB2OHzyNO_ORH6BgofgamjFSMSRbUqSXhM4ypMjcD&_nc_ohc=urmG4iLuyoQQ7kNvwFT9NOE&_nc_oc=Adne6IJW6_0WD6mUnfHt6zo3UwhBrPLRGyuUzPnqwSoGIsSbUqI9z3ltFBXGA7k6XmI&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=8njP7GJX39KO9qCPFcdcJw&oh=00_Aff7Ye1IhUJ85R7G2ldp4iHghtPVuzSqmWylzuSu-CN3Ww&oe=68F1E6F6",
                     "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Demio+Rear",
                     "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Demio+Interior"
                 ],
@@ -919,7 +919,7 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hilux+Front",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559009211_122104633329048875_109645842630363952_n.jpg?stp=dst-jpg_p180x540_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGDx4PubENnLaXxOb5mVzkDBhD2WLLl278GEPZYsuXbv9VQnsB8PW3cqzFn3vaPuyetYqtO0EyV4z8oro4GoKy7&_nc_ohc=zR8xSvgDmkgQ7kNvwHbFyZC&_nc_oc=AdmzfixIwgyZXuB9DHSfmiJQBX7FbVSEnKseg_ludAtOZFqVjJs2T7ADstFAbMH9YSw&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=_Z-hie9t1oUTlAg1n0zzDA&oh=00_AfeK4vxXbVHnXo0teMj_B1Stig9S9bh4sd66yQWzSFU-7g&oe=68F1B66B",
                     "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hilux+Side",
                     "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hilux+Rear",
                     "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hilux+Interior"
@@ -1036,10 +1036,10 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Axela+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Axela+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Axela+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Axela+Interior"
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559589706_122104634295048875_3178264038624409637_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYodYOp42r_OO-b_BK4P3lG5yj_KQLeQYbnKP8pAt5BpVArkdKeH3gMo9pn1YdbozCf_ab5KEr-swYSpW6cEA4&_nc_ohc=pnVee1JIusAQ7kNvwE7jdHX&_nc_oc=Adn0ughIDujH8kQqMPeeuEyjn9W8OuRFjGDRor_iwyz2UmYdg8VGJZfoo6OWiRRRHpk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3taLBCEyYjvcRIsl1yXYdw&oh=00_AfcIgeZwU3we86ijtUjItnGfAZf1oaEFwwcubuy5JyyYcg&oe=68F1EB2F",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560059227_122104634289048875_9222806528131245098_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEe8bQ-Q1nAz6bpbfIjJ5ClVTpZG4Xq9u5VOlkbher27n8AOAYK1vfAVT6dgCNn4nTqUfeMnjZ8o4Bgvewcpr1V&_nc_ohc=SODAXqAEu9gQ7kNvwGzI1DQ&_nc_oc=AdlJ6J1HnhN0tj7sUFztsAPx66QcAegH6ItAjCCbyOZjU4rJZTcpqtwDpJyKuEsMHbQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3vWsfRw5XoXAxnOZV_xUkw&oh=00_AffRSo9Juf_IV68nqTCEJo_spY86Mn6xVs9Gl5wGo4p8vQ&oe=68F1DC90",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561929762_122104634313048875_81882520261597970_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUE_Wj5gM21Y6M9yNoaC8Re5HccbvfOK17kdxxu984raSP2kLy4VyjqvpM_H4vTxaJi3NR4qPMhFh0963lv7Ev&_nc_ohc=iYCdS7irfLwQ7kNvwHWoSvX&_nc_oc=AdnCUtFsyiaPp9yEJhvbFhbd67VL1IU45BhE3iRSRy_CfR_M79Z3e17AeOSl62dVq4s&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=fvTc_3tFDzA-lvg_BdE6Gw&oh=00_AfcfgJ8U8dJNJN9ZhKggiMnMvy8yLhNwsFWWRz7lo_mj_w&oe=68F1D43B",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559589706_122104634295048875_3178264038624409637_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYodYOp42r_OO-b_BK4P3lG5yj_KQLeQYbnKP8pAt5BpVArkdKeH3gMo9pn1YdbozCf_ab5KEr-swYSpW6cEA4&_nc_ohc=pnVee1JIusAQ7kNvwE7jdHX&_nc_oc=Adn0ughIDujH8kQqMPeeuEyjn9W8OuRFjGDRor_iwyz2UmYdg8VGJZfoo6OWiRRRHpk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3taLBCEyYjvcRIsl1yXYdw&oh=00_AfcIgeZwU3we86ijtUjItnGfAZf1oaEFwwcubuy5JyyYcg&oe=68F1EB2F"
                 ],
                 condition: 5,
                 price: "KES 2,300,000",
@@ -1077,7 +1077,7 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mercedes+GLC+Front",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560559927_122104632471048875_1775357419720063072_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEmlpCo31zupNpld4QbkWXoQYCgiEMOQuJBgKCIQw5C4q7OhRCDO3Tff4plpyeFzEzz2zS-e0gUMO8L80OyA4Ah&_nc_ohc=jvMk-aDld1AQ7kNvwGxYMu4&_nc_oc=AdmE3bTb4E3AuJmKD2DmUYzF5PrUBJPth9MQkYS6V7c8_K85unH0ak0JCpWNFgGptVo&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=RuuCBCHymN5Drlq1UftnCw&oh=00_AfelCPgMvPhCWwgS5ckkfWkxv0w2ZWx1em5EoQGUOchlSw&oe=68F1E279",
                     "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mercedes+GLC+Side",
                     "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mercedes+GLC+Rear",
                     "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mercedes+GLC+Interior"
@@ -1117,7 +1117,7 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Vezel+Front",
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560243105_122104634913048875_1372631181836730887_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGc9eHvy04y7QDwYh0DwI4oNcUiwzosU1A1xSLDOixTUG6mQLq7SrtbdnjFipNgj6-BAWab33L_pHMU7Izzc67W&_nc_ohc=66A5Rh-EQDkQ7kNvwF1w_xG&_nc_oc=AdnqbTBYp5AJJICbV1dSKYI6IxzXH9B5rmRMdtK98_LDJmJyQcxrrIVjKGDcU8XwzmY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=7i7guBoR7YwVCOqu0HnyZg&oh=00_AfcQRgt5Ppwbgsrx2EoFvcV5wNCRzddvaKI2PAAbLbppEA&oe=68F1D9A5",
                     "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Vezel+Side",
                     "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Vezel+Rear",
                     "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Vezel+Interior"
@@ -1961,4 +1961,4 @@
                     redirectToWhatsApp(carId);
                 });
             });
-        } 
+        }

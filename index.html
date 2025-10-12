@@ -1,2063 +1,16 @@
-<script>
-  const API_KEY = "AIzaSy***************";
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CELIMAX MOTORS LTD | Mombasa's Largest Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All original CSS remains exactly the same */
-        :root {
-            --primary: #FFFFFF;
-            --secondary: #FF6600;
-            --accent: #000000;
-            --light-gray: #F5F5F5;
-            --medium-gray: #E0E0E0;
-            --dark-gray: #333333;
-            --transition: all 0.4s ease;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --glow: 0 0 10px rgba(255, 102, 0, 0.5);
-        }
-
-        .dark-mode {
-            --primary: #121212;
-            --secondary: #FF8C00;
-            --accent: #E0E0E0;
-            --light-gray: #1E1E1E;
-            --medium-gray: #2D2D2D;
-            --dark-gray: #CCCCCC;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--primary);
-            color: var(--accent);
-            overflow-x: hidden;
-            transition: var(--transition);
-        }
-
-        /* Loading Bar */
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background-color: var(--secondary);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-
-        .loading-bar.active {
-            width: 100%;
-            transition: width 1.5s ease;
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 1s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-text {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--secondary);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loading-text::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            animation: revealText 2s ease-out forwards;
-        }
-
-        @keyframes revealText {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: letterAnimation 0.5s ease-out forwards;
-        }
-
-        @keyframes letterAnimation {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) rotate(-10deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background-color: var(--primary);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .logo-img {
-            height: 70px;
-            width: auto;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .logo-text span {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--primary);
-            min-width: 200px;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            border: 1px solid var(--medium-gray);
-        }
-
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        /* Floating Controls */
-        .floating-controls {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1001;
-        }
-
-        .mode-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: var(--accent);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 2px solid var(--secondary);
-        }
-
-        .mode-toggle:hover {
-            transform: scale(1.1);
-            background-color: var(--secondary);
-            color: var(--primary);
-        }
-
-        .mode-toggle i {
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .whatsapp-fab {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #25D366;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            font-size: 1.8rem;
-            text-decoration: none;
-        }
-
-        .whatsapp-fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
-        }
-
-        .menu-toggle {
-            display: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: var(--accent);
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 2px solid var(--secondary);
-        }
-
-        .menu-toggle:hover {
-            transform: scale(1.1);
-            background-color: var(--secondary);
-            color: var(--primary);
-        }
-
-        /* Floating Back Button */
-        .floating-back {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--secondary);
-            color: white;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            z-index: 1001;
-            font-size: 1.5rem;
-        }
-
-        .floating-back.active {
-            display: flex;
-        }
-
-        .floating-back:hover {
-            transform: scale(1.1);
-            background-color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            animation: fadeUp 1.5s ease-out;
-        }
-
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: black;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--secondary);
-            font-weight: 600;
-            font-family: "Bradley Hand ITC", cursive;
-            font-style: italic;
-            line-height: 1.3;
-        }
-
-        .shadow-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12rem;
-            font-weight: 900;
-            color: rgba(0, 0, 0, 0.03);
-            z-index: 0;
-            white-space: nowrap;
-            pointer-events: none;
-            text-transform: uppercase;
-        }
-
-        .image-container {
-            position: relative;
-            margin: 1.5rem 0;
-            z-index: 1;
-        }
-
-        .mercedes-vector {
-            width: 400px;
-            max-width: 80%;
-            height: auto;
-            filter: grayscale(100%) contrast(120%);
-            position: relative;
-            z-index: 1;
-        }
-
-        .reflection {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
-            transform: scaleY(-1);
-            opacity: 0.4;
-            z-index: 0;
-        }
-
-        .explore-dropdown {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-            z-index: 2;
-        }
-
-        .explore-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .explore-btn:hover {
-            background-color: white;
-            color: var(--secondary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .explore-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 10;
-        }
-
-        .explore-dropdown.active .explore-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .explore-content a {
-            display: block;
-            color: var(--accent);
-            padding: 0.8rem 0;
-            text-decoration: none;
-            border-bottom: 1px solid var(--medium-gray);
-            transition: var(--transition);
-        }
-
-        .explore-content a:hover {
-            color: var(--secondary);
-            padding-left: 10px;
-        }
-
-        .explore-content a:last-child {
-            border-bottom: none;
-        }
-
-        /* Find Your Dream Car Section */
-        .dream-car {
-            padding: 5rem 5%;
-            background-color: var(--light-gray);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: var(--accent);
-            position: relative;
-            line-height: 1.3;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background-color: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background-color: var(--primary);
-            color: var(--accent);
-            border: 2px solid var(--secondary);
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filter-btn:hover {
-            background-color: var(--secondary);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        /* Full Screen Filters */
-        .fullscreen-filter {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .fullscreen-filter.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 2rem;
-        }
-
-        .filter-title {
-            font-size: 2.2rem;
-            color: var(--secondary);
-            line-height: 1.3;
-        }
-
-        .back-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .back-btn:hover {
-            background-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        .brand-grid, .body-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .brand-item, .body-item {
-            background-color: var(--light-gray);
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .brand-item:hover, .body-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-
-        .brand-logo, .body-image {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-        }
-
-        .brand-name, .body-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-align: center;
-        }
-
-        /* Car Listing Window */
-        .car-listing-window {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary);
-            z-index: 3000;
-            display: none;
-            flex-direction: column;
-            overflow-y: auto;
-            padding: 2rem 5%;
-        }
-
-        .car-listing-window.active {
-            display: flex;
-        }
-
-        .car-listing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary);
-        }
-
-        .car-listing-title {
-            font-size: 2.2rem;
-            color: var(--secondary);
-        }
-
-        .back-to-home {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .back-to-home:hover {
-            background-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        /* Body Type Filter in Car Listings */
-        .body-type-filter {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .body-type-btn {
-            background-color: var(--primary);
-            color: var(--accent);
-            border: 2px solid var(--secondary);
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .body-type-btn.active {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .body-type-btn:hover {
-            background-color: var(--secondary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .cars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .car-card {
-            background-color: var(--light-gray);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-
-        .car-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .car-details {
-            padding: 1.5rem;
-        }
-
-        .car-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .car-body-type {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .car-condition {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .condition-stars {
-            display: flex;
-            margin-right: 10px;
-        }
-
-        .star {
-            color: var(--medium-gray);
-            font-size: 1rem;
-        }
-
-        .star.filled {
-            color: #FFD700;
-        }
-
-        .condition-text {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-        }
-
-        .car-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            text-align: center;
-            padding: 0.5rem;
-            background-color: rgba(255, 102, 0, 0.1);
-            border-radius: 8px;
-            animation: priceGlow 2s infinite alternate;
-        }
-
-        @keyframes priceGlow {
-            0% {
-                box-shadow: 0 0 5px rgba(255, 102, 0, 0.3);
-            }
-            100% {
-                box-shadow: 0 0 15px rgba(255, 102, 0, 0.7);
-            }
-        }
-
-        .car-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .details-btn, .package-btn, .quote-btn {
-            padding: 0.8rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .details-btn {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .details-btn:hover {
-            background-color: var(--accent);
-        }
-
-        .package-btn {
-            background-color: var(--medium-gray);
-            color: var(--accent);
-        }
-
-        .package-btn:hover {
-            background-color: var(--dark-gray);
-            color: white;
-        }
-
-        .quote-btn {
-            background-color: #25D366;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .quote-btn:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
-        }
-
-        /* Car Details Modal */
-        .car-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 4000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .car-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background-color: var(--primary);
-            border-radius: 12px;
-            width: 100%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            color: var(--secondary);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--accent);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            color: var(--secondary);
-            transform: scale(1.1);
-        }
-
-        .car-specs {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .spec-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .spec-label {
-            font-weight: 600;
-            color: var(--dark-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .spec-value {
-            font-size: 1.1rem;
-            color: var(--accent);
-        }
-
-        .modal-price {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 2rem 0;
-            padding: 1rem;
-            background-color: rgba(255, 102, 0, 0.1);
-            border-radius: 12px;
-            animation: priceGlow 2s infinite alternate;
-        }
-
-        .modal-quote-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background-color: #25D366;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        .modal-quote-btn:hover {
-            background-color: #128C7E;
-            transform: scale(1.02);
-        }
-
-        /* Car Package Modal */
-        .package-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 4000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .package-modal.active {
-            display: flex;
-        }
-
-        .package-content {
-            background-color: var(--primary);
-            border-radius: 12px;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .package-list {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .package-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--medium-gray);
-            display: flex;
-            align-items: center;
-        }
-
-        .package-list li:last-child {
-            border-bottom: none;
-        }
-
-        .package-list li i {
-            color: var(--secondary);
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* NEW: Why Choose Celimax Section */
-        .why-choose {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, rgba(255, 102, 0, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
-            text-align: center;
-        }
-
-        .benefits-diagram {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 3rem auto;
-            max-width: 1000px;
-            position: relative;
-        }
-
-        .central-circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background-color: var(--secondary);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            box-shadow: 0 0 30px rgba(255, 102, 0, 0.5);
-            animation: pulse 2s infinite;
-            position: relative;
-        }
-
-        .central-circle h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .central-circle p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .benefit-item {
-            position: absolute;
-            width: 180px;
-            padding: 1.5rem 1rem;
-            background-color: var(--primary);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        .benefit-item.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .benefit-item:nth-child(2) {
-            top: 10%;
-            left: 20%;
-            animation-delay: 0.2s;
-        }
-
-        .benefit-item:nth-child(3) {
-            top: 10%;
-            right: 20%;
-            animation-delay: 0.4s;
-        }
-
-        .benefit-item:nth-child(4) {
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 0.6s;
-        }
-
-        .benefit-item:nth-child(5) {
-            bottom: 10%;
-            right: 20%;
-            animation-delay: 0.8s;
-        }
-
-        .benefit-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: var(--glow);
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .benefit-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .benefit-desc {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-            line-height: 1.4;
-        }
-
-        /* NEW: Customer Testimonials Section */
-        .testimonials {
-            padding: 5rem 5%;
-            background-color: var(--light-gray);
-            text-align: center;
-        }
-
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 3rem auto;
-            position: relative;
-            overflow: hidden;
-            height: 200px;
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            height: 100%;
-        }
-
-        .testimonial-slide {
-            min-width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            background-color: var(--primary);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        .customer-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .customer-name .letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .customer-text {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--dark-gray);
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .testimonial-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--medium-gray);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .testimonial-dot.active {
-            background-color: var(--secondary);
-            transform: scale(1.2);
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
-            text-align: center;
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 1rem;
-            background-color: white;
-            border: 2px solid var(--medium-gray);
-            border-radius: 8px;
-            color: var(--accent);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: var(--glow);
-        }
-
-        .subscribe-btn {
-            padding: 1rem 2rem;
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .subscribe-btn:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* Visit Us Section */
-        .visit-us {
-            padding: 5rem 5%;
-            background-color: var(--light-gray);
-            text-align: center;
-        }
-
-        .map-container {
-            margin-top: 2rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .map-link {
-            display: block;
-            width: 100%;
-            height: 400px;
-            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Mombasa,Kenya&zoom=13&size=800x400&maptype=roadmap&markers=color:red%7Clabel:P%7C-4.0435,39.6682&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .map-link:hover {
-            transform: scale(1.02);
-            box-shadow: var(--glow);
-        }
-
-        .map-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .map-link:hover .map-overlay {
-            opacity: 1;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--accent);
-            padding: 3rem 5%;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            position: relative;
-            display: inline-block;
-            line-height: 1.3;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .footer-section p, .footer-section li {
-            margin-bottom: 0.8rem;
-            line-height: 1.5;
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--primary);
-        }
-
-        .footer-section ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background-color: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        /* Crazy Animations */
-        .crazy-animation {
-            animation: crazy 0.5s ease-out;
-        }
-
-        @keyframes crazy {
-            0% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.2) rotate(5deg); }
-            50% { transform: scale(0.9) rotate(-5deg); }
-            75% { transform: scale(1.1) rotate(3deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        .shake-animation {
-            animation: shake 0.5s ease-out;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-
-        .pulse-animation {
-            animation: pulse 0.5s ease-out;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .spin-animation {
-            animation: spin 0.5s ease-out;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .bounce-animation {
-            animation: bounce 0.5s ease-out;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-
-        /* NEW STYLES FOR ADDITIONAL WINDOWS */
-        .content-window {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary);
-            z-index: 3000;
-            display: none;
-            flex-direction: column;
-            overflow-y: auto;
-            padding: 2rem 5%;
-        }
-        
-        .content-window.active {
-            display: flex;
-        }
-        
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--secondary);
-        }
-        
-        .content-title {
-            font-size: 2.2rem;
-            color: var(--secondary);
-        }
-        
-        .blog-content, .faq-content, .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .blog-card {
-            background-color: var(--light-gray);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-        
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .blog-details {
-            padding: 1.5rem;
-        }
-        
-        .blog-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .blog-excerpt {
-            color: var(--dark-gray);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        
-        .read-more-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-block;
-            text-decoration: none;
-        }
-        
-        .read-more-btn:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .blog-article {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .blog-article img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin: 1.5rem 0;
-        }
-        
-        .blog-article h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        .blog-article p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            background-color: var(--light-gray);
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .faq-question:hover {
-            background-color: var(--medium-gray);
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .faq-answer.active {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-        
-        .quiz-container {
-            background-color: var(--light-gray);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .quiz-question {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .quiz-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-        
-        .quiz-option input {
-            margin: 0;
-        }
-        
-        .quiz-submit {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .quiz-submit:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .quiz-result {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-align: center;
-            display: none;
-        }
-        
-        .quiz-result.correct {
-            background-color: rgba(0, 255, 0, 0.1);
-            color: green;
-            display: block;
-        }
-        
-        .quiz-result.incorrect {
-            background-color: rgba(255, 0, 0, 0.1);
-            color: red;
-            display: block;
-        }
-
-        /* About Section Styles */
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .ceo-section {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            align-items: center;
-        }
-
-        .ceo-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--shadow);
-        }
-
-        .ceo-info {
-            flex: 1;
-        }
-
-        .ceo-name {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .ceo-title {
-            font-size: 1.2rem;
-            color: var(--dark-gray);
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .company-story {
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .story-highlight {
-            background-color: rgba(255, 102, 0, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            border-left: 4px solid var(--secondary);
-        }
-
-        /* Search Bar */
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .search-bar {
-            display: flex;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--secondary);
-            border-right: none;
-            border-radius: 8px 0 0 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: var(--glow);
-        }
-
-        .search-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 0 8px 8px 0;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-
-        .search-btn:hover {
-            background-color: var(--accent);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .mobile-nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: var(--primary);
-                padding: 2rem;
-                transition: var(--transition);
-                z-index: 1002;
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            }
-
-            .mobile-nav.active {
-                right: 0;
-            }
-
-            .mobile-nav a {
-                color: var(--accent);
-                text-decoration: none;
-                font-size: 1.2rem;
-                padding: 0.5rem 0;
-                border-bottom: 1px solid var(--medium-gray);
-                transition: var(--transition);
-            }
-
-            .mobile-nav a:hover {
-                color: var(--secondary);
-                padding-left: 10px;
-            }
-
-            .close-menu {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                font-size: 1.5rem;
-                color: var(--accent);
-                cursor: pointer;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.3rem;
-            }
-
-            /* Fix for the overlapping shadow text */
-            .shadow-text {
-                font-size: 4rem;
-                white-space: normal;
-                text-align: center;
-                width: 90%;
-                line-height: 1.2;
-            }
-
-            .mercedes-vector {
-                width: 320px;
-                max-width: 90%;
-            }
-
-            .reflection {
-                bottom: -40px;
-                height: 40px;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .floating-controls {
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            .floating-back {
-                bottom: 1rem;
-                left: 1rem;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .filter-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .filter-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            /* Fix for brand and body type logos on mobile */
-            .brand-grid, .body-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .brand-item, .body-item {
-                padding: 1rem;
-            }
-
-            .brand-logo, .body-image {
-                width: 80px;
-                height: 80px;
-            }
-
-            .brand-name, .body-name {
-                font-size: 1rem;
-            }
-
-            .cars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .car-actions {
-                flex-direction: column;
-            }
-
-            .body-type-filter {
-                gap: 0.5rem;
-            }
-
-            .body-type-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            /* Increase logo visibility on mobile */
-            .logo-img {
-                height: 60px;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
-            /* Blog grid adjustments for mobile */
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            /* About section adjustments for mobile */
-            .ceo-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .ceo-image {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .map-link {
-                height: 300px;
-            }
-            
-            /* NEW: Benefits diagram adjustments for mobile */
-            .benefits-diagram {
-                flex-direction: column;
-                height: auto;
-            }
-            
-            .central-circle {
-                margin-bottom: 2rem;
-                width: 150px;
-                height: 150px;
-            }
-            
-            .benefit-item {
-                position: static;
-                margin-bottom: 1.5rem;
-                opacity: 1;
-                transform: scale(1);
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            /* NEW: Reduce back button size in car listing window on mobile */
-            .back-to-home {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .body-type-filter {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .body-type-btn {
-                width: 100%;
-                max-width: 200px;
-            }
-            
-            /* Further reduce shadow text size for very small screens */
-            .shadow-text {
-                font-size: 3rem;
-            }
-            
-            /* Further reduce brand and body type logos for very small screens */
-            .brand-grid, .body-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .brand-logo, .body-image {
-                width: 70px;
-                height: 70px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .menu-toggle {
-                display: none;
-            }
-        }
+       
     </style>
+     <link rel ="stylesheet" href ="style.css">
 </head>
 <body>
     <!-- Loading Bar -->
@@ -2347,7 +300,7 @@
         </div>
     </div>
 
-    <!-- About Window -->
+    <!-- About Window - UPDATED WITH FOOTER -->
     <div class="content-window" id="aboutWindow">
         <div class="content-header">
             <h2 class="content-title">About Celimax Motors</h2>
@@ -2392,9 +345,48 @@
                 </p>
             </div>
         </div>
+        
+        <!-- NEW: Footer in About Window -->
+        <footer class="content-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company Info</h3>
+                    <p><strong>Celimax Motors Ltd</strong></p>
+                    <p>Motor vehicle dealership / auto trading business</p>
+                    <p>Location: Mombasa, Kenya</p>
+                    <p>Contact: 070-391-3841</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Online Presence</h3>
+                    <p>Facebook: Celimax Motors LTD</p>
+                    <p>Instagram: celimax motors ltd</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Mission</h3>
+                    <p>To provide a wide variety of vehicles to Kenyan customers through flexible payment options (cash, hire purchase, finance), meeting both quality and affordability needs.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Vision</h3>
+                    <p>To be a trusted, reliable vehicle dealer in Mombasa and beyond, known for transparent dealings and excellent customer relationships.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CELIMAX MOTORS LTD. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Blogs Window -->
+    <!-- Blogs Window - UPDATED WITH FOOTER -->
     <div class="content-window" id="blogsWindow">
         <div class="content-header">
             <h2 class="content-title">Latest Car Blogs</h2>
@@ -2408,9 +400,48 @@
                 <!-- Blog cards will be dynamically added here -->
             </div>
         </div>
+        
+        <!-- NEW: Footer in Blogs Window -->
+        <footer class="content-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company Info</h3>
+                    <p><strong>Celimax Motors Ltd</strong></p>
+                    <p>Motor vehicle dealership / auto trading business</p>
+                    <p>Location: Mombasa, Kenya</p>
+                    <p>Contact: 070-391-3841</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Online Presence</h3>
+                    <p>Facebook: Celimax Motors LTD</p>
+                    <p>Instagram: celimax motors ltd</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Mission</h3>
+                    <p>To provide a wide variety of vehicles to Kenyan customers through flexible payment options (cash, hire purchase, finance), meeting both quality and affordability needs.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Vision</h3>
+                    <p>To be a trusted, reliable vehicle dealer in Mombasa and beyond, known for transparent dealings and excellent customer relationships.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CELIMAX MOTORS LTD. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- FAQ Window -->
+    <!-- FAQ Window - UPDATED WITH FOOTER -->
     <div class="content-window" id="faqWindow">
         <div class="content-header">
             <h2 class="content-title">Frequently Asked Questions</h2>
@@ -2434,9 +465,48 @@
                 <div class="quiz-result" id="quizResult"></div>
             </div>
         </div>
+        
+        <!-- NEW: Footer in FAQ Window -->
+        <footer class="content-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company Info</h3>
+                    <p><strong>Celimax Motors Ltd</strong></p>
+                    <p>Motor vehicle dealership / auto trading business</p>
+                    <p>Location: Mombasa, Kenya</p>
+                    <p>Contact: 070-391-3841</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Online Presence</h3>
+                    <p>Facebook: Celimax Motors LTD</p>
+                    <p>Instagram: celimax motors ltd</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Mission</h3>
+                    <p>To provide a wide variety of vehicles to Kenyan customers through flexible payment options (cash, hire purchase, finance), meeting both quality and affordability needs.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Vision</h3>
+                    <p>To be a trusted, reliable vehicle dealer in Mombasa and beyond, known for transparent dealings and excellent customer relationships.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 CELIMAX MOTORS LTD. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Car Details Modal -->
+    <!-- Car Details Modal - UPDATED WITH CAROUSEL -->
     <div class="car-modal" id="carDetailsModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2445,6 +515,20 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+            
+            <!-- NEW: Carousel Section -->
+            <div class="carousel-container">
+                <div class="main-image-container">
+                    <img src="" alt="" class="main-car-image" id="mainCarImage">
+                    <div class="available-sticker">Available</div>
+                    <button class="carousel-arrow carousel-prev">&lt;</button>
+                    <button class="carousel-arrow carousel-next">&gt;</button>
+                </div>
+                <div class="carousel-thumbnails" id="carouselThumbnails">
+                    <!-- Thumbnails will be dynamically added here -->
+                </div>
+            </div>
+            
             <div class="car-specs" id="carSpecs">
                 <!-- Car specifications will be dynamically added here -->
             </div>
@@ -2985,13 +1069,372 @@
             }, 5000);
         }
 
-        // Car Data
+        // Car Data - UPDATED WITH MULTIPLE IMAGES
         const cars = [
             {
                 id: 1,
+                name: "Toyota Fielder",
+                bodyType: "Station Wagon",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559210464_122104524963048875_7704028805359060676_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGkPYzyWcpQEkhc0g7JUhbHqOrIjkm5BQuo6siOSbkFC-__v8m4wXik-pjXQMHqYbNEr-BUiHl8Dwkr64Hprber&_nc_ohc=JUjPD7oDV9sQ7kNvwFGY8W7&_nc_oc=AdnVuph-6F6m8M3x60BfP6nEpfLJAb1f2-MIWO58LGuCL08W9xpYVVgq0tVW2Go9Ccc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DGZGgAUc_QUWazoLI1Gnog&oh=00_Aff_BWOOa0oiOydHCpIG_6j4F-pbi2mZ5lzKXYUBA7op_Q&oe=68F16C5D",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559210464_122104524963048875_7704028805359060676_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGkPYzyWcpQEkhc0g7JUhbHqOrIjkm5BQuo6siOSbkFC-__v8m4wXik-pjXQMHqYbNEr-BUiHl8Dwkr64Hprber&_nc_ohc=JUjPD7oDV9sQ7kNvwFGY8W7&_nc_oc=AdnVuph-6F6m8M3x60BfP6nEpfLJAb1f2-MIWO58LGuCL08W9xpYVVgq0tVW2Go9Ccc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DGZGgAUc_QUWazoLI1Gnog&oh=00_Aff_BWOOa0oiOydHCpIG_6j4F-pbi2mZ5lzKXYUBA7op_Q&oe=68F16C5D",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Fielder+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 10.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 2,
+                name: "Toyota Crown",
+                bodyType: "Sedan",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561010022_122104525035048875_5000566456464618899_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEHdU6GXHAPu8sXvkDXTTki_9qDdXXOZuH_2oN1dc5m4SCuXwIb4yPjgS1kl9NeHoICrQraT1zG-aCP6r0_n4EG&_nc_ohc=D_Up8_Vsv2MQ7kNvwGu-siW&_nc_oc=AdkrfdwUCn6_IRHH-1ZymxBoPsjBD85_JAYj1SVN6zTqhoD1JFh9mLrNd4Eac_yHfr8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UTJw-NjRUtsktIAhUmd8zQ&oh=00_Aff_x_yIZ5fbMEhyvuhwzRwomPaaApZTPm6QGYwNfu3wFA&oe=68F157D6",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561010022_122104525035048875_5000566456464618899_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEHdU6GXHAPu8sXvkDXTTki_9qDdXXOZuH_2oN1dc5m4SCuXwIb4yPjgS1kl9NeHoICrQraT1zG-aCP6r0_n4EG&_nc_ohc=D_Up8_Vsv2MQ7kNvwGu-siW&_nc_oc=AdkrfdwUCn6_IRHH-1ZymxBoPsjBD85_JAYj1SVN6zTqhoD1JFh9mLrNd4Eac_yHfr8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UTJw-NjRUtsktIAhUmd8zQ&oh=00_Aff_x_yIZ5fbMEhyvuhwzRwomPaaApZTPm6QGYwNfu3wFA&oe=68F157D6",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Crown+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Crown+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Crown+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Crown+Interior"
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "221 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.0 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 3,
+                name: "Nissan NV200",
+                bodyType: "VAN",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561882820_122104524933048875_4358707706273844857_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEYpj4VTTZViFLzh6L7LbSt5F5RhofP6K3kXlGGh8_orUw6mt69IC0uDibKj-pfMiPcGEFDBKgar1nTFocbfJo&_nc_ohc=EENbukRnUBwQ7kNvwHoSkTh&_nc_oc=Adm97QyRA6TJk7AlFyFazkCzktpAaEEFoN1MsFtWTGi4O3sLL-iejgN_4gbLJnNXRWU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4otfXdKnN5cFcmtHCrmK6A&oh=00_AffFk_aPbEVLsVJXtj86J-DF57uQPpwRaWtV6H52FGOynw&oe=68F17107",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561882820_122104524933048875_4358707706273844857_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEYpj4VTTZViFLzh6L7LbSt5F5RhofP6K3kXlGGh8_orUw6mt69IC0uDibKj-pfMiPcGEFDBKgar1nTFocbfJo&_nc_ohc=EENbukRnUBwQ7kNvwHoSkTh&_nc_oc=Adm97QyRA6TJk7AlFyFazkCzktpAaEEFoN1MsFtWTGi4O3sLL-iejgN_4gbLJnNXRWU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4otfXdKnN5cFcmtHCrmK6A&oh=00_AffFk_aPbEVLsVJXtj86J-DF57uQPpwRaWtV6H52FGOynw&oe=68F17107",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Nissan+NV200+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Nissan+NV200+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Nissan+NV200+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Nissan+NV200+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,800,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "2.8L",
+                    fuel: "Petrol",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "200 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.9 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 4,
+                name: "Toyota Hiace",
+                bodyType: "VAN",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/564634990_122104524873048875_6010518839809568478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHvK95iRNepmb8Hx15JEFP1mnoXtQd1rQ-aehe1B3WtD3bmBQ2rLE3tTQG9oZ8Dxs-6Y7gekIu8mgkZ7YfWKSx-&_nc_ohc=lEinffdtDcIQ7kNvwECiPuO&_nc_oc=AdlQTGe3r4ROKls1Bw0WTTh_OjhkA_ahm731Qeqorn5B-S7cV0ttiTHbrqSKJXT3ofk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UG3BLyi8KsGtK52egxM2vA&oh=00_AfckdxbpXNvPv3sIEF9wfr4zWhlyj9kUtCTZjjyeRLsz2A&oe=68F14AA4",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/564634990_122104524873048875_6010518839809568478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHvK95iRNepmb8Hx15JEFP1mnoXtQd1rQ-aehe1B3WtD3bmBQ2rLE3tTQG9oZ8Dxs-6Y7gekIu8mgkZ7YfWKSx-&_nc_ohc=lEinffdtDcIQ7kNvwECiPuO&_nc_oc=AdlQTGe3r4ROKls1Bw0WTTh_OjhkA_ahm731Qeqorn5B-S7cV0ttiTHbrqSKJXT3ofk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UG3BLyi8KsGtK52egxM2vA&oh=00_AfckdxbpXNvPv3sIEF9wfr4zWhlyj9kUtCTZjjyeRLsz2A&oe=68F14AA4",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hiace+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hiace+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hiace+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hiace+Interior"
+                ],
+                condition: 5,
+                price: "KES 3,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "RWD",
+                    mileage: "81,000 km",
+                    engine: "2.8L",
+                    fuel: "Petrol",
+                    horsepower: "163 hp",
+                    transmission: "CVT",
+                    torque: "420 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.9 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 5,
+                name: "Toyota Hiace",
+                bodyType: "VAN",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561680724_122104524801048875_1218894707100259618_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEF3wl68h8SvfYnDXQrO8aGXGROgBgSKWBcZE6AGBIpYLNLmDZzyEHI1DO6OK8JjRQlOrPldPmwoUK0y3RKPKn9&_nc_ohc=o1kYjBKaom8Q7kNvwGyP_bW&_nc_oc=AdnJTQ1gpIGhurmN2ZFpWeLgindjeUEYEEoWkiAy4Zh50utHsUIlsvb-Vecyz8ERr_Y&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Rf412H0Sqzm_0KZhFdJXUQ&oh=00_AfeKbBaPbgmDX9E-Q4co_pXTXmS6WDBGT4LgiI0-l6Ae9g&oe=68F1545E",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561680724_122104524801048875_1218894707100259618_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEF3wl68h8SvfYnDXQrO8aGXGROgBgSKWBcZE6AGBIpYLNLmDZzyEHI1DO6OK8JjRQlOrPldPmwoUK0y3RKPKn9&_nc_ohc=o1kYjBKaom8Q7kNvwGyP_bW&_nc_oc=AdnJTQ1gpIGhurmN2ZFpWeLgindjeUEYEEoWkiAy4Zh50utHsUIlsvb-Vecyz8ERr_Y&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Rf412H0Sqzm_0KZhFdJXUQ&oh=00_AfeKbBaPbgmDX9E-Q4co_pXTXmS6WDBGT4LgiI0-l6Ae9g&oe=68F1545E",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hiace+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hiace+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hiace+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hiace+Interior"
+                ],
+                condition: 5,
+                price: "KES 3,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "RWD",
+                    mileage: "81,000 km",
+                    engine: "2.8L",
+                    fuel: "Petrol",
+                    horsepower: "163 hp",
+                    transmission: "CVT",
+                    torque: "420 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.9 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 6,
+                name: "Honda Vezel",
+                bodyType: "Small SUV",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558971335_122104524765048875_5242405920757889727_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGouSt3eqnwoDAQZH8SRtgOK0uM52_wU3YrS4znb_BTdqDx30faEYxYG61-2-Z7ogh3qktetIuJtKKQ_q-KQfly&_nc_ohc=iVVZ6zq3dPsQ7kNvwGNoXJV&_nc_oc=AdkJdzvBk46djbspMsY_ZJtagiRPyMnMwe1ccZyZlVss-48LP-P5BEsf_2FKE3anlGU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Em5bwqX8EbH_APe_LHrjsQ&oh=00_Afe9EMKzv705H4-NMkzKwijlXC7EaXchm35EpniyQMP8-Q&oe=68F15859",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558971335_122104524765048875_5242405920757889727_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGouSt3eqnwoDAQZH8SRtgOK0uM52_wU3YrS4znb_BTdqDx30faEYxYG61-2-Z7ogh3qktetIuJtKKQ_q-KQfly&_nc_ohc=iVVZ6zq3dPsQ7kNvwGNoXJV&_nc_oc=AdkJdzvBk46djbspMsY_ZJtagiRPyMnMwe1ccZyZlVss-48LP-P5BEsf_2FKE3anlGU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Em5bwqX8EbH_APe_LHrjsQ&oh=00_Afe9EMKzv705H4-NMkzKwijlXC7EaXchm35EpniyQMP8-Q&oe=68F15859",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Vezel+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Vezel+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Vezel+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Vezel+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,600,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1500cc",
+                    fuel: "Petrol",
+                    horsepower: "105 hp",
+                    transmission: "CVT",
+                    torque: "155 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.9 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "5 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 7,
+                name: "Toyota Fielder",
+                bodyType: "Station Wagon",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558877612_122104524717048875_8578559672243390465_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-TPBXYRebGMFQLFx2wxTH2SlWkeN7t3rZKVaR43u3ekbWaGytmbHIm9v1tTKHy3AeNNicIWmSxgZHspJ8855x&_nc_ohc=ynylJqp_PsAQ7kNvwGEPF2a&_nc_oc=Adm9qYRgIronQHfDrDkClzpjxmFrXMb6ChQkN1DW627vGs9VMibyjRVhALK9aCFZ450&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DR7kJUMjss-lEAw8GfZHBA&oh=00_Afc0KzmmQHND_BbFGhJFqBBP99x3HyYLPSRRXj9z2gM_yQ&oe=68F1468A",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558877612_122104524717048875_8578559672243390465_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-TPBXYRebGMFQLFx2wxTH2SlWkeN7t3rZKVaR43u3ekbWaGytmbHIm9v1tTKHy3AeNNicIWmSxgZHspJ8855x&_nc_ohc=ynylJqp_PsAQ7kNvwGEPF2a&_nc_oc=Adm9qYRgIronQHfDrDkClzpjxmFrXMb6ChQkN1DW627vGs9VMibyjRVhALK9aCFZ450&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DR7kJUMjss-lEAw8GfZHBA&oh=00_Afc0KzmmQHND_BbFGhJFqBBP99x3HyYLPSRRXj9z2gM_yQ&oe=68F1468A",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Fielder+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,600,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1500cc",
+                    fuel: "Petrol",
+                    horsepower: "105 hp",
+                    transmission: "Automatic",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 11 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "5 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 8,
+                name: "Mazda Demio",
+                bodyType: "Hatchback",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559569963_122104524621048875_657513977709521163_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFmwwTYTvxLL7Z19oN7RCiSVUZGm4-98FFVRkabj73wUR0GpBtPSpDZGcvdHjY7nHFGwNVWQpGATos1klMM3Zov&_nc_ohc=oC-77tsQTigQ7kNvwEHYpXr&_nc_oc=AdlF6o782mcgt5WCd1KBtcAg_hdHCrY4zn4VNkTLnkXBe4W-cQOmGorwME70ic3VSU0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=CVJMEGoiavwas5kyXDewIw&oh=00_AfeyDIhWswxbZ-W4IuH3ymN6UQHNXkHlRry4QOSLYcfXUA&oe=68F16D04",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559569963_122104524621048875_657513977709521163_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFmwwTYTvxLL7Z19oN7RCiSVUZGm4-98FFVRkabj73wUR0GpBtPSpDZGcvdHjY7nHFGwNVWQpGATos1klMM3Zov&_nc_ohc=oC-77tsQTigQ7kNvwEHYpXr&_nc_oc=AdlF6o782mcgt5WCd1KBtcAg_hdHCrY4zn4VNkTLnkXBe4W-cQOmGorwME70ic3VSU0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=CVJMEGoiavwas5kyXDewIw&oh=00_AfeyDIhWswxbZ-W4IuH3ymN6UQHNXkHlRry4QOSLYcfXUA&oe=68F16D04",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Demio+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Demio+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Demio+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Demio+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,400,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1500cc",
+                    fuel: "Petrol",
+                    horsepower: "105 hp",
+                    transmission: "Automatic",
+                    torque: "148 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 12 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "5 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Premium Sound System"
+                ]
+            },
+            {
+                id: 9,
+                name: "Toyota Sienta",
+                bodyType: "MPV",
+                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559045352_122104524645048875_6237591055868565831_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFs6lfftEWZ8ebhZ96g7tP-Mky_hLQHcEEyTL-EtAdwQTYToPidp4uDkjFN205qnKNE9nW-azoJwQPIZpROHa7k&_nc_ohc=6Fep3GHxtH8Q7kNvwHlvnG8&_nc_oc=AdkBKTkkNVKtFiGiGsUXrxqcQzqdLaz88_XkYS2o6hW4r_OuPgQOsOiQzF9nPv9AGeY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=0tpNgM4V1c6dUEViH0u9Cw&oh=00_AfcFjLQpRCo79TTq_VLNzaHA9iQjCm2u5hcFcXyV6RWUew&oe=68F16261",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559045352_122104524645048875_6237591055868565831_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFs6lfftEWZ8ebhZ96g7tP-Mky_hLQHcEEyTL-EtAdwQTYToPidp4uDkjFN205qnKNE9nW-azoJwQPIZpROHa7k&_nc_ohc=6Fep3GHxtH8Q7kNvwHlvnG8&_nc_oc=AdkBKTkkNVKtFiGiGsUXrxqcQzqdLaz88_XkYS2o6hW4r_OuPgQOsOiQzF9nPv9AGeY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=0tpNgM4V1c6dUEViH0u9Cw&oh=00_AfcFjLQpRCo79TTq_VLNzaHA9iQjCm2u5hcFcXyV6RWUew&oe=68F16261",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Sienta+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Sienta+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Sienta+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Sienta+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1500cc",
+                    fuel: "Petrol",
+                    horsepower: "155 hp",
+                    transmission: "Automatic",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 12 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "7 seats",
+                    "Reverse Camera",
+                    "Fog Lights",
+                    "Keyless Start",
+                    "power slide door",
+                    "Premium Sound System"
+                ]
+            },
+            {
+                id: 10,
                 name: "Toyota Harrier",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Harrier+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Harrier+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Harrier+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Harrier+Interior"
+                ],
                 condition: 5,
                 price: "KES 3,400,000",
                 specs: {
@@ -3019,10 +1462,18 @@
                 ]
             },
             {
-                id: 2,
+                id: 11,
                 name: "Honda Fit",
                 bodyType: "Hatchback",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559555362_122104188555048875_5878919758931729128_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmT8Ygk57GCLef9XsB04KiPPnIFPgfRZc8-cgU-B9FlyunXHG8paGE0NFUu7LjMZ7NlUMDAS6We4wkpEah9jdk&_nc_ohc=5VaWMYtt3kYQ7kNvwFPcV3w&_nc_oc=AdkrYoXDs8ZMwWA1s-jFt5I7DoIsCizp1orBxCfwwmMzVfiEF6ddZVp-4LRW3vUHi0M&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=eHUhRUj5acCCp1nUHgAuyQ&oh=00_AfcVq4QbvrEF6pDbn-ARRZD5r_UgerrP5WURQmkwPGHNwg&oe=68EF53A2",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559555362_122104188555048875_5878919758931729128_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmT8Ygk57GCLef9XsB04KiPPnIFPgfRZc8-cgU-B9FlyunXHG8paGE0NFUu7LjMZ7NlUMDAS6We4wkpEah9jdk&_nc_ohc=5VaWMYtt3kYQ7kNvwFPcV3w&_nc_oc=AdkrYoXDs8ZMwWA1s-jFt5I7DoIsCizp1orBxCfwwmMzVfiEF6ddZVp-4LRW3vUHi0M&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=eHUhRUj5acCCp1nUHgAuyQ&oh=00_AfcVq4QbvrEF6pDbn-ARRZD5r_UgerrP5WURQmkwPGHNwg&oe=68EF53A2",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Fit+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Fit+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Fit+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Fit+Interior"
+                ],
                 condition: 5,
                 price: "KES 2,100,000",
                 specs: {
@@ -3050,10 +1501,18 @@
                 ]
             },
             {
-                id: 3,
+                id: 12,
                 name: "Mazda CX-5",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559116802_122104189107048875_1900550511953797789_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX35D8HPFz3Htnamjcj8a6cujH_3YlRily6Mf_diVGKUUZN5-FaBWqMJ4XAKRVxqL5KzQj8z9ZY_rGKD6U0FUW&_nc_ohc=Ij_OuYynOiUQ7kNvwEE1nhO&_nc_oc=Admft20dHXn3mlc3XDKdyfkqa6zHwjSXytTL-OcKjvix8VzbXETyiX2n2CQtQiqKJt8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4s_9xzB3ZR7a6fkABtOxmA&oh=00_Afc-BIBMvYiDWtFjH7psJ33Mu-wVYgxIOVA6Kpx991XzrQ&oe=68EF33AD",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559116802_122104189107048875_1900550511953797789_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX35D8HPFz3Htnamjcj8a6cujH_3YlRily6Mf_diVGKUUZN5-FaBWqMJ4XAKRVxqL5KzQj8z9ZY_rGKD6U0FUW&_nc_ohc=Ij_OuYynOiUQ7kNvwEE1nhO&_nc_oc=Admft20dHXn3mlc3XDKdyfkqa6zHwjSXytTL-OcKjvix8VzbXETyiX2n2CQtQiqKJt8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4s_9xzB3ZR7a6fkABtOxmA&oh=00_Afc-BIBMvYiDWtFjH7psJ33Mu-wVYgxIOVA6Kpx991XzrQ&oe=68EF33AD",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+CX-5+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+CX-5+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+CX-5+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+CX-5+Interior"
+                ],
                 condition: 4,
                 price: "KES 4,500,000",
                 specs: {
@@ -3083,10 +1542,18 @@
                 ]
             },
             {
-                id: 4,
+                id: 13,
                 name: "Toyota Hilux",
                 bodyType: "Pickup",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hilux+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hilux+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hilux+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hilux+Interior"
+                ],
                 condition: 5,
                 price: "KES 5,500,000",
                 specs: {
@@ -3113,10 +1580,18 @@
                 ]
             },
             {
-                id: 5,
+                id: 14,
                 name: "Subaru Outback",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558503668_122104287981048875_2877946896688230470_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG17xpIkV3LHTO2YDm7CDhN3jAgENlegZveMCAQ2V6BmxDXuHMlFXIhXMG67hv0E_c8pbP9Lz6O5H3uD0h2oHAG&_nc_ohc=nZPRIjaraekQ7kNvwH4SnD1&_nc_oc=AdmptJnQPs0rdBmC9qHLSXbNY_UyhyyKhrVP3URQSMilfZSHQ1Y8o75iVc85wyaNhIE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=QqumwyuxwF_GOcuTFDu4YQ&oh=00_AfdxHsVro8rKGL3i_SNL3EhxFMb9QyWUEHp3F37-B3aL6A&oe=68EFE894",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558503668_122104287981048875_2877946896688230470_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG17xpIkV3LHTO2YDm7CDhN3jAgENlegZveMCAQ2V6BmxDXuHMlFXIhXMG67hv0E_c8pbP9Lz6O5H3uD0h2oHAG&_nc_ohc=nZPRIjaraekQ7kNvwH4SnD1&_nc_oc=AdmptJnQPs0rdBmC9qHLSXbNY_UyhyyKhrVP3URQSMilfZSHQ1Y8o75iVc85wyaNhIE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=QqumwyuxwF_GOcuTFDu4YQ&oh=00_AfdxHsVro8rKGL3i_SNL3EhxFMb9QyWUEHp3F37-B3aL6A&oe=68EFE894",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Subaru+Outback+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Subaru+Outback+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Subaru+Outback+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Subaru+Outback+Interior"
+                ],
                 condition: 4,
                 price: "KES 4,250,000",
                 specs: {
@@ -3144,10 +1619,18 @@
                 ]
             },
             {
-                id: 6,
+                id: 15,
                 name: "Mazda Demio",
                 bodyType: "Hatchback",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560056537_122104288161048875_773556082653655033_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHsOj8-PgHpxcNdNdMcU3MbkKrDvu6jsWGQqsO-7qOxYfkEJ8xUI1yRTSmUkl-li4nGpGDaq08DhIR4uMKCl5_m&_nc_ohc=dtXA6kCDRxEQ7kNvwFwjdI-&_nc_oc=AdkDytRpXfQS9YgSnyrk0qvwXh8m0_1XcIQ1oBOTKI4hPxZ4XKoX-le1gnguAbnvbbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qQcVlBenPw43zvJG9raitQ&oh=00_Afc7FgFUPryxklwzcXfaJ_o8kt7ZFwvj1Jxvv_kxBPevVQ&oe=68EFF343",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560056537_122104288161048875_773556082653655033_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHsOj8-PgHpxcNdNdMcU3MbkKrDvu6jsWGQqsO-7qOxYfkEJ8xUI1yRTSmUkl-li4nGpGDaq08DhIR4uMKCl5_m&_nc_ohc=dtXA6kCDRxEQ7kNvwFwjdI-&_nc_oc=AdkDytRpXfQS9YgSnyrk0qvwXh8m0_1XcIQ1oBOTKI4hPxZ4XKoX-le1gnguAbnvbbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qQcVlBenPw43zvJG9raitQ&oh=00_Afc7FgFUPryxklwzcXfaJ_o8kt7ZFwvj1Jxvv_kxBPevVQ&oe=68EFF343",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Demio+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Demio+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Demio+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Demio+Interior"
+                ],
                 condition: 4,
                 price: "KES 1,400,000",
                 specs: {
@@ -3176,10 +1659,18 @@
                 ]
             },
             {
-                id: 7,
+                id: 16,
                 name: "Mazda Axela",
                 bodyType: "Sedan",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Axela+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Axela+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Axela+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Axela+Interior"
+                ],
                 condition: 5,
                 price: "KES 2,300,000",
                 specs: {
@@ -3209,10 +1700,18 @@
                 ]
             },
             {
-                id: 8,
+                id: 17,
                 name: "Mercedes GLC",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mercedes+GLC+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mercedes+GLC+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mercedes+GLC+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mercedes+GLC+Interior"
+                ],
                 condition: 5,
                 price: "KES 5,500,000",
                 specs: {
@@ -3241,10 +1740,18 @@
                 ]
             },
             {
-                id: 9,
+                id: 18,
                 name: "Honda Vezel",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Vezel+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Vezel+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Vezel+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Vezel+Interior"
+                ],
                 condition: 4,
                 price: "KES 2,400,000",
                 specs: {
@@ -3274,10 +1781,18 @@
                 ]
             },
             {
-                id: 10,
+                id: 19,
                 name: "Toyota Vitz",
                 bodyType: "Hatchback",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558544719_122104289361048875_7659859759221476782_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-8BmCS7mN17SdlvkXEml3Cm3iIP4w8o8KbeIg_jDyj8RTS6Lgop3fyKkVCSpEG-Xj6y9ovl-enpxvekGuIMRn&_nc_ohc=skyBMtQmkAsQ7kNvwEUcE5g&_nc_oc=AdkRW3ceSDgjdtLf9i-DMvwZu90XdhGqTo8z3IrqYBJPAO4vc-PBx7PpyGzVgl76ycc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=mJlx5c1gUbQS9el1MOuBcw&oh=00_AfcavGky5y5ZgBnxKPs4jtV6PXotwRkwzZ5HPpg510uqvw&oe=68EFFBCC",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558544719_122104289361048875_7659859759221476782_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-8BmCS7mN17SdlvkXEml3Cm3iIP4w8o8KbeIg_jDyj8RTS6Lgop3fyKkVCSpEG-Xj6y9ovl-enpxvekGuIMRn&_nc_ohc=skyBMtQmkAsQ7kNvwEUcE5g&_nc_oc=AdkRW3ceSDgjdtLf9i-DMvwZu90XdhGqTo8z3IrqYBJPAO4vc-PBx7PpyGzVgl76ycc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=mJlx5c1gUbQS9el1MOuBcw&oh=00_AfcavGky5y5ZgBnxKPs4jtV6PXotwRkwzZ5HPpg510uqvw&oe=68EFFBCC",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Vitz+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Vitz+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Vitz+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Vitz+Interior"
+                ],
                 condition: 5,
                 price: "KES 1,300,000",
                 specs: {
@@ -3306,10 +1821,18 @@
                 ]
             },
             {
-                id: 11,
+                id: 20,
                 name: "Toyota Axio",
                 bodyType: "Sedan",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560307183_122104306863048875_1212677064051908038_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGfBrAgP8Wh6EM_VvVTCaZXLu43mwaME2Eu7jebBowTYeS2zcigaMQMJBVAwTG-I4rHNpDI5GY2Yg2JRUC80AfX&_nc_ohc=-ZWk5xJmr1UQ7kNvwERNXxa&_nc_oc=AdnoE9ODGRqKp0giDENE_Xge5-__HiS414tg9K3uAQzfYpW41Imisx0Ih7HvoS4J9Y4&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cLiUvpXJVJVqN_tcrGXl_g&oh=00_Afcr7-16I0AALWfBKtT2nEjckN3dIe-G2FmyuiDVhYxdkA&oe=68F00246",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560307183_122104306863048875_1212677064051908038_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGfBrAgP8Wh6EM_VvVTCaZXLu43mwaME2Eu7jebBowTYeS2zcigaMQMJBVAwTG-I4rHNpDI5GY2Yg2JRUC80AfX&_nc_ohc=-ZWk5xJmr1UQ7kNvwERNXxa&_nc_oc=AdnoE9ODGRqKp0giDENE_Xge5-__HiS414tg9K3uAQzfYpW41Imisx0Ih7HvoS4J9Y4&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cLiUvpXJVJVqN_tcrGXl_g&oh=00_Afcr7-16I0AALWfBKtT2nEjckN3dIe-G2FmyuiDVhYxdkA&oe=68F00246",
+                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Axio+Front",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Axio+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Axio+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Axio+Interior"
+                ],
                 condition: 3,
                 price: "KES 1,600,000",
                 specs: {
@@ -3443,13 +1966,66 @@
             });
         }
 
-        // Function to show car details
+        // NEW: Updated function to show car details with carousel
         function showCarDetails(carId) {
             const car = cars.find(c => c.id === carId);
             if (!car) return;
 
             // Update modal title
             document.getElementById('carDetailsTitle').textContent = `${car.name} - Full Details`;
+
+            // Set main image
+            const mainCarImage = document.getElementById('mainCarImage');
+            mainCarImage.src = car.images[0];
+
+            // Clear and populate thumbnails
+            const carouselThumbnails = document.getElementById('carouselThumbnails');
+            carouselThumbnails.innerHTML = '';
+
+            car.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image;
+                thumbnail.alt = `Thumbnail ${index + 1}`;
+                thumbnail.classList.add('carousel-thumbnail');
+                if (index === 0) {
+                    thumbnail.classList.add('active');
+                }
+                thumbnail.addEventListener('click', () => {
+                    // Set the main image to this thumbnail's image
+                    mainCarImage.src = image;
+                    // Update active thumbnail
+                    document.querySelectorAll('.carousel-thumbnail').forEach(thumb => {
+                        thumb.classList.remove('active');
+                    });
+                    thumbnail.classList.add('active');
+                    
+                    // Update current image index
+                    currentImageIndex = index;
+                });
+                carouselThumbnails.appendChild(thumbnail);
+            });
+
+            // Set up arrow buttons
+            let currentImageIndex = 0;
+            const totalImages = car.images.length;
+
+            document.querySelector('.carousel-prev').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+                updateMainImage();
+            });
+
+            document.querySelector('.carousel-next').addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % totalImages;
+                updateMainImage();
+            });
+
+            function updateMainImage() {
+                mainCarImage.src = car.images[currentImageIndex];
+                // Update active thumbnail
+                document.querySelectorAll('.carousel-thumbnail').forEach((thumb, index) => {
+                    thumb.classList.toggle('active', index === currentImageIndex);
+                });
+            }
 
             // Clear previous specs
             carSpecs.innerHTML = '';
@@ -4017,7 +2593,6 @@
             });
         }
     </script>
-    <script src="script.js"></script>
-
 </body>
+<script src ="script.js"></script>
 </html>

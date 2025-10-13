@@ -441,6 +441,45 @@
 
         // Car Data - UPDATED WITH MULTIPLE IMAGES
         const cars = [
+              {
+                id: 1,
+                name: "Mazda CX3",
+                bodyType: "Station Wagon",
+                image: "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561796924_122104873533048875_1737393364336932659_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEBzTtdovOSen2MKbPR5OiFI9muTiHyrTIj2a5OIfKtMrg7_1DkPJrJkIkEYvwNwWlU7Wb8gfNx0n44eMSeDsCY&_nc_ohc=7fAyyRP92UcQ7kNvwFBDMI2&_nc_oc=AdlP_YKX3PP-CkBcqMUzZ-1AFKoNGCGmcxHCvoGLog5WzT1-21qC1jm56kN7KNGrH3g&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=aKFwOwMNrJjqOWMlw5N4Kw&oh=00_AfcPg8Xua7YHFXDXwnghZSveQlg5NHliVFfFVdUdV11SYw&oe=68F2F08C",
+                // NEW: Multiple images for carousel
+                images: [
+                    "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561796924_122104873533048875_1737393364336932659_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEBzTtdovOSen2MKbPR5OiFI9muTiHyrTIj2a5OIfKtMrg7_1DkPJrJkIkEYvwNwWlU7Wb8gfNx0n44eMSeDsCY&_nc_ohc=7fAyyRP92UcQ7kNvwFBDMI2&_nc_oc=AdlP_YKX3PP-CkBcqMUzZ-1AFKoNGCGmcxHCvoGLog5WzT1-21qC1jm56kN7KNGrH3g&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=aKFwOwMNrJjqOWMlw5N4Kw&oh=00_AfcPg8Xua7YHFXDXwnghZSveQlg5NHliVFfFVdUdV11SYw&oe=68F2F08C",
+                    "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561290257_122104873749048875_3438016241007828348_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFHjAHtSDP2ytxMXVgPf5uTLUrRKxKX-ystStErEpf7K6VQVxLaVzgemhz-W1KmpUNJdXePEIHOOji_oWJmEVwM&_nc_ohc=fkLdxu2-B78Q7kNvwG6YfRI&_nc_oc=AdnlKRPYyyNst7mE7ZzM7scaT48hP5AZ979gCbdTRr98PcFFZ6qfDI_2QridA5j18ok&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=LipYSH2QMrU9zeg8OjpRxA&oh=00_AfdaHgN_uGYuIiXkpQPeCdOEUM2_DeObRa4yOTKnNUHzJg&oe=68F30693",
+                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
+                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
+                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                ],
+                condition: 5,
+                price: "KES 1,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 10.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
             {
                 id: 1,
                 name: "Toyota Fielder",

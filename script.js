@@ -443,18 +443,133 @@
         const cars = [
               {
                 id: 1,
-                name: "Mazda CX3",
-                bodyType: "Station Wagon",
-                image: "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561796924_122104873533048875_1737393364336932659_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEBzTtdovOSen2MKbPR5OiFI9muTiHyrTIj2a5OIfKtMrg7_1DkPJrJkIkEYvwNwWlU7Wb8gfNx0n44eMSeDsCY&_nc_ohc=7fAyyRP92UcQ7kNvwFBDMI2&_nc_oc=AdlP_YKX3PP-CkBcqMUzZ-1AFKoNGCGmcxHCvoGLog5WzT1-21qC1jm56kN7KNGrH3g&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=aKFwOwMNrJjqOWMlw5N4Kw&oh=00_AfcPg8Xua7YHFXDXwnghZSveQlg5NHliVFfFVdUdV11SYw&oe=68F2F08C",
+                name: "SUBARU FORESTER",
+                bodyType: "SUV",
+                image: "images/forester_black.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561796924_122104873533048875_1737393364336932659_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEBzTtdovOSen2MKbPR5OiFI9muTiHyrTIj2a5OIfKtMrg7_1DkPJrJkIkEYvwNwWlU7Wb8gfNx0n44eMSeDsCY&_nc_ohc=7fAyyRP92UcQ7kNvwFBDMI2&_nc_oc=AdlP_YKX3PP-CkBcqMUzZ-1AFKoNGCGmcxHCvoGLog5WzT1-21qC1jm56kN7KNGrH3g&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=aKFwOwMNrJjqOWMlw5N4Kw&oh=00_AfcPg8Xua7YHFXDXwnghZSveQlg5NHliVFfFVdUdV11SYw&oe=68F2F08C",
-                    "https://scontent.fnuu2-1.fna.fbcdn.net/v/t39.30808-6/561290257_122104873749048875_3438016241007828348_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFHjAHtSDP2ytxMXVgPf5uTLUrRKxKX-ystStErEpf7K6VQVxLaVzgemhz-W1KmpUNJdXePEIHOOji_oWJmEVwM&_nc_ohc=fkLdxu2-B78Q7kNvwG6YfRI&_nc_oc=AdnlKRPYyyNst7mE7ZzM7scaT48hP5AZ979gCbdTRr98PcFFZ6qfDI_2QridA5j18ok&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnuu2-1.fna&_nc_gid=LipYSH2QMrU9zeg8OjpRxA&oh=00_AfdaHgN_uGYuIiXkpQPeCdOEUM2_DeObRa4yOTKnNUHzJg&oe=68F30693",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                    "images/forester_rightback.jpg",
+                    "images/forester_leftback.jpg",
+                    "..",
+                    ".."
                 ],
                 condition: 5,
+                price: "KES 3,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 1,
+                name: "LEXUS LX-570",
+                bodyType: "SUV",
+                image: "images/lexus.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/lexus back.jpg",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 14,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                 {
+                id: 1,
+                name: "Mazda CX-5",
+                bodyType: "SUV",
+                image: "images/black_cx5.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/black_cx53.jpg",
+                    "images/black_cx52.jpg",
+                    "images/black_cx53.jpg",
+                    "images/black_cx54.jpg",
+                    "images/blackcx55.jpg"
+                ],
+                condition: 3,
+                price: "KES 3,800,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 10.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+              {
+                id: 1,
+                name: "Nissan Wingroad",
+                bodyType: "Station Wagon",
+                image: "images/wingroad.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "",
+                    "....",
+                    ".....",
+                    ".....",
+                    "....."
+                ],
+                condition: 3,
                 price: "KES 1,900,000",
                 specs: {
                     year: "2019",
@@ -482,19 +597,19 @@
             },
             {
                 id: 1,
-                name: "Toyota Fielder",
-                bodyType: "Station Wagon",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559210464_122104524963048875_7704028805359060676_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGkPYzyWcpQEkhc0g7JUhbHqOrIjkm5BQuo6siOSbkFC-__v8m4wXik-pjXQMHqYbNEr-BUiHl8Dwkr64Hprber&_nc_ohc=JUjPD7oDV9sQ7kNvwFGY8W7&_nc_oc=AdnVuph-6F6m8M3x60BfP6nEpfLJAb1f2-MIWO58LGuCL08W9xpYVVgq0tVW2Go9Ccc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DGZGgAUc_QUWazoLI1Gnog&oh=00_Aff_BWOOa0oiOydHCpIG_6j4F-pbi2mZ5lzKXYUBA7op_Q&oe=68F16C5D",
+                name: "Toyota Axio",
+                bodyType: "Sedan",
+                image: "images/axio_back.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559210464_122104524963048875_7704028805359060676_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGkPYzyWcpQEkhc0g7JUhbHqOrIjkm5BQuo6siOSbkFC-__v8m4wXik-pjXQMHqYbNEr-BUiHl8Dwkr64Hprber&_nc_ohc=JUjPD7oDV9sQ7kNvwFGY8W7&_nc_oc=AdnVuph-6F6m8M3x60BfP6nEpfLJAb1f2-MIWO58LGuCL08W9xpYVVgq0tVW2Go9Ccc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DGZGgAUc_QUWazoLI1Gnog&oh=00_Aff_BWOOa0oiOydHCpIG_6j4F-pbi2mZ5lzKXYUBA7op_Q&oe=68F16C5D",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Fielder+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                    "images/axio_right.jpg",
+                    "images/axio_left_back.jpg",
+                    "images/axio_wing.jpg",
+                    "images/axio_front_interior.jpg",
+                    "images/axio_interior.jpg"
                 ],
                 condition: 5,
-                price: "KES 1,900,000",
+                price: "KES 1,800,000",
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
@@ -523,14 +638,14 @@
                 id: 2,
                 name: "Toyota Crown",
                 bodyType: "Sedan",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561010022_122104525035048875_5000566456464618899_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEHdU6GXHAPu8sXvkDXTTki_9qDdXXOZuH_2oN1dc5m4SCuXwIb4yPjgS1kl9NeHoICrQraT1zG-aCP6r0_n4EG&_nc_ohc=D_Up8_Vsv2MQ7kNvwGu-siW&_nc_oc=AdkrfdwUCn6_IRHH-1ZymxBoPsjBD85_JAYj1SVN6zTqhoD1JFh9mLrNd4Eac_yHfr8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UTJw-NjRUtsktIAhUmd8zQ&oh=00_Aff_x_yIZ5fbMEhyvuhwzRwomPaaApZTPm6QGYwNfu3wFA&oe=68F157D6",
+                image: "images/crown_1.jpg",
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561010022_122104525035048875_5000566456464618899_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEHdU6GXHAPu8sXvkDXTTki_9qDdXXOZuH_2oN1dc5m4SCuXwIb4yPjgS1kl9NeHoICrQraT1zG-aCP6r0_n4EG&_nc_ohc=D_Up8_Vsv2MQ7kNvwGu-siW&_nc_oc=AdkrfdwUCn6_IRHH-1ZymxBoPsjBD85_JAYj1SVN6zTqhoD1JFh9mLrNd4Eac_yHfr8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UTJw-NjRUtsktIAhUmd8zQ&oh=00_Aff_x_yIZ5fbMEhyvuhwzRwomPaaApZTPm6QGYwNfu3wFA&oe=68F157D6",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Crown+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Crown+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Crown+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Crown+Interior"
+                    "images/crown_2.jpg",
+                    "images/crown.jpg",
+                    "images/crown_3.jpg",
+                    "images/crown_4.jpg"
                 ],
                 condition: 5,
                 price: "KES 2,500,000",
@@ -562,10 +677,10 @@
                 id: 3,
                 name: "Nissan NV200",
                 bodyType: "VAN",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561882820_122104524933048875_4358707706273844857_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEYpj4VTTZViFLzh6L7LbSt5F5RhofP6K3kXlGGh8_orUw6mt69IC0uDibKj-pfMiPcGEFDBKgar1nTFocbfJo&_nc_ohc=EENbukRnUBwQ7kNvwHoSkTh&_nc_oc=Adm97QyRA6TJk7AlFyFazkCzktpAaEEFoN1MsFtWTGi4O3sLL-iejgN_4gbLJnNXRWU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4otfXdKnN5cFcmtHCrmK6A&oh=00_AffFk_aPbEVLsVJXtj86J-DF57uQPpwRaWtV6H52FGOynw&oe=68F17107",
+                image: "images/nissan_nv200.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561882820_122104524933048875_4358707706273844857_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEYpj4VTTZViFLzh6L7LbSt5F5RhofP6K3kXlGGh8_orUw6mt69IC0uDibKj-pfMiPcGEFDBKgar1nTFocbfJo&_nc_ohc=EENbukRnUBwQ7kNvwHoSkTh&_nc_oc=Adm97QyRA6TJk7AlFyFazkCzktpAaEEFoN1MsFtWTGi4O3sLL-iejgN_4gbLJnNXRWU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4otfXdKnN5cFcmtHCrmK6A&oh=00_AffFk_aPbEVLsVJXtj86J-DF57uQPpwRaWtV6H52FGOynw&oe=68F17107",
+                    "images/nissan_nv200.jpg",
                     "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Nissan+NV200+Front",
                     "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Nissan+NV200+Side",
                     "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Nissan+NV200+Rear",
@@ -601,7 +716,7 @@
                 id: 4,
                 name: "Toyota Hiace",
                 bodyType: "VAN",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/564634990_122104524873048875_6010518839809568478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHvK95iRNepmb8Hx15JEFP1mnoXtQd1rQ-aehe1B3WtD3bmBQ2rLE3tTQG9oZ8Dxs-6Y7gekIu8mgkZ7YfWKSx-&_nc_ohc=lEinffdtDcIQ7kNvwECiPuO&_nc_oc=AdlQTGe3r4ROKls1Bw0WTTh_OjhkA_ahm731Qeqorn5B-S7cV0ttiTHbrqSKJXT3ofk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UG3BLyi8KsGtK52egxM2vA&oh=00_AfckdxbpXNvPv3sIEF9wfr4zWhlyj9kUtCTZjjyeRLsz2A&oe=68F14AA4",
+                image: "images/hiace_white.jpg",
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/564634990_122104524873048875_6010518839809568478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHvK95iRNepmb8Hx15JEFP1mnoXtQd1rQ-aehe1B3WtD3bmBQ2rLE3tTQG9oZ8Dxs-6Y7gekIu8mgkZ7YfWKSx-&_nc_ohc=lEinffdtDcIQ7kNvwECiPuO&_nc_oc=AdlQTGe3r4ROKls1Bw0WTTh_OjhkA_ahm731Qeqorn5B-S7cV0ttiTHbrqSKJXT3ofk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UG3BLyi8KsGtK52egxM2vA&oh=00_AfckdxbpXNvPv3sIEF9wfr4zWhlyj9kUtCTZjjyeRLsz2A&oe=68F14AA4",
@@ -640,7 +755,7 @@
                 id: 5,
                 name: "Toyota Hiace",
                 bodyType: "VAN",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561680724_122104524801048875_1218894707100259618_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEF3wl68h8SvfYnDXQrO8aGXGROgBgSKWBcZE6AGBIpYLNLmDZzyEHI1DO6OK8JjRQlOrPldPmwoUK0y3RKPKn9&_nc_ohc=o1kYjBKaom8Q7kNvwGyP_bW&_nc_oc=AdnJTQ1gpIGhurmN2ZFpWeLgindjeUEYEEoWkiAy4Zh50utHsUIlsvb-Vecyz8ERr_Y&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Rf412H0Sqzm_0KZhFdJXUQ&oh=00_AfeKbBaPbgmDX9E-Q4co_pXTXmS6WDBGT4LgiI0-l6Ae9g&oe=68F1545E",
+                image: "images/hiace_black.jpg",
                 // NEW: Multiple images for carousel
                 images: [
                     "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561680724_122104524801048875_1218894707100259618_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEF3wl68h8SvfYnDXQrO8aGXGROgBgSKWBcZE6AGBIpYLNLmDZzyEHI1DO6OK8JjRQlOrPldPmwoUK0y3RKPKn9&_nc_ohc=o1kYjBKaom8Q7kNvwGyP_bW&_nc_oc=AdnJTQ1gpIGhurmN2ZFpWeLgindjeUEYEEoWkiAy4Zh50utHsUIlsvb-Vecyz8ERr_Y&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Rf412H0Sqzm_0KZhFdJXUQ&oh=00_AfeKbBaPbgmDX9E-Q4co_pXTXmS6WDBGT4LgiI0-l6Ae9g&oe=68F1545E",
@@ -677,25 +792,25 @@
             },
             {
                 id: 6,
-                name: "Honda Vezel",
+                name: "Nissan X-TRAIL",
                 bodyType: "Small SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558971335_122104524765048875_5242405920757889727_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGouSt3eqnwoDAQZH8SRtgOK0uM52_wU3YrS4znb_BTdqDx30faEYxYG61-2-Z7ogh3qktetIuJtKKQ_q-KQfly&_nc_ohc=iVVZ6zq3dPsQ7kNvwGNoXJV&_nc_oc=AdkJdzvBk46djbspMsY_ZJtagiRPyMnMwe1ccZyZlVss-48LP-P5BEsf_2FKE3anlGU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Em5bwqX8EbH_APe_LHrjsQ&oh=00_Afe9EMKzv705H4-NMkzKwijlXC7EaXchm35EpniyQMP8-Q&oe=68F15859",
+                image: "images/xtrail1.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558971335_122104524765048875_5242405920757889727_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGouSt3eqnwoDAQZH8SRtgOK0uM52_wU3YrS4znb_BTdqDx30faEYxYG61-2-Z7ogh3qktetIuJtKKQ_q-KQfly&_nc_ohc=iVVZ6zq3dPsQ7kNvwGNoXJV&_nc_oc=AdkJdzvBk46djbspMsY_ZJtagiRPyMnMwe1ccZyZlVss-48LP-P5BEsf_2FKE3anlGU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Em5bwqX8EbH_APe_LHrjsQ&oh=00_Afe9EMKzv705H4-NMkzKwijlXC7EaXchm35EpniyQMP8-Q&oe=68F15859",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Vezel+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Vezel+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Vezel+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Vezel+Interior"
+                    "images/xtrail1.jpg",
+                    "images/xtrail2.jpg",
+                    "images/xtrail3.jpg",
+                    "images/xtrail4.jpg",
+                    "images/xtrail5.jpg"
                 ],
                 condition: 5,
-                price: "KES 1,600,000",
+                price: "KES 2,500,000",
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
                     drive: "FWD",
                     mileage: "81,000 km",
-                    engine: "1500cc",
+                    engine: "2000cc",
                     fuel: "Petrol",
                     horsepower: "105 hp",
                     transmission: "CVT",
@@ -718,14 +833,14 @@
                 id: 7,
                 name: "Toyota Fielder",
                 bodyType: "Station Wagon",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558877612_122104524717048875_8578559672243390465_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-TPBXYRebGMFQLFx2wxTH2SlWkeN7t3rZKVaR43u3ekbWaGytmbHIm9v1tTKHy3AeNNicIWmSxgZHspJ8855x&_nc_ohc=ynylJqp_PsAQ7kNvwGEPF2a&_nc_oc=Adm9qYRgIronQHfDrDkClzpjxmFrXMb6ChQkN1DW627vGs9VMibyjRVhALK9aCFZ450&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DR7kJUMjss-lEAw8GfZHBA&oh=00_Afc0KzmmQHND_BbFGhJFqBBP99x3HyYLPSRRXj9z2gM_yQ&oe=68F1468A",
+                image: "images/fielder_silver1.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558877612_122104524717048875_8578559672243390465_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-TPBXYRebGMFQLFx2wxTH2SlWkeN7t3rZKVaR43u3ekbWaGytmbHIm9v1tTKHy3AeNNicIWmSxgZHspJ8855x&_nc_ohc=ynylJqp_PsAQ7kNvwGEPF2a&_nc_oc=Adm9qYRgIronQHfDrDkClzpjxmFrXMb6ChQkN1DW627vGs9VMibyjRVhALK9aCFZ450&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=DR7kJUMjss-lEAw8GfZHBA&oh=00_Afc0KzmmQHND_BbFGhJFqBBP99x3HyYLPSRRXj9z2gM_yQ&oe=68F1468A",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Fielder+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Fielder+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Fielder+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Fielder+Interior"
+                    "images/fielder_silver1.jpg",
+                    "images/fielder_silver2.jpg",
+                    "images/fielder_silver3.jpg",
+                    "images/fielder_silver5.jpg",
+                    "images/filder_silver4.jpg"
                 ],
                 condition: 5,
                 price: "KES 1,600,000",
@@ -757,14 +872,12 @@
                 id: 8,
                 name: "Mazda Demio",
                 bodyType: "Hatchback",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559569963_122104524621048875_657513977709521163_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFmwwTYTvxLL7Z19oN7RCiSVUZGm4-98FFVRkabj73wUR0GpBtPSpDZGcvdHjY7nHFGwNVWQpGATos1klMM3Zov&_nc_ohc=oC-77tsQTigQ7kNvwEHYpXr&_nc_oc=AdlF6o782mcgt5WCd1KBtcAg_hdHCrY4zn4VNkTLnkXBe4W-cQOmGorwME70ic3VSU0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=CVJMEGoiavwas5kyXDewIw&oh=00_AfeyDIhWswxbZ-W4IuH3ymN6UQHNXkHlRry4QOSLYcfXUA&oe=68F16D04",
+                image: "images/demio_silver.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559569963_122104524621048875_657513977709521163_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFmwwTYTvxLL7Z19oN7RCiSVUZGm4-98FFVRkabj73wUR0GpBtPSpDZGcvdHjY7nHFGwNVWQpGATos1klMM3Zov&_nc_ohc=oC-77tsQTigQ7kNvwEHYpXr&_nc_oc=AdlF6o782mcgt5WCd1KBtcAg_hdHCrY4zn4VNkTLnkXBe4W-cQOmGorwME70ic3VSU0&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=CVJMEGoiavwas5kyXDewIw&oh=00_AfeyDIhWswxbZ-W4IuH3ymN6UQHNXkHlRry4QOSLYcfXUA&oe=68F16D04",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558915980_122104635099048875_1937216994013379711_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFIhjJFgRu239UkV5r6m4f-LxfIZ8QNV_QvF8hnxA1X9DcKR_8Cisv16HANw0MAU1txiwl6pFKgtgXj49zjLlKI&_nc_ohc=hCy6HkU_OvEQ7kNvwEbvBzn&_nc_oc=AdkGXtAL1lre1sDEaDG0Vj5FfxSXDuh5T6gtWW9wPbXSsHISnN9Uov97MbKNxrGedp8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=1WnFlBUyA12P80PM65a-KQ&oh=00_AffYN1fmqmkgfmrRX8EUrd40oE4jmBKU98RHAP29f1_38Q&oe=68F1E0F1",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559012609_122104635297048875_7567493869077144614_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF-8sG3E40k_dzjJXF8c7WzAfM9bAn-u30B8z1sCf67fWbwB2OHzyNO_ORH6BgofgamjFSMSRbUqSXhM4ypMjcD&_nc_ohc=urmG4iLuyoQQ7kNvwFT9NOE&_nc_oc=Adne6IJW6_0WD6mUnfHt6zo3UwhBrPLRGyuUzPnqwSoGIsSbUqI9z3ltFBXGA7k6XmI&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=8njP7GJX39KO9qCPFcdcJw&oh=00_Aff7Ye1IhUJ85R7G2ldp4iHghtPVuzSqmWylzuSu-CN3Ww&oe=68F1E6F6",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Demio+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Demio+Interior"
+                    "images/demio_silver_back.jpg",
+                    "images/demio.jpg",
+                    "images/demio_silver_back.jpg"
                 ],
                 condition: 5,
                 price: "KES 1,400,000",
@@ -835,14 +948,13 @@
                 id: 10,
                 name: "Toyota Harrier",
                 bodyType: "SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
+                image: "images/harrier3.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558870433_122104185855048875_7218222685999837928_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFQEisa-YQVxdaY2j4vh7XsWdU1QVD9pAFZ1TVBUP2kAYXZ86-1P7GgBup7R9V47Mzjpil4ICB1w6FBfIJpsAUJ&_nc_ohc=Gn0lb-O0mk0Q7kNvwEf9nCq&_nc_oc=AdmtImBIrY71PXdP4J5l6fUHMcVMNghlqEevp5LsGuFpZa59_HMiYpiz4IfebOuw2LU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qDgmmNYnCUgE2c4BoXoHSw&oh=00_AfdNSI72_yAHm0aWrv-qlLEa6uy67g1k2cqAqg_k2Q3YlQ&oe=68EF5205",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Harrier+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Harrier+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Harrier+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Harrier+Interior"
+                    "images/harrier4.jpg",
+                    "images/harrier2.jpg",
+                    "images/harrier1.jpg",
+                    "images/harrier4.jpg"
                 ],
                 condition: 5,
                 price: "KES 3,400,000",
@@ -874,14 +986,13 @@
                 id: 11,
                 name: "Honda Fit",
                 bodyType: "Hatchback",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559555362_122104188555048875_5878919758931729128_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmT8Ygk57GCLef9XsB04KiPPnIFPgfRZc8-cgU-B9FlyunXHG8paGE0NFUu7LjMZ7NlUMDAS6We4wkpEah9jdk&_nc_ohc=5VaWMYtt3kYQ7kNvwFPcV3w&_nc_oc=AdkrYoXDs8ZMwWA1s-jFt5I7DoIsCizp1orBxCfwwmMzVfiEF6ddZVp-4LRW3vUHi0M&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=eHUhRUj5acCCp1nUHgAuyQ&oh=00_AfcVq4QbvrEF6pDbn-ARRZD5r_UgerrP5WURQmkwPGHNwg&oe=68EF53A2",
+                image: "images/honda.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559555362_122104188555048875_5878919758931729128_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGmT8Ygk57GCLef9XsB04KiPPnIFPgfRZc8-cgU-B9FlyunXHG8paGE0NFUu7LjMZ7NlUMDAS6We4wkpEah9jdk&_nc_ohc=5VaWMYtt3kYQ7kNvwFPcV3w&_nc_oc=AdkrYoXDs8ZMwWA1s-jFt5I7DoIsCizp1orBxCfwwmMzVfiEF6ddZVp-4LRW3vUHi0M&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=eHUhRUj5acCCp1nUHgAuyQ&oh=00_AfcVq4QbvrEF6pDbn-ARRZD5r_UgerrP5WURQmkwPGHNwg&oe=68EF53A2",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Honda+Fit+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Fit+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Fit+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Fit+Interior"
+                    "images/honda1.jpg",
+                    "images/honda2.jpg",
+                    "images/honda3.jpg",
+                    "images/honda_red5.jpg"
                 ],
                 condition: 5,
                 price: "KES 2,100,000",
@@ -913,14 +1024,14 @@
                 id: 12,
                 name: "Mazda CX-5",
                 bodyType: "SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559116802_122104189107048875_1900550511953797789_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX35D8HPFz3Htnamjcj8a6cujH_3YlRily6Mf_diVGKUUZN5-FaBWqMJ4XAKRVxqL5KzQj8z9ZY_rGKD6U0FUW&_nc_ohc=Ij_OuYynOiUQ7kNvwEE1nhO&_nc_oc=Admft20dHXn3mlc3XDKdyfkqa6zHwjSXytTL-OcKjvix8VzbXETyiX2n2CQtQiqKJt8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4s_9xzB3ZR7a6fkABtOxmA&oh=00_Afc-BIBMvYiDWtFjH7psJ33Mu-wVYgxIOVA6Kpx991XzrQ&oe=68EF33AD",
+                image: "images/cx5_red.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559116802_122104189107048875_1900550511953797789_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHX35D8HPFz3Htnamjcj8a6cujH_3YlRily6Mf_diVGKUUZN5-FaBWqMJ4XAKRVxqL5KzQj8z9ZY_rGKD6U0FUW&_nc_ohc=Ij_OuYynOiUQ7kNvwEE1nhO&_nc_oc=Admft20dHXn3mlc3XDKdyfkqa6zHwjSXytTL-OcKjvix8VzbXETyiX2n2CQtQiqKJt8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4s_9xzB3ZR7a6fkABtOxmA&oh=00_Afc-BIBMvYiDWtFjH7psJ33Mu-wVYgxIOVA6Kpx991XzrQ&oe=68EF33AD",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+CX-5+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+CX-5+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+CX-5+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+CX-5+Interior"
+                    "images/cx5_red1.jpg",
+                    "images/cx5_red3.jpg",
+                    "images/cx5_red4.jpg",
+                    "images/cx5_red5.jpg",
+                    "images/cx5_red2.jpg"
                 ],
                 condition: 4,
                 price: "KES 4,500,000",
@@ -954,14 +1065,14 @@
                 id: 13,
                 name: "Toyota Hilux",
                 bodyType: "Pickup",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
+                image: "images/hilux_back.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559533430_122104287855048875_5978926567344117917_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGXxAIyYZLATTRcwmJJNQp1JnI51ppglHsmcjnWmmCUe-mMoIDN3-t5vFaL4dHWmdfci2K9A0Y-PEGZTS1Cojd9&_nc_ohc=I3CbEDhrdf8Q7kNvwHJ3za4&_nc_oc=AdlB8s0fvMdkI8WTgA9j8Kh6Vk2IQfWAFvCfi9LTV2SKc4JBKc8MCiPfdavavNXs_fU&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=4vNWzA538gBctg2_1CWqfA&oh=00_Afchf_XMqf9Ex6IaOOrW7wpjUke-IypysjqtMetE6xFChw&oe=68F00FFC",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559009211_122104633329048875_109645842630363952_n.jpg?stp=dst-jpg_p180x540_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGDx4PubENnLaXxOb5mVzkDBhD2WLLl278GEPZYsuXbv9VQnsB8PW3cqzFn3vaPuyetYqtO0EyV4z8oro4GoKy7&_nc_ohc=zR8xSvgDmkgQ7kNvwHbFyZC&_nc_oc=AdmzfixIwgyZXuB9DHSfmiJQBX7FbVSEnKseg_ludAtOZFqVjJs2T7ADstFAbMH9YSw&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=_Z-hie9t1oUTlAg1n0zzDA&oh=00_AfeK4vxXbVHnXo0teMj_B1Stig9S9bh4sd66yQWzSFU-7g&oe=68F1B66B",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hilux+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hilux+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hilux+Interior"
+                    "..",
+                    "..",
+                    "..",
+                    "..",
+                    ".."
                 ],
                 condition: 5,
                 price: "KES 5,500,000",
@@ -992,14 +1103,14 @@
                 id: 14,
                 name: "Subaru Outback",
                 bodyType: "SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558503668_122104287981048875_2877946896688230470_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG17xpIkV3LHTO2YDm7CDhN3jAgENlegZveMCAQ2V6BmxDXuHMlFXIhXMG67hv0E_c8pbP9Lz6O5H3uD0h2oHAG&_nc_ohc=nZPRIjaraekQ7kNvwH4SnD1&_nc_oc=AdmptJnQPs0rdBmC9qHLSXbNY_UyhyyKhrVP3URQSMilfZSHQ1Y8o75iVc85wyaNhIE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=QqumwyuxwF_GOcuTFDu4YQ&oh=00_AfdxHsVro8rKGL3i_SNL3EhxFMb9QyWUEHp3F37-B3aL6A&oe=68EFE894",
+                image: "images/subaru.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558503668_122104287981048875_2877946896688230470_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG17xpIkV3LHTO2YDm7CDhN3jAgENlegZveMCAQ2V6BmxDXuHMlFXIhXMG67hv0E_c8pbP9Lz6O5H3uD0h2oHAG&_nc_ohc=nZPRIjaraekQ7kNvwH4SnD1&_nc_oc=AdmptJnQPs0rdBmC9qHLSXbNY_UyhyyKhrVP3URQSMilfZSHQ1Y8o75iVc85wyaNhIE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=QqumwyuxwF_GOcuTFDu4YQ&oh=00_AfdxHsVro8rKGL3i_SNL3EhxFMb9QyWUEHp3F37-B3aL6A&oe=68EFE894",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Subaru+Outback+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Subaru+Outback+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Subaru+Outback+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Subaru+Outback+Interior"
+                    "images/outback4.jpg",
+                    "images/outback1.jpg",
+                    "images/outback3.jpg",
+                    "images/outback2.jpg",
+                    "images/outback5.jpg"
                 ],
                 condition: 4,
                 price: "KES 4,250,000",
@@ -1265,6 +1376,7 @@
                     "ISOFIX child seats anchors"
                 ]
             }
+            
         ];
 
         // DOM Elements for Car Listings

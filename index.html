@@ -311,7 +311,7 @@
         
         <div class="about-content">
             <div class="ceo-section">
-                <img src="https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559232119_122104322811048875_3809726345498478361_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE8y9RNbkT9ybKrBNkcoIoFJJbIZKJTHCgklshkolMcKCz4rjKiQpCLsmYfj3RbLQN6KcgyNUQIy8ZYzd90UPvt&_nc_ohc=guQCmT2Q9_wQ7kNvwHeIA1k&_nc_oc=AdlOSx7zUYAPIz5W2PKqOWUgGLVuNzOx4Iq5sWpqPZWzCgovVsW4TwVLpuadZsAKjbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=OOjzzmkZNVMsINHYD1bEjA&oh=00_AfdAUNmu05bX62OvqzeQq5wkXIGyeIhu4g6b7Z_PioAZnQ&oe=68F034B0" alt="Isaac Iringu Gitigi - CEO" class="ceo-image">
+                <img src="https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559232119_122104322811048875_3809726345498478361_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE8y9RNbkT9ybKrBNkcoIoFJJbIZKJTHCgklshkolMcKCz4rjKiQpCLsmYfj3RbLQN6KcgyNUQIy8ZYzd90UPvt&_nc_ohc=guQCmT2Q9_wQ7kNvwHeIA1k&_nc_oc=AdlOSx7zUYAPIz5W2PKqOWUgGLVuNzOx4Iq5sWpqPZWzCgovVsW4TwVLpuadZsAKjbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=OOjzzmkZNVMsINHYD1bEjA&oh=00_AfdAUNmu05bX62OvqzeQq5wkXIGyeIhu4g6b7Z_PioAZnQ&oe=68F034B0" alt="Isaac Irungu Gitigi - CEO" class="ceo-image">
                 <div class="ceo-info">
                     <h3 class="ceo-name">Isaac Iringu Gitigi</h3>
                     <p class="ceo-title">Founder & CEO of Celimax Motors Ltd</p>
@@ -630,6 +630,26 @@
     <script>
       
     </script>
+    <script>
+document.addEventListener('keydown', function (e) {
+  if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+    e.preventDefault();
+    alert('Access Denied 🚫');
+  }
+  if (e.key === 'F12') {
+    e.preventDefault();
+    alert('Developer Tools Disabled ❌');
+  }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+    e.preventDefault();
+    alert('Access Denied 🚫');
+  }
+});
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+</script>
+
 </body>
 <script src ="script.js"></script>
 </html>

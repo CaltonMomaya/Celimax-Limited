@@ -480,7 +480,7 @@
                 ]
             },
             {
-                id: 1,
+                id: 2,
                 name: "LEXUS LX-570",
                 bodyType: "SUV",
                 image: "images/lexus.jpg",
@@ -557,7 +557,7 @@
                 ]
             },
               {
-                id: 1,
+                id: 3,
                 name: "Nissan Wingroad",
                 bodyType: "Station Wagon",
                 image: "images/wingroad.jpg",
@@ -596,7 +596,7 @@
                 ]
             },
             {
-                id: 1,
+                id: 4,
                 name: "Toyota Axio",
                 bodyType: "Sedan",
                 image: "images/axio_back.jpg",
@@ -635,7 +635,7 @@
                 ]
             },
             {
-                id: 2,
+                id: 5,
                 name: "Toyota Crown",
                 bodyType: "Sedan",
                 image: "images/crown_1.jpg",
@@ -674,7 +674,7 @@
                 ]
             },
             {
-                id: 3,
+                id: 6,
                 name: "Nissan NV200",
                 bodyType: "VAN",
                 image: "images/nissan_nv200.jpg",
@@ -713,7 +713,7 @@
                 ]
             },
             {
-                id: 4,
+                id: 7,
                 name: "Toyota Hiace",
                 bodyType: "VAN",
                 image: "images/hiace_white.jpg",
@@ -752,7 +752,7 @@
                 ]
             },
             {
-                id: 5,
+                id: 8,
                 name: "Toyota Hiace",
                 bodyType: "VAN",
                 image: "images/hiace_black.jpg",
@@ -791,7 +791,7 @@
                 ]
             },
             {
-                id: 6,
+                id: 9,
                 name: "Nissan X-TRAIL",
                 bodyType: "Small SUV",
                 image: "images/xtrail1.jpg",
@@ -830,7 +830,7 @@
                 ]
             },
             {
-                id: 7,
+                id: 10,
                 name: "Toyota Fielder",
                 bodyType: "Station Wagon",
                 image: "images/fielder_silver1.jpg",
@@ -869,7 +869,7 @@
                 ]
             },
             {
-                id: 8,
+                id: 11,
                 name: "Mazda Demio",
                 bodyType: "Hatchback",
                 image: "images/demio_silver.jpg",
@@ -906,7 +906,7 @@
                 ]
             },
             {
-                id: 9,
+                id: 12,
                 name: "Toyota Sienta",
                 bodyType: "MPV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559045352_122104524645048875_6237591055868565831_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFs6lfftEWZ8ebhZ96g7tP-Mky_hLQHcEEyTL-EtAdwQTYToPidp4uDkjFN205qnKNE9nW-azoJwQPIZpROHa7k&_nc_ohc=6Fep3GHxtH8Q7kNvwHlvnG8&_nc_oc=AdkBKTkkNVKtFiGiGsUXrxqcQzqdLaz88_XkYS2o6hW4r_OuPgQOsOiQzF9nPv9AGeY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=0tpNgM4V1c6dUEViH0u9Cw&oh=00_AfcFjLQpRCo79TTq_VLNzaHA9iQjCm2u5hcFcXyV6RWUew&oe=68F16261",
@@ -945,7 +945,7 @@
                 ]
             },
             {
-                id: 10,
+                id: 13,
                 name: "Toyota Harrier",
                 bodyType: "SUV",
                 image: "images/harrier3.jpg",
@@ -983,7 +983,7 @@
                 ]
             },
             {
-                id: 11,
+                id: 14,
                 name: "Honda Fit",
                 bodyType: "Hatchback",
                 image: "images/honda.jpg",
@@ -1021,7 +1021,7 @@
                 ]
             },
             {
-                id: 12,
+                id: 15,
                 name: "Mazda CX-5",
                 bodyType: "SUV",
                 image: "images/cx5_red.jpg",
@@ -1062,7 +1062,7 @@
                 ]
             },
             {
-                id: 13,
+                id: 16,
                 name: "Toyota Hilux",
                 bodyType: "Pickup",
                 image: "images/hilux_back.jpg",
@@ -1100,7 +1100,7 @@
                 ]
             },
             {
-                id: 14,
+                id: 17,
                 name: "Subaru Outback",
                 bodyType: "SUV",
                 image: "images/subaru.jpg",
@@ -1139,7 +1139,7 @@
                 ]
             },
             {
-                id: 15,
+                id: 18,
                 name: "Mazda Demio",
                 bodyType: "Hatchback",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560056537_122104288161048875_773556082653655033_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHsOj8-PgHpxcNdNdMcU3MbkKrDvu6jsWGQqsO-7qOxYfkEJ8xUI1yRTSmUkl-li4nGpGDaq08DhIR4uMKCl5_m&_nc_ohc=dtXA6kCDRxEQ7kNvwFwjdI-&_nc_oc=AdkDytRpXfQS9YgSnyrk0qvwXh8m0_1XcIQ1oBOTKI4hPxZ4XKoX-le1gnguAbnvbbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qQcVlBenPw43zvJG9raitQ&oh=00_Afc7FgFUPryxklwzcXfaJ_o8kt7ZFwvj1Jxvv_kxBPevVQ&oe=68EFF343",
@@ -1179,7 +1179,7 @@
                 ]
             },
             {
-                id: 16,
+                id: 19,
                 name: "Mazda Axela",
                 bodyType: "Sedan",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
@@ -1220,7 +1220,7 @@
                 ]
             },
             {
-                id: 17,
+                id: 20,
                 name: "Mercedes GLC",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
@@ -1260,7 +1260,7 @@
                 ]
             },
             {
-                id: 18,
+                id: 21,
                 name: "Honda Vezel",
                 bodyType: "SUV",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
@@ -1301,7 +1301,7 @@
                 ]
             },
             {
-                id: 19,
+                id: 22,
                 name: "Toyota Vitz",
                 bodyType: "Hatchback",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558544719_122104289361048875_7659859759221476782_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-8BmCS7mN17SdlvkXEml3Cm3iIP4w8o8KbeIg_jDyj8RTS6Lgop3fyKkVCSpEG-Xj6y9ovl-enpxvekGuIMRn&_nc_ohc=skyBMtQmkAsQ7kNvwEUcE5g&_nc_oc=AdkRW3ceSDgjdtLf9i-DMvwZu90XdhGqTo8z3IrqYBJPAO4vc-PBx7PpyGzVgl76ycc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=mJlx5c1gUbQS9el1MOuBcw&oh=00_AfcavGky5y5ZgBnxKPs4jtV6PXotwRkwzZ5HPpg510uqvw&oe=68EFFBCC",
@@ -1341,7 +1341,7 @@
                 ]
             },
             {
-                id: 20,
+                id: 23,
                 name: "Toyota Axio",
                 bodyType: "Sedan",
                 image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560307183_122104306863048875_1212677064051908038_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGfBrAgP8Wh6EM_VvVTCaZXLu43mwaME2Eu7jebBowTYeS2zcigaMQMJBVAwTG-I4rHNpDI5GY2Yg2JRUC80AfX&_nc_ohc=-ZWk5xJmr1UQ7kNvwERNXxa&_nc_oc=AdnoE9ODGRqKp0giDENE_Xge5-__HiS414tg9K3uAQzfYpW41Imisx0Ih7HvoS4J9Y4&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cLiUvpXJVJVqN_tcrGXl_g&oh=00_Afcr7-16I0AALWfBKtT2nEjckN3dIe-G2FmyuiDVhYxdkA&oe=68F00246",

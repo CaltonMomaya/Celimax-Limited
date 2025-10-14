@@ -494,10 +494,11 @@
                 condition: 5,
                 price: "KES 14,900,000",
                 specs: {
-                    year: "2019",
+                    year: "2015",
                     location: "Celimax Motors",
                     drive: "FWD",
-                    mileage: "81,000 km",
+                    registration: "KDV",
+                    mileage: "57,000 km",
                     engine: "1.5L",
                     fuel: "Petrol/Hybrid",
                     horsepower: "131 hp",
@@ -508,9 +509,9 @@
                 },
                 package: [
                     "Leather Seats",
-                    "Alloy Wheels",
+                    "Sunroof",
                     "14 seats",
-                    "Reverse Camera",
+                    "360° Reverse Camera",
                     "Power windows",
                     "Keyless Start",
                     "Modern infotainmnet",
@@ -641,7 +642,7 @@
                 image: "images/crown_1.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561010022_122104525035048875_5000566456464618899_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEHdU6GXHAPu8sXvkDXTTki_9qDdXXOZuH_2oN1dc5m4SCuXwIb4yPjgS1kl9NeHoICrQraT1zG-aCP6r0_n4EG&_nc_ohc=D_Up8_Vsv2MQ7kNvwGu-siW&_nc_oc=AdkrfdwUCn6_IRHH-1ZymxBoPsjBD85_JAYj1SVN6zTqhoD1JFh9mLrNd4Eac_yHfr8&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UTJw-NjRUtsktIAhUmd8zQ&oh=00_Aff_x_yIZ5fbMEhyvuhwzRwomPaaApZTPm6QGYwNfu3wFA&oe=68F157D6",
+                    "images/crown.jpg",
                     "images/crown_2.jpg",
                     "images/crown.jpg",
                     "images/crown_3.jpg",
@@ -716,14 +717,14 @@
                 id: 7,
                 name: "Toyota Hiace",
                 bodyType: "VAN",
-                image: "images/hiace_white.jpg",
+                image: "images/WhatsApp Image 2025-10-11 at 15.57.45_0a6113b2.jpg",
                 // NEW: Multiple images for carousel
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/564634990_122104524873048875_6010518839809568478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHvK95iRNepmb8Hx15JEFP1mnoXtQd1rQ-aehe1B3WtD3bmBQ2rLE3tTQG9oZ8Dxs-6Y7gekIu8mgkZ7YfWKSx-&_nc_ohc=lEinffdtDcIQ7kNvwECiPuO&_nc_oc=AdlQTGe3r4ROKls1Bw0WTTh_OjhkA_ahm731Qeqorn5B-S7cV0ttiTHbrqSKJXT3ofk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=UG3BLyi8KsGtK52egxM2vA&oh=00_AfckdxbpXNvPv3sIEF9wfr4zWhlyj9kUtCTZjjyeRLsz2A&oe=68F14AA4",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hiace+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hiace+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hiace+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hiace+Interior"
+                    "images/WhatsApp Image 2025-10-11 at 15.57.45_648d42b8.jpg",
+                    "images/WhatsApp Image 2025-10-11 at 15.57.45_d8aabf45.jpg",
+                    "images/WhatsApp Image 2025-10-11 at 15.57.46_da7b590b.jpg",
+                    "images/WhatsApp Image 2025-10-11 at 15.57.45_d8aabf45.jpg",
+                    "images/WhatsApp Image 2025-10-11 at 15.57.46_ac0d341b.jpg"
                 ],
                 condition: 5,
                 price: "KES 3,500,000",
@@ -1375,7 +1376,738 @@
                     "Manual Boot Door",
                     "ISOFIX child seats anchors"
                 ]
+            },
+             {
+                id: 24,
+                name: "Toyota Noah",
+                bodyType: "MPV",
+                image: "images/noah1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/noah1.jpg",
+                    "images/noah2.jpg",
+                    "images/noah3.jpg",
+                    "images/noah4.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 25,
+                name: "Toyota Probox",
+                bodyType: "VAN",
+                image: "images/probox_front.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/probox _back.jpg",
+                    "images/probox_left.jpg",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,900,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 26,
+                name: "Toyota Prado TX",
+                bodyType: "SUV",
+                image: "images/prado_front.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/prado_back.jpg",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 7,300,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 27,
+                name: "Toyota Noah",
+                bodyType: "MPV",
+                image: "images/noah_front.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/noah_side.jpg",
+                    "images/noah_wing.jpg",
+                    "images/noah_side.jpg",
+                    "images/noah_wing.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,600,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+              {
+                id: 29,
+                name: "Honda Fit",
+                bodyType: "Hatchback",
+                image: "images/honda_red3.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/honda_red4.jpg",
+                    "images/nissan_note1.jpg",
+                    "images/honda_red2.jpg",
+                    "images/honda_red1.jpg"
+                ],
+                condition: 5,
+                price: "KES 1,400,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 30,
+                name: "Toyota Voxy",
+                bodyType: "Hatchback",
+                image: "images/voxy1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/voxy2.jpg",
+                    "images/voxy3.jpg",
+                    "images/voxy3.jpg",
+                    "images/voxy4.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,700,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 31,
+                name: "Subaru Forester",
+                bodyType: "Hatchback",
+                image: "images/forester_rightback.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/forester_black.jpg",
+                    "images/forester_leftback.jpg",
+                    "images/forester_interior.jpg",
+                    "images/forester_black.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,700,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 32,
+                name: "Toyota Fielder",
+                bodyType: "Station Wagon",
+                image: "images/fielder_silver1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/fielder_silver2.jpg",
+                    "images/fielder_silver3.jpg",
+                    "images/filder_silver4.jpg",
+                    "images/fielder_silver5.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,300,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 33,
+                name: "Toyota Vitz",
+                bodyType: "Hatchback",
+                image: "images/vitz_front.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/vitz_left_back.jpg",
+                    "..",
+                    "images/vitz_back.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,300,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                {
+                id: 34,
+                name: "Honda Vezel",
+                bodyType: "Crossover",
+                image: "images/honda vez.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/hondavez1.jpg",
+                    "images/hondavez2.jpg",
+                    "images/hondavez5.jpg",
+                    "images/hondavez4.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                {
+                id: 36,
+                name: "Subaru Forester",
+                bodyType: "Crossover",
+                image: "images/forester1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/forester2.jpg",
+                    "images/forester3.jpg",
+                    "images/forester4.jpg",
+                    "images/forester5.jpg"
+                ],
+                condition: 5,
+                price: "KES 4,200,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+              {
+                id: 37,
+                name: "Toyota RAV 4",
+                bodyType: "Crossover",
+                image: "images/rav4.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 3,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 38,
+                name: "Toyota Premio 260",
+                bodyType: "Sedan",
+                image: "images/premio.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 39,
+                name: "Toyota Hilux",
+                bodyType: "Pickup",
+                image: "images/hn1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/hn2.jpg",
+                    "images/hn3.jpg",
+                    "images/hn4.jpg",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,500,000",
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "81,000 km",
+                    engine: "1.5L",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 40,
+                name: "Toyota Landcruiser LC-300",
+                bodyType: "SUV",
+                image: "images/lc300.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,200,000",
+                specs: {
+                    year: "2023",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "3500cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+               {
+                id: 41,
+                name: "Toyota Prado 120SERIES",
+                bodyType: "SUV",
+                image: "images/prado2008.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 2,220,000",
+                specs: {
+                    year: "2023",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "3500cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                 {
+                id: 42,
+                name: "Toyota Harrier Premium",
+                bodyType: "SUV",
+                image: "images/harrier w.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 4,
+                price: "KES 2,650,000",
+                specs: {
+                    year: "2014",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "3500cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                {
+                id: 43,
+                name: "Toyota Probox",
+                bodyType: "VAN",
+                image: "images/proboxy.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,380,000",
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "1500cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+              {
+                id: 44,
+                name: "Toyota Premio 260",
+                bodyType: "SUV",
+                image: "images/premiooo.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "..",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,590,000",
+                specs: {
+                    year: "2018",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "1500cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
             }
+            
+            
+            
+
+            
+
+            
+            
+            
             
         ];
 

@@ -422,15 +422,19 @@
             position: relative;
             margin: 1.5rem 0;
             z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
 
-        /* NEW: Hero Slider Styles */
+        /* NEW: Hero Slider Styles - CENTERED */
         .hero-slider {
             position: relative;
             width: 400px;
             max-width: 80%;
             height: 200px;
-            margin: 1.5rem 0;
+            margin: 1.5rem auto;
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -458,6 +462,7 @@
             object-fit: cover;
             filter: grayscale(100%) contrast(120%);
             animation: slideIn 1s ease-out;
+            border: none;
         }
 
         @keyframes slideIn {
@@ -2436,6 +2441,62 @@
             color: var(--secondary);
         }
 
+        /* NEW: Blog Post Window */
+        .blog-post-window {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 2rem 5%;
+        }
+
+        .blog-post-window.active {
+            display: flex;
+        }
+
+        .blog-post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .blog-post-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+        }
+
+        .blog-post-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+        }
+
+        .blog-post-text p {
+            margin-bottom: 1.5rem;
+        }
+
         /* NEW: Mobile Responsiveness for Filters */
         @media (max-width: 768px) {
             .nav-links {
@@ -2803,7 +2864,7 @@
             <h1>Mombasa's Largest Marketplace</h1>
             <p>Walk in, Drive out.....</p>
             <div class="image-container">
-                <!-- NEW: Hero Slider -->
+                <!-- NEW: Hero Slider - CENTERED -->
                 <div class="hero-slider" id="heroSlider">
                     <div class="slider-track" id="sliderTrack">
                         <div class="slider-slide">
@@ -2946,28 +3007,28 @@
     <section class="blog-section" id="blogSection">
         <h2 class="section-title">Latest from Our Blog</h2>
         <div class="blog-grid">
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="1">
                 <img src="https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg" alt="Audi Floods" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">Audi's Struggle with Kenyan Floods</h3>
                     <p class="blog-excerpt">How recent flooding in Kenya has impacted luxury car imports and what Audi owners need to know about water damage prevention...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="1">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="2">
                 <img src="https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg" alt="Car Maintenance" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">5 Essential Car Maintenance Tips for Kenyan Roads</h3>
                     <p class="blog-excerpt">Keep your vehicle in top condition with these practical maintenance tips tailored for Kenya's diverse road conditions...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="2">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="3">
                 <img src="https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png" alt="Electric Vehicles" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">The Future of Electric Vehicles in Kenya</h3>
                     <p class="blog-excerpt">As Kenya embraces renewable energy, we explore the growing market for electric vehicles and what it means for car buyers...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="3">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -3382,54 +3443,67 @@
             </button>
         </div>
         <div class="blog-grid">
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="1">
                 <img src="https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg" alt="Audi Floods" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">Audi's Struggle with Kenyan Floods</h3>
                     <p class="blog-excerpt">How recent flooding in Kenya has impacted luxury car imports and what Audi owners need to know about water damage prevention...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="1">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="2">
                 <img src="https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg" alt="Car Maintenance" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">5 Essential Car Maintenance Tips for Kenyan Roads</h3>
                     <p class="blog-excerpt">Keep your vehicle in top condition with these practical maintenance tips tailored for Kenya's diverse road conditions...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="2">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="3">
                 <img src="https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png" alt="Electric Vehicles" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">The Future of Electric Vehicles in Kenya</h3>
                     <p class="blog-excerpt">As Kenya embraces renewable energy, we explore the growing market for electric vehicles and what it means for car buyers...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="3">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="4">
                 <img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg" alt="Car Financing" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">Understanding Car Financing Options in Kenya</h3>
                     <p class="blog-excerpt">A comprehensive guide to the various financing options available for car buyers in Kenya, from bank loans to hire purchase...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="4">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="5">
                 <img src="https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788747_1280.jpg" alt="Car Insurance" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">Car Insurance: What You Need to Know in Kenya</h3>
                     <p class="blog-excerpt">Navigating the complexities of car insurance in Kenya - from comprehensive to third-party coverage and everything in between...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="5">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card" data-blog-id="6">
                 <img src="https://cdn.pixabay.com/photo/2016/12/07/21/01/car-1890494_1280.jpg" alt="Car Import" class="blog-image">
                 <div class="blog-content">
                     <h3 class="blog-title">The Complete Guide to Importing a Car to Kenya</h3>
                     <p class="blog-excerpt">Step-by-step guide to importing your dream car to Kenya, covering taxes, shipping, customs clearance, and registration...</p>
-                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="read-more blog-read-more" data-blog-id="6">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- NEW: Blog Post Window -->
+    <div class="blog-post-window" id="blogPostWindow">
+        <div class="blog-post-header">
+            <h2 class="blog-post-title" id="blogPostTitle">Blog Post Title</h2>
+            <button class="back-to-home" id="backFromBlogPost">
+                <i class="fas fa-arrow-left"></i> Back to Blogs
+            </button>
+        </div>
+        <div class="blog-post-content" id="blogPostContent">
+            <!-- Blog content will be inserted here -->
         </div>
     </div>
 
@@ -3796,9 +3870,12 @@
             
             // NEW: Initialize hero slider
             initHeroSlider();
+            
+            // NEW: Initialize blog posts
+            initBlogPosts();
         });
 
-        // NEW: Hero Slider Functionality
+        // NEW: Hero Slider Functionality - CENTERED
         function initHeroSlider() {
             const sliderTrack = document.getElementById('sliderTrack');
             const sliderNav = document.getElementById('sliderNav');
@@ -4303,6 +4380,7 @@
                 source: "fresh", // NEW: locally used or fresh import
                 registered: true, // NEW: registered or unregistered
                 fuelType: "petrol", // NEW: petrol, diesel, hybrid, electric
+                color: "Black", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
@@ -4314,7 +4392,8 @@
                     transmission: "CVT",
                     torque: "136 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 6.2 secs",
+                    color: "Black" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4344,6 +4423,7 @@
                 source: "fresh", // NEW: locally used or fresh import
                 registered: false, // NEW: registered or unregistered
                 fuelType: "petrol", // NEW: petrol, diesel, hybrid, electric
+                color: "White", // NEW: Color property
                 specs: {
                     year: "2015",
                     location: "Celimax Motors",
@@ -4356,7 +4436,8 @@
                     transmission: "CVT",
                     torque: "136 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 6.2 secs",
+                    color: "White" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4384,6 +4465,7 @@
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
+                color: "Red", // NEW: Color property
                 specs: {
                     year: "2018",
                     location: "Celimax Motors",
@@ -4395,7 +4477,8 @@
                     transmission: "Automatic",
                     torque: "92 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 11.5 secs"
+                    acceleration: "(0-100kph) 11.5 secs",
+                    color: "Red" // NEW: Added color to specs
                 },
                 package: [
                     "Alloy Wheels",
@@ -4421,6 +4504,7 @@
                 source: "fresh",
                 registered: false,
                 fuelType: "petrol",
+                color: "Silver", // NEW: Color property
                 specs: {
                     year: "2020",
                     location: "Celimax Motors",
@@ -4432,7 +4516,8 @@
                     transmission: "CVT",
                     torque: "207 Nm",
                     aspiration: "Turbocharged",
-                    acceleration: "(0-100kph) 8.2 secs"
+                    acceleration: "(0-100kph) 8.2 secs",
+                    color: "Silver" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4459,6 +4544,7 @@
                 source: "local",
                 registered: true,
                 fuelType: "petrol",
+                color: "Blue", // NEW: Color property
                 specs: {
                     year: "2017",
                     location: "Celimax Motors",
@@ -4470,7 +4556,8 @@
                     transmission: "CVT",
                     torque: "119 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.6 secs"
+                    acceleration: "(0-100kph) 10.6 secs",
+                    color: "Blue" // NEW: Added color to specs
                 },
                 package: [
                     "Alloy Wheels",
@@ -4496,6 +4583,7 @@
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
+                color: "Gray", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
@@ -4507,7 +4595,8 @@
                     transmission: "CVT",
                     torque: "200 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.5 secs"
+                    acceleration: "(0-100kph) 10.5 secs",
+                    color: "Gray" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4534,6 +4623,7 @@
                 source: "fresh",
                 registered: false,
                 fuelType: "petrol",
+                color: "Black", // NEW: Color property
                 specs: {
                     year: "2021",
                     location: "Celimax Motors",
@@ -4545,7 +4635,8 @@
                     transmission: "Automatic",
                     torque: "251 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.2 secs"
+                    acceleration: "(0-100kph) 8.2 secs",
+                    color: "Black" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4572,6 +4663,7 @@
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
+                color: "Green", // NEW: Color property
                 specs: {
                     year: "2018",
                     location: "Celimax Motors",
@@ -4583,7 +4675,8 @@
                     transmission: "CVT",
                     torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 9.5 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -4710,6 +4803,291 @@
             }
         ];
 
+        // NEW: Blog Posts Data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Audi's Struggle with Kenyan Floods",
+                image: "https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg",
+                excerpt: "How recent flooding in Kenya has impacted luxury car imports and what Audi owners need to know about water damage prevention...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg" alt="Audi Floods" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>The recent unprecedented flooding in Kenya has had a significant impact on the automotive industry, particularly affecting luxury car imports. Audi, known for its sophisticated electronics and advanced systems, has been particularly vulnerable to water damage.</p>
+                        
+                        <p>At Celimax Motors, we've seen an increase in inquiries about flood-damaged vehicles and how to identify them. Water damage can be particularly insidious in luxury vehicles because it may not be immediately visible but can cause electrical issues months or even years later.</p>
+                        
+                        <h4>Identifying Flood-Damaged Vehicles</h4>
+                        <p>When inspecting a vehicle for potential flood damage, pay attention to these key indicators:</p>
+                        <ul>
+                            <li>Musty odor in the interior</li>
+                            <li>Water lines in the engine bay or trunk</li>
+                            <li>Rust in unusual places like seat brackets or pedal assemblies</li>
+                            <li>Fogging inside instrument clusters or headlights</li>
+                            <li>Malfunctioning electronics that can't be easily explained</li>
+                        </ul>
+                        
+                        <p>For Audi owners specifically, water damage can be particularly problematic due to the complex electrical systems and numerous control modules throughout the vehicle. A professional inspection is always recommended when purchasing any used luxury vehicle.</p>
+                        
+                        <h4>Prevention Tips</h4>
+                        <p>If you own an Audi or any luxury vehicle in flood-prone areas:</p>
+                        <ul>
+                            <li>Park on higher ground during heavy rains</li>
+                            <li>Consider waterproof undercoating</li>
+                            <li>Install water detection sensors in your garage</li>
+                            <li>Maintain comprehensive insurance coverage</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, all our vehicles undergo rigorous inspections to ensure they're free from flood damage and other issues. We provide complete vehicle history reports so you can buy with confidence.</p>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "5 Essential Car Maintenance Tips for Kenyan Roads",
+                image: "https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg",
+                excerpt: "Keep your vehicle in top condition with these practical maintenance tips tailored for Kenya's diverse road conditions...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg" alt="Car Maintenance" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Kenya's diverse road conditions - from smooth highways to challenging rural roads - require special attention to vehicle maintenance. Proper care not only extends your vehicle's lifespan but also ensures your safety on the road.</p>
+                        
+                        <h4>1. Regular Oil Changes</h4>
+                        <p>Dusty conditions common in many parts of Kenya can contaminate engine oil faster than normal. We recommend changing your oil every 5,000 km instead of the standard 10,000 km, especially if you frequently drive on unpaved roads.</p>
+                        
+                        <h4>2. Tire Care and Rotation</h4>
+                        <p>Kenya's varying road surfaces can cause uneven tire wear. Rotate your tires every 10,000 km and check pressure weekly. Consider all-terrain tires if you frequently drive on rough roads.</p>
+                        
+                        <h4>3. Suspension System Checks</h4>
+                        <p>Potholes and rough roads take a toll on your suspension. Have your shocks, struts, and bushings inspected every 15,000 km. Listen for unusual noises when driving over bumps.</p>
+                        
+                        <h4>4. Air Filter Maintenance</h4>
+                        <p>Dusty conditions mean your air filter works harder. Check and clean or replace your air filter every 10,000 km. A clogged filter reduces fuel efficiency and engine performance.</p>
+                        
+                        <h4>5. Brake System Attention</h4>
+                        <p>Kenya's hilly terrain and stop-and-go city traffic demand more from your brakes. Have your brake pads, rotors, and fluid checked regularly. Listen for squealing or grinding noises.</p>
+                        
+                        <p>At Celimax Motors, we offer comprehensive maintenance packages tailored for Kenyan driving conditions. Our certified technicians understand the unique challenges faced by vehicles in our region.</p>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "The Future of Electric Vehicles in Kenya",
+                image: "https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png",
+                excerpt: "As Kenya embraces renewable energy, we explore the growing market for electric vehicles and what it means for car buyers...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png" alt="Electric Vehicles" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Kenya is positioning itself as a leader in renewable energy in Africa, with over 90% of its electricity coming from green sources. This creates a perfect environment for electric vehicle (EV) adoption, and we're already seeing growing interest in EVs among Kenyan consumers.</p>
+                        
+                        <h4>Current EV Landscape in Kenya</h4>
+                        <p>While still in its early stages, Kenya's EV market is growing rapidly. Several companies have begun importing electric vehicles, and charging infrastructure is slowly expanding, particularly in urban centers like Nairobi and Mombasa.</p>
+                        
+                        <p>The government has shown support through reduced import duties on electric vehicles and components, making EVs more accessible to Kenyan buyers.</p>
+                        
+                        <h4>Benefits for Kenyan Drivers</h4>
+                        <p>Electric vehicles offer several advantages in the Kenyan context:</p>
+                        <ul>
+                            <li><strong>Lower operating costs:</strong> Electricity is cheaper than petrol or diesel</li>
+                            <li><strong>Reduced maintenance:</strong> Fewer moving parts mean less maintenance</li>
+                            <li><strong>Environmental benefits:</strong> Zero emissions align with Kenya's green energy focus</li>
+                            <li><strong>Performance:</strong> Instant torque provides excellent acceleration</li>
+                        </ul>
+                        
+                        <h4>Challenges and Considerations</h4>
+                        <p>Despite the advantages, there are challenges to widespread EV adoption in Kenya:</p>
+                        <ul>
+                            <li>Limited charging infrastructure outside major cities</li>
+                            <li>Higher upfront costs compared to conventional vehicles</li>
+                            <li>Limited model availability and after-sales support</li>
+                            <li>Range anxiety for long-distance travel</li>
+                        </ul>
+                        
+                        <h4>The Road Ahead</h4>
+                        <p>At Celimax Motors, we're excited about the future of electric vehicles in Kenya. We're closely monitoring developments in the EV space and plan to introduce electric models to our inventory as the market matures and infrastructure improves.</p>
+                        
+                        <p>For now, hybrid vehicles offer a practical middle ground, providing some electric benefits while maintaining the flexibility of petrol power. We have several hybrid models available that are perfect for Kenyan drivers looking to reduce their fuel consumption and environmental impact.</p>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Understanding Car Financing Options in Kenya",
+                image: "https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg",
+                excerpt: "A comprehensive guide to the various financing options available for car buyers in Kenya, from bank loans to hire purchase...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg" alt="Car Financing" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Purchasing a vehicle is a significant financial decision, and understanding your financing options is crucial. In Kenya, several financing methods are available to help you acquire your dream car.</p>
+                        
+                        <h4>1. Bank Loans</h4>
+                        <p>Most commercial banks in Kenya offer car loans with varying terms and interest rates. Typically, you'll need:</p>
+                        <ul>
+                            <li>Proof of income (payslips or business records)</li>
+                            <li>Bank statements (usually 3-6 months)</li>
+                            <li>Identification documents</li>
+                            <li>Down payment (usually 20-30% of the vehicle price)</li>
+                        </ul>
+                        
+                        <h4>2. Hire Purchase</h4>
+                        <p>Hire purchase agreements allow you to use the vehicle while paying for it in installments. The vehicle remains the property of the financier until the final payment is made. This option often requires less documentation than bank loans.</p>
+                        
+                        <h4>3. SACCO Loans</h4>
+                        <p>Many Savings and Credit Cooperative Organizations (SACCOs) offer vehicle loans to their members at competitive rates. These loans often have more flexible terms than traditional bank loans.</p>
+                        
+                        <h4>4. Dealer Financing</h4>
+                        <p>Some dealerships, including Celimax Motors, offer in-house financing options. These are often tailored specifically for car purchases and may have more flexible approval criteria.</p>
+                        
+                        <h4>5. Logbook Loans</h4>
+                        <p>If you already own a vehicle, you can use it as collateral for a loan to purchase another car. This option provides quick access to funds but typically comes with higher interest rates.</p>
+                        
+                        <h4>Tips for Choosing the Right Financing</h4>
+                        <ul>
+                            <li>Compare interest rates from multiple lenders</li>
+                            <li>Consider the total cost of the loan, not just monthly payments</li>
+                            <li>Check for hidden fees and charges</li>
+                            <li>Ensure the repayment period aligns with your financial goals</li>
+                            <li>Read and understand all terms and conditions before signing</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we work with several financial partners to help our customers find the best financing options for their needs. Our team can guide you through the process and help you understand the various options available.</p>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Car Insurance: What You Need to Know in Kenya",
+                image: "https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788747_1280.jpg",
+                excerpt: "Navigating the complexities of car insurance in Kenya - from comprehensive to third-party coverage and everything in between...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788747_1280.jpg" alt="Car Insurance" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Car insurance is not just a legal requirement in Kenya - it's essential financial protection for one of your most valuable assets. Understanding the different types of coverage available can help you make informed decisions about protecting your vehicle.</p>
+                        
+                        <h4>Types of Car Insurance in Kenya</h4>
+                        
+                        <h5>1. Third-Party Insurance</h5>
+                        <p>This is the minimum legal requirement for all vehicles in Kenya. It covers:</p>
+                        <ul>
+                            <li>Bodily injury to other people</li>
+                            <li>Damage to other people's property</li>
+                            <li>Death benefits for third parties</li>
+                        </ul>
+                        <p>It does not cover damage to your own vehicle or injuries to yourself.</p>
+                        
+                        <h5>2. Comprehensive Insurance</h5>
+                        <p>This provides the broadest coverage, including:</p>
+                        <ul>
+                            <li>All third-party coverage</li>
+                            <li>Damage to your own vehicle from accidents</li>
+                            <li>Theft and fire damage</li>
+                            <li>Natural disasters and vandalism</li>
+                            <li>Personal accident cover for driver and passengers</li>
+                        </ul>
+                        
+                        <h5>3. Third-Party, Fire and Theft</h5>
+                        <p>A middle ground between third-party and comprehensive coverage that adds protection against fire damage and theft to the basic third-party coverage.</p>
+                        
+                        <h4>Factors Affecting Insurance Premiums</h4>
+                        <p>Several factors influence how much you'll pay for car insurance:</p>
+                        <ul>
+                            <li><strong>Vehicle value:</strong> More expensive cars cost more to insure</li>
+                            <li><strong>Driver's age and experience:</strong> Younger, less experienced drivers pay higher premiums</li>
+                            <li><strong>Claims history:</strong> Drivers with previous claims may pay more</li>
+                            <li><strong>Vehicle use:</strong> Commercial vehicles typically have higher premiums</li>
+                            <li><strong>Security features:</strong> Anti-theft devices can lower premiums</li>
+                            <li><strong>Location:</strong> Areas with higher accident or theft rates may have higher premiums</li>
+                        </ul>
+                        
+                        <h4>Tips for Choosing the Right Insurance</h4>
+                        <ul>
+                            <li>Compare quotes from multiple insurers</li>
+                            <li>Consider the insurer's reputation and claims settlement process</li>
+                            <li>Understand the excess (deductible) amounts</li>
+                            <li>Check what additional benefits are included</li>
+                            <li>Review the policy annually to ensure it still meets your needs</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we can connect you with reputable insurance providers and help you understand the coverage options available for your new vehicle.</p>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "The Complete Guide to Importing a Car to Kenya",
+                image: "https://cdn.pixabay.com/photo/2016/12/07/21/01/car-1890494_1280.jpg",
+                excerpt: "Step-by-step guide to importing your dream car to Kenya, covering taxes, shipping, customs clearance, and registration...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/12/07/21/01/car-1890494_1280.jpg" alt="Car Import" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Importing a vehicle to Kenya can be a complex process, but with the right information and preparation, it can be a rewarding way to get exactly the car you want. This guide walks you through the entire process from start to finish.</p>
+                        
+                        <h4>Step 1: Research and Vehicle Selection</h4>
+                        <p>Before importing, consider:</p>
+                        <ul>
+                            <li>Vehicle availability in the local market</li>
+                            <li>Total cost including taxes and shipping</li>
+                            <li>Right-hand drive vs. left-hand drive (Kenya requires right-hand drive)</li>
+                            <li>Vehicle age restrictions (generally under 8 years for personal use)</li>
+                        </ul>
+                        
+                        <h4>Step 2: Calculate Total Costs</h4>
+                        <p>Beyond the purchase price, consider these additional costs:</p>
+                        <ul>
+                            <li>Import duty: 25% of CIF value</li>
+                            <li>Excise duty: 20% of CIF value</li>
+                            <li>VAT: 16% of CIF value plus import and excise duty</li>
+                            <li>Shipping costs: Varies by origin and vehicle size</li>
+                            <li>Insurance: During shipping</li>
+                            <li>Port handling fees</li>
+                            <li>Customs agency fees</li>
+                            <li>Registration and inspection fees</li>
+                        </ul>
+                        
+                        <h4>Step 3: Shipping and Documentation</h4>
+                        <p>You'll need to arrange shipping and prepare the necessary documents:</p>
+                        <ul>
+                            <li>Bill of Lading</li>
+                            <li>Commercial invoice</li>
+                            <li>Certificate of origin</li>
+                            <li>Export certificate</li>
+                            <li>Insurance documents</li>
+                        </ul>
+                        
+                        <h4>Step 4: Customs Clearance</h4>
+                        <p>This is the most complex part of the process:</p>
+                        <ul>
+                            <li>Submit documents to Kenya Revenue Authority (KRA)</li>
+                            <li>Pay all applicable taxes and duties</li>
+                            <li>Vehicle inspection by Kenya Bureau of Standards (KEBS)</li>
+                            <li>Clearance by customs</li>
+                        </ul>
+                        
+                        <h4>Step 5: Registration and Licensing</h4>
+                        <p>Once cleared through customs:</p>
+                        <ul>
+                            <li>Inspection by National Transport and Safety Authority (NTSA)</li>
+                            <li>Apply for logbook and number plates</li>
+                            <li>Get insurance coverage</li>
+                        </ul>
+                        
+                        <h4>Why Use a Professional Importer?</h4>
+                        <p>While it's possible to import a vehicle yourself, using a professional importer like Celimax Motors offers several advantages:</p>
+                        <ul>
+                            <li>Expertise in navigating complex regulations</li>
+                            <li>Established relationships with shipping companies and customs officials</li>
+                            <li>Ability to source quality vehicles from international markets</li>
+                            <li>Handling of all paperwork and logistics</li>
+                            <li>Quality assurance and inspection services</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we specialize in importing quality vehicles for our customers. Our direct import service handles every step of the process, ensuring a smooth and hassle-free experience from selection to delivery.</p>
+                    </div>
+                `
+            }
+        ];
+
         // DOM Elements for Car Listings
         const carListingWindow = document.getElementById('carListingWindow');
         const backToHome = document.getElementById('backToHome');
@@ -4750,6 +5128,10 @@
         // NEW: DOM Elements for Full Screen Windows
         const aboutWindow = document.getElementById('aboutWindow');
         const blogWindow = document.getElementById('blogWindow');
+        const blogPostWindow = document.getElementById('blogPostWindow');
+        const blogPostTitle = document.getElementById('blogPostTitle');
+        const blogPostContent = document.getElementById('blogPostContent');
+        const backFromBlogPost = document.getElementById('backFromBlogPost');
         const faqWindow = document.getElementById('faqWindow');
         const contactWindow = document.getElementById('contactWindow');
         const aboutLink = document.getElementById('aboutLink');
@@ -4888,6 +5270,11 @@
                             <div class="car-spec-item">
                                 <i class="fas fa-file-alt"></i>
                                 <span>${registrationStatus}</span>
+                            </div>
+                            <!-- NEW: Color spec item -->
+                            <div class="car-spec-item">
+                                <i class="fas fa-palette"></i>
+                                <span>${car.color}</span>
                             </div>
                         </div>
                         <div class="car-price">${car.price}</div>
@@ -5115,6 +5502,11 @@
                             <span class="compare-spec-label">Mileage:</span>
                             <span class="compare-spec-value">${car.specs.mileage}</span>
                         </div>
+                        <!-- NEW: Color in compare -->
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Color:</span>
+                            <span class="compare-spec-value">${car.color}</span>
+                        </div>
                     </div>
                 `;
                 compareCars.appendChild(compareCar);
@@ -5227,24 +5619,30 @@
             floatingBack.classList.add('active');
         }
 
-        // NEW: Function to display related cars
+        // NEW: Function to display related cars - UPDATED TO SHOW SAME BRAND
         function displayRelatedCars(currentCar) {
             const relatedCarsGrid = document.getElementById('relatedCarsGrid');
             relatedCarsGrid.innerHTML = '';
             
-            // Find related cars (same body type or brand, excluding current car)
+            // Get the brand from the current car name (first word)
+            const currentBrand = currentCar.name.split(' ')[0];
+            
+            // Find related cars (same brand, excluding current car)
             const relatedCars = cars.filter(car => 
                 car.id !== currentCar.id && 
-                (car.bodyType === currentCar.bodyType || 
-                 car.name.split(' ')[0] === currentCar.name.split(' ')[0])
+                car.name.split(' ')[0] === currentBrand
             ).slice(0, 4); // Limit to 4 related cars
             
             if (relatedCars.length === 0) {
-                document.getElementById('relatedCars').style.display = 'none';
+                relatedCarsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--dark-gray);">
+                        <i class="fas fa-car" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h4>No related vehicles at the moment</h4>
+                        <p>Check back later for more ${currentBrand} vehicles.</p>
+                    </div>
+                `;
                 return;
             }
-            
-            document.getElementById('relatedCars').style.display = 'block';
             
             relatedCars.forEach(car => {
                 const relatedCarCard = document.createElement('div');
@@ -5257,6 +5655,9 @@
                     </div>
                 `;
                 relatedCarCard.addEventListener('click', () => {
+                    // Close current details window
+                    carDetailsWindow.classList.remove('active');
+                    // Show new car details
                     showCarDetailsWindow(car.id);
                 });
                 relatedCarsGrid.appendChild(relatedCarCard);
@@ -5309,6 +5710,32 @@
                 .split(/(?=[A-Z])/)
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ');
+        }
+
+        // NEW: Initialize Blog Posts
+        function initBlogPosts() {
+            // Add event listeners to blog read more links
+            document.querySelectorAll('.blog-read-more').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const blogId = parseInt(this.getAttribute('data-blog-id'));
+                    showBlogPost(blogId);
+                });
+            });
+        }
+
+        // NEW: Function to show blog post in full window
+        function showBlogPost(blogId) {
+            const blogPost = blogPosts.find(blog => blog.id === blogId);
+            if (!blogPost) return;
+
+            // Update blog post title and content
+            blogPostTitle.textContent = blogPost.title;
+            blogPostContent.innerHTML = blogPost.content;
+
+            // Show blog post window and floating back button
+            blogPostWindow.classList.add('active');
+            floatingBack.classList.add('active');
         }
 
         // Event Listeners for Available in the Yard links
@@ -5452,6 +5879,11 @@
             floatingBack.classList.remove('active');
         });
 
+        backFromBlogPost.addEventListener('click', function() {
+            blogPostWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
         backFromFaq.addEventListener('click', function() {
             faqWindow.classList.remove('active');
             floatingBack.classList.remove('active');
@@ -5480,6 +5912,7 @@
             directImportWindow.classList.remove('active');
             aboutWindow.classList.remove('active');
             blogWindow.classList.remove('active');
+            blogPostWindow.classList.remove('active');
             faqWindow.classList.remove('active');
             contactWindow.classList.remove('active');
             compareWindow.classList.remove('active');
@@ -5637,6 +6070,11 @@
                             <div class="car-spec-item">
                                 <i class="fas fa-file-alt"></i>
                                 <span>${registrationStatus}</span>
+                            </div>
+                            <!-- NEW: Color spec item -->
+                            <div class="car-spec-item">
+                                <i class="fas fa-palette"></i>
+                                <span>${car.color}</span>
                             </div>
                         </div>
                         <div class="car-price">${car.price}</div>

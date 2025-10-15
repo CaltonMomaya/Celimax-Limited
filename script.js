@@ -2098,7 +2098,236 @@
                     "Modern infotainmnet",
                     "Traction control"
                 ]
+            },
+                 {
+                id: 45,
+                name: "Suzuki Jimny",
+                bodyType: "SUV",
+                image: "images/suzuki1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/suzuki2.jpg",
+                    "images/suzuki5.jpg",
+                    "images/suzuki3.jpg",
+                    "images/suzuki1.jpg"
+                ],
+                condition: 5,
+                price: "KES 1,050,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+               {
+                id: 46,
+                name: "Nissan Juke",
+                bodyType: "SUV",
+                image: "images/juke1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/juke2.jpg",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,550,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 47,
+                name: "Subaru Impreza",
+                bodyType: "Sedan",
+                image: "images/impreza3.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/impreza1.jpg",
+                    "images/impreza2.jpg",
+                    "images/impreza.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,550,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+                 {
+                id: 48,
+                name: "Dayz Roox",
+                bodyType: "Sedan",
+                image: "images/dayz1.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/dayz2.jpg",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,550,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+            {
+                id: 49,
+                name: "Mazda CX-3",
+                bodyType: "Hatchback",
+                image: "images/demiod.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/IMG-20251015-WA0199.jpg",
+                    "..",
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,550,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
+            },
+             {
+                id: 49,
+                name: "Mazda Demio",
+                bodyType: "Hatchback",
+                image: "images/demiogrey.jpg",
+                // NEW: Multiple images for carousel
+                images: [
+                    "images/demiog3.jpg",
+                    "images/demiog2.jpg",
+                    "images/demiog1.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,550,000",
+                specs: {
+                    year: "2019",
+                    location: "Nairobi",
+                    drive: "FWD",
+                    mileage: "1,600 km",
+                    engine: "650cc",
+                    fuel: "Petrol/Hybrid",
+                    horsepower: "131 hp",
+                    transmission: "CVT",
+                    torque: "136 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 6.2 secs"
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "14 seats",
+                    "Reverse Camera",
+                    "Power windows",
+                    "Keyless Start",
+                    "Modern infotainmnet",
+                    "Traction control"
+                ]
             }
+            
             
             
             

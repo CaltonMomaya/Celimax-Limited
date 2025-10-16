@@ -1755,7 +1755,498 @@
                     "Touchscreen Infotainment",
                     "All-Wheel Drive"
                 ]
+            },
+             {
+                id: 30,
+                name: "MAZDA ATENZA",
+                bodyType: "Sedan",
+                image: "images1/atenza.jpg",
+                images: [
+                    "images1/atenza1.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 31,
+                name: "HONDA VEZEL",
+                bodyType: "SUV",
+                image: "images1/honda_vezel.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,200,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 31,
+                name: "TOYOTA FIELDER",
+                bodyType: "Station Wagon",
+                image: "images1/fielder_white.jpg",
+                images: [
+                    "images1/atenza1.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 32,
+                name: "SUBARU FORESTER",
+                bodyType: "SUV",
+                image: "images1/forester.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 33,
+                name: "MAZDA DEMIO",
+                bodyType: "Hatchback",
+                image: "images1/demio_black.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+              {
+                id: 34,
+                name: "VOLKS WAGEN TOURAN",
+                bodyType: "SUV",
+                image: "images1/vw_touran.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Blue", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 35,
+                name: "VOLKS WAGEN ARTEON",
+                bodyType: "Sedan",
+                image: "images1/vw_arteon.jpg",
+                images: [
+                    "images1/vw_arteon_back.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 36,
+                name: "TOYOTA COROLLA SPORT",
+                bodyType: "Hatchback",
+                image: "images1/IMG-20251015-WA0115.jpg",
+                images: [
+                    "images1/toyota_crola_sport.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 37,
+                name: "NISSAN SYLPHY",
+                bodyType: "Sedan",
+                image: "images1/nissan_sylphy.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 38,
+                name: "TOYOTA ALION",
+                bodyType: "Sedan",
+                image: "images1/toyota_alion.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 2,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 39,
+                name: "MERCEDES-BENZ GLE 400D",
+                bodyType: "SUV",
+                image: "images2/gel400.jpg",
+                images: [
+                    "images2/400side.jpg",
+                    "images2/400back.jpg"
+                ],
+                condition: 5,
+                price: "KES 12,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 39,
+                name: "MERCEDES-BENZ GLE 43",
+                bodyType: "SUV",
+                image: "images2/WhatsApp Image 2025-10-16 at 12.35.16_f3789765.jpg",
+                images: [
+                    "images2/WhatsApp Image 2025-10-16 at 12.35.16_8d0f0f18.jpg",
+                    "images2/WhatsApp Image 2025-10-16 at 12.35.16_7f79ffe0.jpg"
+                ],
+                condition: 5,
+                price: "KES 12,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
             }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

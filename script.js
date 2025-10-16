@@ -1,4 +1,3 @@
-  // All original JavaScript code remains exactly the same
         // Loading Bar Functionality
         const loadingBar = document.getElementById('loadingBar');
         
@@ -52,7 +51,86 @@
             
             // NEW: Initialize explore dropdown toggle
             initExploreDropdown();
+            
+            // NEW: Initialize FAQ functionality
+            initFAQ();
+            
+            // NEW: Initialize hero slider
+            initHeroSlider();
+            
+            // NEW: Initialize blog posts
+            initBlogPosts();
         });
+
+        // NEW: Hero Slider Functionality - CENTERED
+        function initHeroSlider() {
+            const sliderTrack = document.getElementById('sliderTrack');
+            const sliderNav = document.getElementById('sliderNav');
+            const sliderPrev = document.getElementById('sliderPrev');
+            const sliderNext = document.getElementById('sliderNext');
+            const slides = document.querySelectorAll('.slider-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            const slideInterval = 3000; // 3 seconds
+            
+            // Function to update slider position
+            function updateSlider() {
+                sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            // Next slide function
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+            
+            // Previous slide function
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+            
+            // Auto-advance slides
+            let slideTimer = setInterval(nextSlide, slideInterval);
+            
+            // Pause auto-advance on hover
+            const heroSlider = document.getElementById('heroSlider');
+            heroSlider.addEventListener('mouseenter', () => {
+                clearInterval(slideTimer);
+            });
+            
+            heroSlider.addEventListener('mouseleave', () => {
+                slideTimer = setInterval(nextSlide, slideInterval);
+            });
+            
+            // Arrow button events
+            sliderNext.addEventListener('click', nextSlide);
+            sliderPrev.addEventListener('click', prevSlide);
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            });
+        }
 
         // NEW: Explore Dropdown Toggle Functionality
         function initExploreDropdown() {
@@ -84,6 +162,31 @@
             // Prevent dropdown from closing when clicking inside
             exploreDropdown.addEventListener('click', function(e) {
                 e.stopPropagation();
+            });
+        }
+
+        // NEW: FAQ Functionality
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                question.addEventListener('click', () => {
+                    // Close all other FAQ items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                    answer.classList.toggle('active');
+                });
             });
         }
 
@@ -141,6 +244,8 @@
         // Show brand filter
         filterBrandBtn.addEventListener('click', function() {
             brandFilter.classList.add('active');
+            // Show floating back button
+            floatingBack.classList.add('active');
             this.classList.add('pulse-animation');
             setTimeout(() => {
                 this.classList.remove('pulse-animation');
@@ -150,6 +255,8 @@
         // Show body filter
         filterBodyBtn.addEventListener('click', function() {
             bodyFilter.classList.add('active');
+            // Show floating back button
+            floatingBack.classList.add('active');
             this.classList.add('pulse-animation');
             setTimeout(() => {
                 this.classList.remove('pulse-animation');
@@ -191,6 +298,7 @@
         // Back buttons
         backFromBrands.addEventListener('click', function() {
             brandFilter.classList.remove('active');
+            floatingBack.classList.remove('active');
             this.classList.add('pulse-animation');
             setTimeout(() => {
                 this.classList.remove('pulse-animation');
@@ -199,6 +307,7 @@
         
         backFromBody.addEventListener('click', function() {
             bodyFilter.classList.remove('active');
+            floatingBack.classList.remove('active');
             this.classList.add('pulse-animation');
             setTimeout(() => {
                 this.classList.remove('pulse-animation');
@@ -271,7 +380,7 @@
             }, 100);
             
             // Animate sections on scroll
-            const sections = document.querySelectorAll('.dream-car, .newsletter, .visit-us, .why-choose, .testimonials');
+            const sections = document.querySelectorAll('.dream-car, .newsletter, .visit-us, .why-choose, .testimonials, .about-section, .blog-section, .faq-section, .contact-section');
             
             const observerOptions = {
                 threshold: 0.1,
@@ -439,9 +548,9 @@
             }, 5000);
         }
 
-        // Car Data - UPDATED WITH MULTIPLE IMAGES
+        // Car Data - UPDATED WITH ADDITIONAL FIELDS AND MORE CARS
         const cars = [
-              {
+            {
                 id: 1,
                 name: "SUBARU FORESTER",
                 bodyType: "SUV",
@@ -450,11 +559,15 @@
                 images: [
                     "images/forester_rightback.jpg",
                     "images/forester_leftback.jpg",
-                    "..",
-                    ".."
+                    "images/forester_interior.jpg",
+                    "images/forester_black.jpg"
                 ],
                 condition: 5,
                 price: "KES 3,900,000",
+                source: "fresh", // NEW: locally used or fresh import
+                registered: true, // NEW: registered or unregistered
+                fuelType: "petrol", // NEW: petrol, diesel, hybrid, electric
+                color: "Black", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
@@ -466,7 +579,8 @@
                     transmission: "CVT",
                     torque: "136 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 6.2 secs",
+                    color: "Black" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
@@ -487,12 +601,16 @@
                 // NEW: Multiple images for carousel
                 images: [
                     "images/lexus back.jpg",
-                    "..",
-                    "..",
-                    ".."
+                    "images/lexus_interior.jpg",
+                    "images/lexus_side.jpg",
+                    "images/lexus.jpg"
                 ],
                 condition: 5,
                 price: "KES 14,900,000",
+                source: "fresh", // NEW: locally used or fresh import
+                registered: false, // NEW: registered or unregistered
+                fuelType: "petrol", // NEW: petrol, diesel, hybrid, electric
+                color: "White", // NEW: Color property
                 specs: {
                     year: "2015",
                     location: "Celimax Motors",
@@ -505,130 +623,14 @@
                     transmission: "CVT",
                     torque: "136 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 6.2 secs",
+                    color: "White" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Sunroof",
                     "14 seats",
                     "360° Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                 {
-                id: 3,
-                name: "Mazda CX-5",
-                bodyType: "SUV",
-                image: "images/black_cx5.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/black_cx53.jpg",
-                    "images/black_cx52.jpg",
-                    "images/black_cx53.jpg",
-                    "images/black_cx54.jpg",
-                    "images/blackcx55.jpg"
-                ],
-                condition: 3,
-                price: "KES 3,800,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-              {
-                id: 3,
-                name: "Nissan Wingroad",
-                bodyType: "Station Wagon",
-                image: "images/wingroad.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "",
-                    "....",
-                    ".....",
-                    ".....",
-                    "....."
-                ],
-                condition: 3,
-                price: "KES 1,900,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 4,
-                name: "Toyota Axio",
-                bodyType: "Sedan",
-                image: "images/axio_back.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/axio_right.jpg",
-                    "images/axio_left_back.jpg",
-                    "images/axio_wing.jpg",
-                    "images/axio_front_interior.jpg",
-                    "images/axio_interior.jpg"
-                ],
-                condition: 5,
-                price: "KES 1,800,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
                     "Power windows",
                     "Keyless Start",
                     "Modern infotainmnet",
@@ -637,1707 +639,1531 @@
             },
             {
                 id: 5,
-                name: "Toyota Crown",
-                bodyType: "Sedan",
-                image: "images/crown_1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/crown.jpg",
-                    "images/crown_2.jpg",
-                    "images/crown.jpg",
-                    "images/crown_3.jpg",
-                    "images/crown_4.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "2.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "221 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.0 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 6,
-                name: "Nissan NV200",
-                bodyType: "VAN",
-                image: "images/nissan_nv200.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/nissan_nv200.jpg",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Nissan+NV200+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Nissan+NV200+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Nissan+NV200+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Nissan+NV200+Interior"
-                ],
-                condition: 5,
-                price: "KES 1,800,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "2.8L",
-                    fuel: "Petrol",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "200 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.9 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 7,
-                name: "Toyota Hiace",
-                bodyType: "VAN",
-                image: "images/WhatsApp Image 2025-10-11 at 15.57.45_0a6113b2.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/WhatsApp Image 2025-10-11 at 15.57.45_648d42b8.jpg",
-                    "images/WhatsApp Image 2025-10-11 at 15.57.45_d8aabf45.jpg",
-                    "images/WhatsApp Image 2025-10-11 at 15.57.46_da7b590b.jpg",
-                    "images/WhatsApp Image 2025-10-11 at 15.57.45_d8aabf45.jpg",
-                    "images/WhatsApp Image 2025-10-11 at 15.57.46_ac0d341b.jpg"
-                ],
-                condition: 5,
-                price: "KES 3,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "RWD",
-                    mileage: "81,000 km",
-                    engine: "2.8L",
-                    fuel: "Petrol",
-                    horsepower: "163 hp",
-                    transmission: "CVT",
-                    torque: "420 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.9 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 8,
-                name: "Toyota Hiace",
-                bodyType: "VAN",
-                image: "images/hiace_black.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561680724_122104524801048875_1218894707100259618_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEF3wl68h8SvfYnDXQrO8aGXGROgBgSKWBcZE6AGBIpYLNLmDZzyEHI1DO6OK8JjRQlOrPldPmwoUK0y3RKPKn9&_nc_ohc=o1kYjBKaom8Q7kNvwGyP_bW&_nc_oc=AdnJTQ1gpIGhurmN2ZFpWeLgindjeUEYEEoWkiAy4Zh50utHsUIlsvb-Vecyz8ERr_Y&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Rf412H0Sqzm_0KZhFdJXUQ&oh=00_AfeKbBaPbgmDX9E-Q4co_pXTXmS6WDBGT4LgiI0-l6Ae9g&oe=68F1545E",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Hiace+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Hiace+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Hiace+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Hiace+Interior"
-                ],
-                condition: 5,
-                price: "KES 3,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "RWD",
-                    mileage: "81,000 km",
-                    engine: "2.8L",
-                    fuel: "Petrol",
-                    horsepower: "163 hp",
-                    transmission: "CVT",
-                    torque: "420 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.9 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 9,
-                name: "Nissan X-TRAIL",
-                bodyType: "Small SUV",
-                image: "images/xtrail1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/xtrail1.jpg",
-                    "images/xtrail2.jpg",
-                    "images/xtrail3.jpg",
-                    "images/xtrail4.jpg",
-                    "images/xtrail5.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "2000cc",
-                    fuel: "Petrol",
-                    horsepower: "105 hp",
-                    transmission: "CVT",
-                    torque: "155 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 8.9 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "5 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 10,
-                name: "Toyota Fielder",
-                bodyType: "Station Wagon",
-                image: "images/fielder_silver1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/fielder_silver1.jpg",
-                    "images/fielder_silver2.jpg",
-                    "images/fielder_silver3.jpg",
-                    "images/fielder_silver5.jpg",
-                    "images/filder_silver4.jpg"
-                ],
-                condition: 5,
-                price: "KES 1,600,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1500cc",
-                    fuel: "Petrol",
-                    horsepower: "105 hp",
-                    transmission: "Automatic",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 11 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "5 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 11,
-                name: "Mazda Demio",
+                name: "TOYOTA VITZ",
                 bodyType: "Hatchback",
-                image: "images/demio_silver.jpg",
-                // NEW: Multiple images for carousel
+                image: "images/vitz_front.jpg",
                 images: [
-                    "images/demio_silver_back.jpg",
-                    "images/demio.jpg",
-                    "images/demio_silver_back.jpg"
+                    "images/vitz_back.jpg",
+                    "images/vitz_left_back.jpg",
+                    ".."
                 ],
-                condition: 5,
-                price: "KES 1,400,000",
+                condition: 4,
+                price: "KES 1,200,000",
+                source: "fresh",
+                registered: true,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
                 specs: {
-                    year: "2019",
+                    year: "2018",
                     location: "Celimax Motors",
                     drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1500cc",
+                    mileage: "45,000 km",
+                    engine: "1.0L",
                     fuel: "Petrol",
-                    horsepower: "105 hp",
+                    horsepower: "68 hp",
                     transmission: "Automatic",
-                    torque: "148 Nm",
+                    torque: "92 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 12 secs"
+                    acceleration: "(0-100kph) 11.5 secs",
+                    color: "Grey" // NEW: Added color to specs
                 },
                 package: [
-                    "Leather Seats",
                     "Alloy Wheels",
-                    "5 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Premium Sound System"
+                    "Air Conditioning",
+                    "Power Steering",
+                    "Power Windows",
+                    "Central Locking",
+                    "Radio/CD Player"
                 ]
             },
             {
-                id: 12,
-                name: "Toyota Sienta",
-                bodyType: "MPV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559045352_122104524645048875_6237591055868565831_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFs6lfftEWZ8ebhZ96g7tP-Mky_hLQHcEEyTL-EtAdwQTYToPidp4uDkjFN205qnKNE9nW-azoJwQPIZpROHa7k&_nc_ohc=6Fep3GHxtH8Q7kNvwHlvnG8&_nc_oc=AdkBKTkkNVKtFiGiGsUXrxqcQzqdLaz88_XkYS2o6hW4r_OuPgQOsOiQzF9nPv9AGeY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=0tpNgM4V1c6dUEViH0u9Cw&oh=00_AfcFjLQpRCo79TTq_VLNzaHA9iQjCm2u5hcFcXyV6RWUew&oe=68F16261",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559045352_122104524645048875_6237591055868565831_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFs6lfftEWZ8ebhZ96g7tP-Mky_hLQHcEEyTL-EtAdwQTYToPidp4uDkjFN205qnKNE9nW-azoJwQPIZpROHa7k&_nc_ohc=6Fep3GHxtH8Q7kNvwHlvnG8&_nc_oc=AdkBKTkkNVKtFiGiGsUXrxqcQzqdLaz88_XkYS2o6hW4r_OuPgQOsOiQzF9nPv9AGeY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=0tpNgM4V1c6dUEViH0u9Cw&oh=00_AfcFjLQpRCo79TTq_VLNzaHA9iQjCm2u5hcFcXyV6RWUew&oe=68F16261",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Sienta+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Sienta+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Sienta+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Sienta+Interior"
-                ],
-                condition: 5,
-                price: "KES 1,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1500cc",
-                    fuel: "Petrol",
-                    horsepower: "155 hp",
-                    transmission: "Automatic",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 12 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "7 seats",
-                    "Reverse Camera",
-                    "Fog Lights",
-                    "Keyless Start",
-                    "power slide door",
-                    "Premium Sound System"
-                ]
-            },
-            {
-                id: 13,
-                name: "Toyota Harrier",
+                id: 4,
+                name: "TOYOTA HARRIER",
                 bodyType: "SUV",
                 image: "images/harrier3.jpg",
-                // NEW: Multiple images for carousel
                 images: [
-                    "images/harrier4.jpg",
                     "images/harrier2.jpg",
                     "images/harrier1.jpg",
                     "images/harrier4.jpg"
                 ],
                 condition: 5,
-                price: "KES 3,400,000",
+                price: "KES 3,200,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2020",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.0L",
+                    fuel: "Petrol",
+                    horsepower: "170 hp",
+                    transmission: "CVT",
+                    torque: "207 Nm",
+                    aspiration: "Turbocharged",
+                    acceleration: "(0-100kph) 8.2 secs",
+                    color: "Silver" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Sunroof",
+                    "Alloy Wheels",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "Climate Control"
+                ]
+            },
+            {
+                id: 5,
+                name: "HONDA FIT",
+                bodyType: "Hatchback",
+                image: "images/honda_red3.jpg",
+                images: [
+                    "images/honda_red4.jpg",
+                    "images/honda_red2.jpg"
+                ],
+                condition: 4,
+                price: "KES 1,300,000",
+                source: "fresh",
+                registered: true,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
+                specs: {
+                    year: "2017",
+                    location: "Celimax Motors",
+                    drive: "FWD",
+                    mileage: "65,000 km",
+                    engine: "1.3L",
+                    fuel: "Petrol",
+                    horsepower: "98 hp",
+                    transmission: "CVT",
+                    torque: "119 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 10.6 secs",
+                    color: "Blue" // NEW: Added color to specs
+                },
+                package: [
+                    "Alloy Wheels",
+                    "Air Conditioning",
+                    "Power Steering",
+                    "Power Windows",
+                    "Central Locking",
+                    "Touchscreen Display",
+                    "Rear Camera"
+                ]
+            },
+            {
+                id: 6,
+                name: "NISSAN X-TRAIL",
+                bodyType: "SUV",
+                image: "images/xtrail2.jpg",
+                images: [
+                    "images/xtrail4.jpg",
+                    "images/xtrail1.jpg"
+                ],
+                condition: 4,
+                price: "KES 3,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
                     drive: "AWD",
-                    mileage: "81,000 km",
-                    engine: "1986cc 2.0L",
+                    mileage: "48,000 km",
+                    engine: "2.0L",
                     fuel: "Petrol",
-                    horsepower: "155 hp",
-                    transmission: "Automatic",
-                    torque: "185 Nm",
+                    horsepower: "144 hp",
+                    transmission: "CVT",
+                    torque: "200 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 9 secs"
+                    acceleration: "(0-100kph) 10.5 secs",
+                    color: "Gray" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "DVD Player",
                     "Reverse Camera",
-                    "Fog Lights",
-                    "Keyless Start",
-                    "Auto Boot Door",
-                    "Premium Sound System"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "Climate Control",
+                    "Roof Rails"
                 ]
             },
             {
-                id: 14,
-                name: "Honda Fit",
-                bodyType: "Hatchback",
-                image: "images/honda.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/honda1.jpg",
-                    "images/honda2.jpg",
-                    "images/honda3.jpg",
-                    "images/honda_red5.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,100,000",
-                specs: {
-                    year: "2020",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "46,000 km",
-                    engine: "2.5L",
-                    fuel: "Petrol",
-                    horsepower: "130 hp",
-                    transmission: "CVT",
-                    torque: "114 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100) 8.9 sec"
-                },
-                package: [
-                    "5 seater",
-                    "Multiple trim levels",
-                    "5 inch Infotainment",
-                    "Reverse Camera",
-                    "Fog lights" ,
-                    "Keyless Start",
-                    "Premium Sound System",
-                    
-                ]
-            },
-            {
-                id: 15,
-                name: "Mazda CX-5",
+                id: 7,
+                name: "MAZDA CX-5",
                 bodyType: "SUV",
                 image: "images/cx5_red.jpg",
-                // NEW: Multiple images for carousel
                 images: [
-                    "images/cx5_red1.jpg",
                     "images/cx5_red3.jpg",
-                    "images/cx5_red4.jpg",
-                    "images/cx5_red5.jpg",
-                    "images/cx5_red2.jpg"
+                    "images/cx5_red4.jpg"
                 ],
-                condition: 4,
-                price: "KES 4,500,000",
+                condition: 5,
+                price: "KES 3,600,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
                 specs: {
-                    year: "2017",
+                    year: "2021",
                     location: "Celimax Motors",
-                    drive: "4WD",
-                    mileage: "68,000 km",
-                    engine: "4.5L V8",
-                    fuel: "Diesel",
-                    horsepower: "232 hp",
+                    drive: "AWD",
+                    mileage: "22,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "187 hp",
                     transmission: "Automatic",
-                    torque: "187 Nm",
-                    aspiration: "Turbocharged",
-                    acceleration: "(0-100) 9sec"
+                    torque: "251 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 8.2 secs",
+                    color: "Black" // NEW: Added color to specs
                 },
                 package: [
-                    "Premium Leather Seats",
-                    "20-inch Alloy Wheels",
-                    "Advanced Infotainment",
-                    "360° Camera System",
-                    "LED Fog Lights",
-                    "Smart Key System",
-                    "Power Tailgate",
-                    "Premium Sound System",
+                    "Leather Seats",
                     "Sunroof",
+                    "Alloy Wheels",
+                    "360° Camera",
+                    "Power Windows",
+                    "Keyless Start",
+                    "Premium Sound System",
                     "Heated Seats"
                 ]
             },
             {
-                id: 16,
-                name: "Toyota Hilux",
-                bodyType: "Pickup",
-                image: "images/hilux_back.jpg",
-                // NEW: Multiple images for carousel
+                id: 8,
+                name: "SUBARU OUTBACK",
+                bodyType: "Station Wagon",
+                image: "images/outback2.jpg",
                 images: [
-                    "..",
-                    "..",
-                    "..",
-                    "..",
-                    ".."
+                    "images/outback1.jpg",
+                    "images/outback3.jpg"
                 ],
                 condition: 5,
-                price: "KES 5,500,000",
+                price: "KES 3,600,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "white", // NEW: Color property
                 specs: {
                     year: "2018",
                     location: "Celimax Motors",
-                    drive: "RWD",
-                    mileage: "28,000 km",
-                    engine: "2.8L",
-                    fuel: "Diesel",
-                    horsepower: "150 hp",
-                    transmission: "6-Speed Manual",
-                    torque: "4000 Nm",
-                    aspiration: "Naturally aspirated",
-                    acceleration: "6.0 sec"
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
-                    "Upto 7 Airbags",
-                    "Brake Assist",
-                    "LED Head lamps",
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "LED Lighting Package",
-                    "Keyless-Go",
-                    "SR Trim Sound",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 9,
+                name: "TOYOTA AXIO",
+                bodyType: "Sedan",
+                image: "images/axio_left_back.jpg",
+                images: [
+                    "images/axio_right.jpg",
+                    "images/axio_wing.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,100,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Grey", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 10,
+                name: "MAZDA CX-5",
+                bodyType: "SUV",
+                image: "images/black_cx5.jpg",
+                images: [
+                    "images/black_cx53.jpg",
+                    "images/black_cx54.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,100,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 11,
+                name: "TOYOTA CROWN",
+                bodyType: "Sedan",
+                image: "images/crown_2.jpg",
+                images: [
+                    "images/crown_4.jpg",
+                    "images/crown.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,700,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 12,
+                name: "TOYOTA FIELDER",
+                bodyType: "Station Wagon",
+                image: "images/fielder_silver3.jpg",
+                images: [
+                    "images/fielder_silver1.jpg",
+                    "images/fielder_silver2.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,700,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 13,
+                name: "TOYOTA PROBOX",
+                bodyType: "VAN",
+                image: "images/probox_front.jpg",
+                images: [
+                    "images/probox _back.jpg",
+                    "images/probox_left.jpg"
+                ],
+                condition: 5,
+                price: "KES 1,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 14,
+                name: "TOYOTA NOAH",
+                bodyType: "MPV",
+                image: "images/noah2.jpg",
+                images: [
+                    "images/noah3.jpg",
+                    "images/noah1.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "52,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 15,
+                name: "TOYOTA PREMIO 260",
+                bodyType: "Sedan",
+                image: "images/premio.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,500,000",
+                source: "local",
+                registered: false,
+                fuelType: "petrol",
+                color: "Maroon", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 16,
+                name: "TOYOTA HIACE",
+                bodyType: "VAN",
+                image: "images/WhatsApp Image 2025-10-11 at 15.57.46_ac0d341b.jpg",
+                images: [
+                    "images/WhatsApp Image 2025-10-11 at 15.57.45_648d42b8.jpg",
+                    "images/WhatsApp Image 2025-10-11 at 15.57.45_0a6113b2.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,600,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
                 id: 17,
-                name: "Subaru Outback",
-                bodyType: "SUV",
-                image: "images/subaru.jpg",
-                // NEW: Multiple images for carousel
+                name: "NISSAN WINGROAD",
+                bodyType: "Station Wagon",
+                image: "images/wingroad.jpg",
                 images: [
-                    "images/outback4.jpg",
-                    "images/outback1.jpg",
-                    "images/outback3.jpg",
-                    "images/outback2.jpg",
-                    "images/outback5.jpg"
+                    "..",
+                    ".."
                 ],
-                condition: 4,
-                price: "KES 4,250,000",
-                specs: {
-                    year: "2016",
-                    location: "Celimax Motors",
-                    drive: "AWD",
-                    mileage: "72,000 km",
-                    engine: "2.5L",
-                    fuel: "Petrol",
-                    horsepower: "170 hp",
-                    transmission: "CVT",
-                    torque: "237 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 9.4 sec"
-                },
-                package: [
-                    "Fabric Seats",
-                    "17-inch Alloy Wheels",
-                    "Touchscreen Display",
-                    "Reverse Camera",
-                    "Fog Lights",
-                    "Keyless Entry",
-                    "Manual Boot Door",
-                    "Standard Sound System"
-                ]
-            },
-            {
-                id: 18,
-                name: "Mazda Demio",
-                bodyType: "Hatchback",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560056537_122104288161048875_773556082653655033_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHsOj8-PgHpxcNdNdMcU3MbkKrDvu6jsWGQqsO-7qOxYfkEJ8xUI1yRTSmUkl-li4nGpGDaq08DhIR4uMKCl5_m&_nc_ohc=dtXA6kCDRxEQ7kNvwFwjdI-&_nc_oc=AdkDytRpXfQS9YgSnyrk0qvwXh8m0_1XcIQ1oBOTKI4hPxZ4XKoX-le1gnguAbnvbbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qQcVlBenPw43zvJG9raitQ&oh=00_Afc7FgFUPryxklwzcXfaJ_o8kt7ZFwvj1Jxvv_kxBPevVQ&oe=68EFF343",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560056537_122104288161048875_773556082653655033_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHsOj8-PgHpxcNdNdMcU3MbkKrDvu6jsWGQqsO-7qOxYfkEJ8xUI1yRTSmUkl-li4nGpGDaq08DhIR4uMKCl5_m&_nc_ohc=dtXA6kCDRxEQ7kNvwFwjdI-&_nc_oc=AdkDytRpXfQS9YgSnyrk0qvwXh8m0_1XcIQ1oBOTKI4hPxZ4XKoX-le1gnguAbnvbbE&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=qQcVlBenPw43zvJG9raitQ&oh=00_Afc7FgFUPryxklwzcXfaJ_o8kt7ZFwvj1Jxvv_kxBPevVQ&oe=68EFF343",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Mazda+Demio+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mazda+Demio+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mazda+Demio+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mazda+Demio+Interior"
-                ],
-                condition: 4,
-                price: "KES 1,400,000",
+                condition: 3,
+                price: "KES 1,800,000",
+                source: "fresh",
+                registered: true,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
                 specs: {
                     year: "2018",
                     location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "52,000 km",
-                    engine: "1300cc",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
                     fuel: "Petrol",
-                    horsepower: "190 hp",
-                    transmission: "Automatic",
-                    torque: "121 Nm",
-                    aspiration: "Turbocharged",
-                    acceleration: "8.8 sec"
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
-                    "Fabric Seats",
-                    "15-inch Alloy Wheels",
-                    "Honda Infotainment",
-                    "Multi-Angle Camera",
-                    "LED Fog Lights",
-                    "Smart Entry",
-                    "Power Side mirrors",
-                    "Premium Audio System",
-                    "Steering Audio Controls"
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 18,
+                name: "VOLKS WAGEN TOURAN",
+                bodyType: "MPV",
+                image: "images/touran1.jpg",
+                images: [
+                    "..",
+                    ".."
+                ],
+                condition: 3,
+                price: "KES 1,900,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
                 id: 19,
-                name: "Mazda Axela",
-                bodyType: "Sedan",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
-                // NEW: Multiple images for carousel
+                name: "TOYOTA VOXY",
+                bodyType: "MPV",
+                image: "images/voxy1.jpg",
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560572514_122104288329048875_9162437697382251999_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH8U-EBtlBwmqY8mtBObXU-jUtNwznCOCaNS03DOcI4Jkc9DuZEqCtxtpieGDfKvL1iAY37IqaLPf7hpT6_3K3-&_nc_ohc=4-O8-nyKU7IQ7kNvwFhPGvB&_nc_oc=AdkJspdGqckxTMI7qzpK5__QAscxIiczX4USfoxNIxiCHNM4MBeeWRWLwfAeuLvDbIQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3j5Uv5IOAexVRhRTtUiF3g&oh=00_Afeie7d9R4TYNguhm8sDEjjIQgT3kL2jCYDeU5zsP0VUjw&oe=68EFEFAE",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559589706_122104634295048875_3178264038624409637_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYodYOp42r_OO-b_BK4P3lG5yj_KQLeQYbnKP8pAt5BpVArkdKeH3gMo9pn1YdbozCf_ab5KEr-swYSpW6cEA4&_nc_ohc=pnVee1JIusAQ7kNvwE7jdHX&_nc_oc=Adn0ughIDujH8kQqMPeeuEyjn9W8OuRFjGDRor_iwyz2UmYdg8VGJZfoo6OWiRRRHpk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3taLBCEyYjvcRIsl1yXYdw&oh=00_AfcIgeZwU3we86ijtUjItnGfAZf1oaEFwwcubuy5JyyYcg&oe=68F1EB2F",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560059227_122104634289048875_9222806528131245098_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEe8bQ-Q1nAz6bpbfIjJ5ClVTpZG4Xq9u5VOlkbher27n8AOAYK1vfAVT6dgCNn4nTqUfeMnjZ8o4Bgvewcpr1V&_nc_ohc=SODAXqAEu9gQ7kNvwGzI1DQ&_nc_oc=AdlJ6J1HnhN0tj7sUFztsAPx66QcAegH6ItAjCCbyOZjU4rJZTcpqtwDpJyKuEsMHbQ&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3vWsfRw5XoXAxnOZV_xUkw&oh=00_AffRSo9Juf_IV68nqTCEJo_spY86Mn6xVs9Gl5wGo4p8vQ&oe=68F1DC90",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/561929762_122104634313048875_81882520261597970_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUE_Wj5gM21Y6M9yNoaC8Re5HccbvfOK17kdxxu984raSP2kLy4VyjqvpM_H4vTxaJi3NR4qPMhFh0963lv7Ev&_nc_ohc=iYCdS7irfLwQ7kNvwHWoSvX&_nc_oc=AdnCUtFsyiaPp9yEJhvbFhbd67VL1IU45BhE3iRSRy_CfR_M79Z3e17AeOSl62dVq4s&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=fvTc_3tFDzA-lvg_BdE6Gw&oh=00_AfcfgJ8U8dJNJN9ZhKggiMnMvy8yLhNwsFWWRz7lo_mj_w&oe=68F1D43B",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559589706_122104634295048875_3178264038624409637_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFYodYOp42r_OO-b_BK4P3lG5yj_KQLeQYbnKP8pAt5BpVArkdKeH3gMo9pn1YdbozCf_ab5KEr-swYSpW6cEA4&_nc_ohc=pnVee1JIusAQ7kNvwE7jdHX&_nc_oc=Adn0ughIDujH8kQqMPeeuEyjn9W8OuRFjGDRor_iwyz2UmYdg8VGJZfoo6OWiRRRHpk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=3taLBCEyYjvcRIsl1yXYdw&oh=00_AfcIgeZwU3we86ijtUjItnGfAZf1oaEFwwcubuy5JyyYcg&oe=68F1EB2F"
+                    "images/voxy2.jpg",
+                    "images/vvoxy2.jpg"
                 ],
-                condition: 5,
-                price: "KES 2,300,000",
+                condition: 3,
+                price: "KES 1,900,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
                 specs: {
-                    year: "2021",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "18,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol",
-                    horsepower: "111 hp",
-                    transmission: "6-Speed Automatic",
-                    torque: "144 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 10.5 sec"
-                },
-                package: [
-                    "Fabric seats Seats",
-                    "16-inch Alloy Wheels",
-                    "Mazda connect infotainment",
-                    "Reverse camera",
-                    "LED Headlights",
-                    "Fog lights",
-                    "Power Boot Lid",
-                    "Standard 6-speaker Sound System",
-                    "Air conditioning",
-                    "Push to start"
-                ]
-            },
-            {
-                id: 20,
-                name: "Mercedes GLC",
-                bodyType: "SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559544914_122104288947048875_4141183350667398745_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGsETpVrmNp5P6UQkmxgMEJizeecZVM1-CLN55xlUzX4Mxx8D87EXmkehHpyPzVr0oNg00GJee_Y8L55xf8d6UL&_nc_ohc=mE4A48O9XF4Q7kNvwF62Mwe&_nc_oc=AdmmGAXar6HM3JY6ZT1vjSYyZhG1hGc4fUh2K0ngIHefx6jyp2VQ3qzBWHIB8PP7D54&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=Z7SqmO2sMk3qANyVEVE3lw&oh=00_Afc59glWUEKuT4mRwdMnwnow_dCQOsi2ap5QRWm5W3CnUg&oe=68EFF1AC",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560559927_122104632471048875_1775357419720063072_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEmlpCo31zupNpld4QbkWXoQYCgiEMOQuJBgKCIQw5C4q7OhRCDO3Tff4plpyeFzEzz2zS-e0gUMO8L80OyA4Ah&_nc_ohc=jvMk-aDld1AQ7kNvwGxYMu4&_nc_oc=AdmE3bTb4E3AuJmKD2DmUYzF5PrUBJPth9MQkYS6V7c8_K85unH0ak0JCpWNFgGptVo&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=RuuCBCHymN5Drlq1UftnCw&oh=00_AfelCPgMvPhCWwgS5ckkfWkxv0w2ZWx1em5EoQGUOchlSw&oe=68F1E279",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Mercedes+GLC+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Mercedes+GLC+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Mercedes+GLC+Interior"
-                ],
-                condition: 5,
-                price: "KES 5,500,000",
-                specs: {
-                    year: "2019",
+                    year: "2018",
                     location: "Celimax Motors",
                     drive: "AWD",
-                    mileage: "55,000 km",
-                    engine: "2.0L Turbocharged",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
                     fuel: "Petrol",
-                    horsepower: "241 hp",
-                    transmission: "9-Speed Automatic",
-                    torque: "370 Nm",
-                    aspiration: "Turbocharged",
-                    acceleration: "(0-100) 6.9 sec"
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
-                    "Leather seats",
-                    "18-inch Alloy Wheels",
-                    "MBUX infotainment",
-                    "360° Reverse Camera",
-                    "Parking sensors",
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
                     "Keyless Entry",
-                    "LED intelligent light sys",
-                    "Harman Kardon Sound System",
-                    "Premium"
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 20,
+                name: "SUZUKI JIMNY",
+                bodyType: "SUV",
+                image: "images/suzuki1.jpg",
+                images: [
+                    "images/suzuki3.jpg",
+                    "images/suzuki2.jpg"
+                ],
+                condition: 3,
+                price: "KES 1,900,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2018",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
                 id: 21,
-                name: "Honda Vezel",
+                name: "TOYOTA PRADO",
                 bodyType: "SUV",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
-                // NEW: Multiple images for carousel
+                image: "images/prado2008.jpg",
                 images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/559833320_122104289079048875_7944234364831487880_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG6clr1t9jlZIark6Hz_iJ1Ng4XmB3ROwY2DheYHdE7Bqjv9KArv_1hqqx-WGRy8QggS1MdnVEO4rfDu-Enh0Ee&_nc_ohc=hb9b47z_A0wQ7kNvwHkAinG&_nc_oc=AdlLaDtw2xEHv-s7-jpTGgNq-wiPUqpc2j5Jw5HxNSqaTqnhMUIoOK_ASIgMJa2dDJk&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=yDM0tt5Y5tXTF7m6FFz-1Q&oh=00_AfcS7ffdbjNvLEa6L3Oi5OS0wqVel7W16rlMHUSyWW7miw&oe=68F00050",
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560243105_122104634913048875_1372631181836730887_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGc9eHvy04y7QDwYh0DwI4oNcUiwzosU1A1xSLDOixTUG6mQLq7SrtbdnjFipNgj6-BAWab33L_pHMU7Izzc67W&_nc_ohc=66A5Rh-EQDkQ7kNvwF1w_xG&_nc_oc=AdnqbTBYp5AJJICbV1dSKYI6IxzXH9B5rmRMdtK98_LDJmJyQcxrrIVjKGDcU8XwzmY&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=7i7guBoR7YwVCOqu0HnyZg&oh=00_AfcQRgt5Ppwbgsrx2EoFvcV5wNCRzddvaKI2PAAbLbppEA&oe=68F1D9A5",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Honda+Vezel+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Honda+Vezel+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Honda+Vezel+Interior"
-                ],
-                condition: 4,
-                price: "KES 2,400,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "2WD",
-                    mileage: "35,000 km",
-                    engine: "1.5L Hybrid",
-                    fuel: "Petrol/Electric",
-                    horsepower: "285 hp",
-                    transmission: "CVT",
-                    torque: "155 Nm",
-                    aspiration: "Naturally Aspirated + Electric Assist",
-                    acceleration: "(0-100kph) 10.5 sec"
-                },
-                package: [
-                    "Fabric & leather seats",
-                    "Alloy Wheels",
-                    "Push to start",
-                    "Rear Camera",
-                    "Automatic headlights",
-                    "Keyless Entry",
-                    "Multifunctional Steer whell",
-                    "Hybrid fuel efficiency",
-                    "Off-Road Package",
-                    "Removable Top"
-                ]
-            },
-            {
-                id: 22,
-                name: "Toyota Vitz",
-                bodyType: "Hatchback",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558544719_122104289361048875_7659859759221476782_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-8BmCS7mN17SdlvkXEml3Cm3iIP4w8o8KbeIg_jDyj8RTS6Lgop3fyKkVCSpEG-Xj6y9ovl-enpxvekGuIMRn&_nc_ohc=skyBMtQmkAsQ7kNvwEUcE5g&_nc_oc=AdkRW3ceSDgjdtLf9i-DMvwZu90XdhGqTo8z3IrqYBJPAO4vc-PBx7PpyGzVgl76ycc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=mJlx5c1gUbQS9el1MOuBcw&oh=00_AfcavGky5y5ZgBnxKPs4jtV6PXotwRkwzZ5HPpg510uqvw&oe=68EFFBCC",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/558544719_122104289361048875_7659859759221476782_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG-8BmCS7mN17SdlvkXEml3Cm3iIP4w8o8KbeIg_jDyj8RTS6Lgop3fyKkVCSpEG-Xj6y9ovl-enpxvekGuIMRn&_nc_ohc=skyBMtQmkAsQ7kNvwEUcE5g&_nc_oc=AdkRW3ceSDgjdtLf9i-DMvwZu90XdhGqTo8z3IrqYBJPAO4vc-PBx7PpyGzVgl76ycc&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=mJlx5c1gUbQS9el1MOuBcw&oh=00_AfcavGky5y5ZgBnxKPs4jtV6PXotwRkwzZ5HPpg510uqvw&oe=68EFFBCC",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Vitz+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Vitz+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Vitz+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Vitz+Interior"
-                ],
-                condition: 5,
-                price: "KES 1,300,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "12,000 km",
-                    engine: "2.0L",
-                    fuel: "Petrol",
-                    horsepower: "181 hp",
-                    transmission: "Automatic CVT",
-                    torque: "119 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "6.5 sec"
-                },
-                package: [
-                    "Fabric seats",
-                    "14-inch Alloy Wheels",
-                    "Manual air conditioning",
-                    "Rear Camera",
-                    "power windows",
-                    "Power mirrors",
-                    "ABS with EBD",
-                    "ISOFIX child anchors",
-                    "Rear Folding seats"
-                ]
-            },
-            {
-                id: 23,
-                name: "Toyota Axio",
-                bodyType: "Sedan",
-                image: "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560307183_122104306863048875_1212677064051908038_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGfBrAgP8Wh6EM_VvVTCaZXLu43mwaME2Eu7jebBowTYeS2zcigaMQMJBVAwTG-I4rHNpDI5GY2Yg2JRUC80AfX&_nc_ohc=-ZWk5xJmr1UQ7kNvwERNXxa&_nc_oc=AdnoE9ODGRqKp0giDENE_Xge5-__HiS414tg9K3uAQzfYpW41Imisx0Ih7HvoS4J9Y4&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cLiUvpXJVJVqN_tcrGXl_g&oh=00_Afcr7-16I0AALWfBKtT2nEjckN3dIe-G2FmyuiDVhYxdkA&oe=68F00246",
-                // NEW: Multiple images for carousel
-                images: [
-                    "https://scontent.fnuu1-1.fna.fbcdn.net/v/t39.30808-6/560307183_122104306863048875_1212677064051908038_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGfBrAgP8Wh6EM_VvVTCaZXLu43mwaME2Eu7jebBowTYeS2zcigaMQMJBVAwTG-I4rHNpDI5GY2Yg2JRUC80AfX&_nc_ohc=-ZWk5xJmr1UQ7kNvwERNXxa&_nc_oc=AdnoE9ODGRqKp0giDENE_Xge5-__HiS414tg9K3uAQzfYpW41Imisx0Ih7HvoS4J9Y4&_nc_zt=23&_nc_ht=scontent.fnuu1-1.fna&_nc_gid=cLiUvpXJVJVqN_tcrGXl_g&oh=00_Afcr7-16I0AALWfBKtT2nEjckN3dIe-G2FmyuiDVhYxdkA&oe=68F00246",
-                    "https://via.placeholder.com/800x600/FF6600/FFFFFF?text=Toyota+Axio+Front",
-                    "https://via.placeholder.com/800x600/3366CC/FFFFFF?text=Toyota+Axio+Side",
-                    "https://via.placeholder.com/800x600/33CC66/FFFFFF?text=Toyota+Axio+Rear",
-                    "https://via.placeholder.com/800x600/CC33FF/FFFFFF?text=Toyota+Axio+Interior"
+                    "..",
+                    ".."
                 ],
                 condition: 3,
-                price: "KES 1,600,000",
+                price: "KES 1,900,000",
+                source: "local",
+                registered: true,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
                 specs: {
-                    year: "2018",
+                    year: "2008",
                     location: "Celimax Motors",
-                    drive: "2WD",
-                    mileage: "60,000 km",
-                    engine: "0.8L",
-                    fuel: "Petrol + Hybrid",
-                    horsepower: "110 hp",
-                    transmission: "Automatic",
-                    torque: "141 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "10.5 sec"
-                },
-                package: [
-                    "Fabric Seats",
-                    "Aloy  Wheels",
-                    "Radio with USB",
-                    "Manual Boot Door",
-                    "ISOFIX child seats anchors"
-                ]
-            },
-             {
-                id: 24,
-                name: "Toyota Noah",
-                bodyType: "MPV",
-                image: "images/noah1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/noah1.jpg",
-                    "images/noah2.jpg",
-                    "images/noah3.jpg",
-                    "images/noah4.jpg"
-                ],
-                condition: 5,
-                price: "KES 3,900,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
              {
-                id: 25,
-                name: "Toyota Probox",
-                bodyType: "VAN",
-                image: "images/probox_front.jpg",
-                // NEW: Multiple images for carousel
+                id: 22,
+                name: "NISSAN X-TRAIL",
+                bodyType: "SUV",
+                image: "images/xtrail_front.jpg",
                 images: [
-                    "images/probox _back.jpg",
-                    "images/probox_left.jpg",
                     "..",
                     ".."
                 ],
                 condition: 5,
-                price: "KES 1,900,000",
+                price: "KES 3,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
              {
-                id: 26,
-                name: "Toyota Prado TX",
+                id: 23,
+                name: "NISSAN JUKE",
                 bodyType: "SUV",
+                image: "images/juke1.jpg",
+                images: [
+                    "images/juke2.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 24,
+                name: "TOYOTA PRADO",
+                bodyType: "Crossover",
                 image: "images/prado_front.jpg",
-                // NEW: Multiple images for carousel
                 images: [
                     "images/prado_back.jpg",
-                    "..",
-                    "..",
                     ".."
                 ],
                 condition: 5,
                 price: "KES 7,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 25,
+                name: "SUBARU IMPREZA",
+                bodyType: "hatchback",
+                image: "images/impreza3.jpg",
+                images: [
+                    "images/impreza2.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 3,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Light Blue", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 26,
+                name: "HONDA FIT",
+                bodyType: "hatchback",
+                image: "images/honda1.jpg",
+                images: [
+                    "images/honda2.jpg",
+                    "images/honda3.jpg"
+                ],
+                condition: 5,
+                price: "KES 1,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
                 id: 27,
-                name: "Toyota Noah",
-                bodyType: "MPV",
-                image: "images/noah_front.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/noah_side.jpg",
-                    "images/noah_wing.jpg",
-                    "images/noah_side.jpg",
-                    "images/noah_wing.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,600,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-              {
-                id: 29,
-                name: "Honda Fit",
-                bodyType: "Hatchback",
-                image: "images/honda_red3.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/honda_red4.jpg",
-                    "images/nissan_note1.jpg",
-                    "images/honda_red2.jpg",
-                    "images/honda_red1.jpg"
-                ],
-                condition: 5,
-                price: "KES 1,400,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 30,
-                name: "Toyota Voxy",
-                bodyType: "Hatchback",
-                image: "images/voxy1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/voxy2.jpg",
-                    "images/voxy3.jpg",
-                    "images/voxy3.jpg",
-                    "images/voxy4.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,700,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 31,
-                name: "Subaru Forester",
-                bodyType: "Hatchback",
-                image: "images/forester_rightback.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/forester_black.jpg",
-                    "images/forester_leftback.jpg",
-                    "images/forester_interior.jpg",
-                    "images/forester_black.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,700,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-             {
-                id: 32,
-                name: "Toyota Fielder",
-                bodyType: "Station Wagon",
-                image: "images/fielder_silver1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/fielder_silver2.jpg",
-                    "images/fielder_silver3.jpg",
-                    "images/filder_silver4.jpg",
-                    "images/fielder_silver5.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,300,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-             {
-                id: 33,
-                name: "Toyota Vitz",
-                bodyType: "Hatchback",
-                image: "images/vitz_front.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/vitz_left_back.jpg",
-                    "..",
-                    "images/vitz_back.jpg",
-                    ".."
-                ],
-                condition: 5,
-                price: "KES 1,300,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                {
-                id: 34,
-                name: "Honda Vezel",
-                bodyType: "Crossover",
-                image: "images/honda vez.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/hondavez1.jpg",
-                    "images/hondavez2.jpg",
-                    "images/hondavez5.jpg",
-                    "images/hondavez4.jpg"
-                ],
-                condition: 5,
-                price: "KES 2,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                {
-                id: 36,
-                name: "Subaru Forester",
-                bodyType: "Crossover",
-                image: "images/forester1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/forester2.jpg",
-                    "images/forester3.jpg",
-                    "images/forester4.jpg",
-                    "images/forester5.jpg"
-                ],
-                condition: 5,
-                price: "KES 4,200,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-              {
-                id: 37,
-                name: "Toyota RAV 4",
-                bodyType: "Crossover",
-                image: "images/rav4.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 5,
-                price: "KES 3,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-            {
-                id: 38,
-                name: "Toyota Premio 260",
-                bodyType: "Sedan",
-                image: "images/premio.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 3,
-                price: "KES 1,500,000",
-                specs: {
-                    year: "2019",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-             {
-                id: 39,
-                name: "Toyota Hilux",
+                name: "TOYOTA HILUX",
                 bodyType: "Pickup",
-                image: "images/hn1.jpg",
-                // NEW: Multiple images for carousel
+                image: "images/hilux_front.jpg",
                 images: [
-                    "images/hn2.jpg",
-                    "images/hn3.jpg",
-                    "images/hn4.jpg",
+                    "images/hilux_back.jpg",
                     ".."
                 ],
-                condition: 3,
-                price: "KES 1,500,000",
+                condition: 5,
+                price: "KES 5,500,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
                 specs: {
                     year: "2019",
                     location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "81,000 km",
-                    engine: "1.5L",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
-                id: 40,
-                name: "Toyota Landcruiser LC-300",
-                bodyType: "SUV",
-                image: "images/lc300.jpg",
-                // NEW: Multiple images for carousel
+                id: 28,
+                name: "MAZDA DEMIO",
+                bodyType: "Hatchback",
+                image: "images/demio_silver_back.jpg",
                 images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
+                    "images/demio_silver.jpg",
+                    "images/demio_silver_int.jpg"
                 ],
                 condition: 5,
-                price: "KES 2,200,000",
-                specs: {
-                    year: "2023",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "3500cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-               {
-                id: 41,
-                name: "Toyota Prado 120SERIES",
-                bodyType: "SUV",
-                image: "images/prado2008.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 3,
-                price: "KES 2,220,000",
-                specs: {
-                    year: "2023",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "3500cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                 {
-                id: 42,
-                name: "Toyota Harrier Premium",
-                bodyType: "SUV",
-                image: "images/harrier w.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 4,
-                price: "KES 2,650,000",
-                specs: {
-                    year: "2014",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "3500cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                {
-                id: 43,
-                name: "Toyota Probox",
-                bodyType: "VAN",
-                image: "images/proboxy.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 3,
-                price: "KES 1,380,000",
-                specs: {
-                    year: "2018",
-                    location: "Celimax Motors",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "1500cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-              {
-                id: 44,
-                name: "Toyota Premio 260",
-                bodyType: "SUV",
-                image: "images/premiooo.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "..",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 3,
-                price: "KES 1,590,000",
-                specs: {
-                    year: "2018",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "1500cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                 {
-                id: 45,
-                name: "Suzuki Jimny",
-                bodyType: "SUV",
-                image: "images/suzuki1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/suzuki2.jpg",
-                    "images/suzuki5.jpg",
-                    "images/suzuki3.jpg",
-                    "images/suzuki1.jpg"
-                ],
-                condition: 5,
-                price: "KES 1,050,000",
+                price: "KES 1,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
                 specs: {
                     year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-               {
-                id: 46,
-                name: "Nissan Juke",
-                bodyType: "SUV",
-                image: "images/juke1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/juke2.jpg",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 5,
-                price: "KES 1,550,000",
-                specs: {
-                    year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
              {
-                id: 47,
-                name: "Subaru Impreza",
-                bodyType: "Sedan",
-                image: "images/impreza3.jpg",
-                // NEW: Multiple images for carousel
+                id: 29,
+                name: "MAZDA CX5",
+                bodyType: "SUV",
+                image: "images/cx5_front.jpg",
                 images: [
-                    "images/impreza1.jpg",
-                    "images/impreza2.jpg",
-                    "images/impreza.jpg",
+                    "images/cx5_backk.jpg",
                     ".."
                 ],
                 condition: 5,
-                price: "KES 1,550,000",
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Dark", // NEW: Color property
                 specs: {
                     year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-                 {
-                id: 48,
-                name: "Dayz Roox",
-                bodyType: "Sedan",
-                image: "images/dayz1.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/dayz2.jpg",
-                    "..",
-                    "..",
-                    ".."
-                ],
-                condition: 5,
-                price: "KES 1,550,000",
-                specs: {
-                    year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             },
             {
-                id: 49,
-                name: "Mazda CX-3",
-                bodyType: "Hatchback",
-                image: "images/demiod.jpg",
-                // NEW: Multiple images for carousel
+                id: 29,
+                name: "MAZDA CX3",
+                bodyType: "SUV",
+                image: "images/cx3_2.jpg",
                 images: [
-                    "images/IMG-20251015-WA0199.jpg",
-                    "..",
-                    "..",
-                    ".."
+                    "images/cx3_1.jpg",
+                    "images/cx3_5.jpg"
                 ],
                 condition: 5,
-                price: "KES 1,550,000",
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
                 specs: {
                     year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "152,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
                     transmission: "CVT",
-                    torque: "136 Nm",
+                    torque: "235 Nm",
                     aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
                 },
                 package: [
                     "Leather Seats",
                     "Alloy Wheels",
-                    "14 seats",
+                    "Roof Rails",
                     "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
-                ]
-            },
-             {
-                id: 49,
-                name: "Mazda Demio",
-                bodyType: "Hatchback",
-                image: "images/demiogrey.jpg",
-                // NEW: Multiple images for carousel
-                images: [
-                    "images/demiog3.jpg",
-                    "images/demiog2.jpg",
-                    "images/demiog1.jpg",
-                    ".."
-                ],
-                condition: 5,
-                price: "KES 1,550,000",
-                specs: {
-                    year: "2019",
-                    location: "Nairobi",
-                    drive: "FWD",
-                    mileage: "1,600 km",
-                    engine: "650cc",
-                    fuel: "Petrol/Hybrid",
-                    horsepower: "131 hp",
-                    transmission: "CVT",
-                    torque: "136 Nm",
-                    aspiration: "Naturally Aspirated",
-                    acceleration: "(0-100kph) 6.2 secs"
-                },
-                package: [
-                    "Leather Seats",
-                    "Alloy Wheels",
-                    "14 seats",
-                    "Reverse Camera",
-                    "Power windows",
-                    "Keyless Start",
-                    "Modern infotainmnet",
-                    "Traction control"
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
                 ]
             }
-            
-            
-            
-            
 
-            
 
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
+        ];
+
+        // NEW: Direct Import Car Data
+        const directImportCars = [
+            {
+                id: 101,
+                name: "Toyota Land Cruiser 300",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2021/09/07/07/11/car-6602386_1280.jpg",
+                price: "KES 18,500,000",
+                location: "Japan",
+                shippingFee: "KES 450,000",
+                estimatedDelivery: "4-6 weeks",
+                specs: {
+                    year: "2023",
+                    engine: "3.5L V6 Twin Turbo",
+                    fuel: "Petrol",
+                    transmission: "10-Speed Automatic",
+                    drive: "4WD",
+                    mileage: "0 km"
+                }
+            },
+            {
+                id: 102,
+                name: "Mercedes-Benz GLE 450",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2019/08/15/08/25/mercedes-benz-4407420_1280.jpg",
+                price: "KES 12,800,000",
+                location: "Germany",
+                shippingFee: "KES 380,000",
+                estimatedDelivery: "3-5 weeks",
+                specs: {
+                    year: "2022",
+                    engine: "3.0L Inline-6 Turbo",
+                    fuel: "Petrol",
+                    transmission: "9-Speed Automatic",
+                    drive: "4MATIC",
+                    mileage: "5,000 km"
+                }
+            },
+            {
+                id: 103,
+                name: "BMW X5 M Competition",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2021/01/11/14/56/bmw-5908993_1280.jpg",
+                price: "KES 16,200,000",
+                location: "USA",
+                shippingFee: "KES 520,000",
+                estimatedDelivery: "5-7 weeks",
+                specs: {
+                    year: "2022",
+                    engine: "4.4L V8 Twin Turbo",
+                    fuel: "Petrol",
+                    transmission: "8-Speed Automatic",
+                    drive: "xDrive",
+                    mileage: "2,500 km"
+                }
+            },
+            {
+                id: 104,
+                name: "Audi Q7",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788744_1280.jpg",
+                price: "KES 11,500,000",
+                location: "Germany",
+                shippingFee: "KES 350,000",
+                estimatedDelivery: "4-6 weeks",
+                specs: {
+                    year: "2021",
+                    engine: "3.0L V6 Turbo",
+                    fuel: "Petrol",
+                    transmission: "8-Speed Automatic",
+                    drive: "Quattro",
+                    mileage: "8,000 km"
+                }
+            },
+            {
+                id: 105,
+                name: "Lexus RX 350",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg",
+                price: "KES 9,800,000",
+                location: "Japan",
+                shippingFee: "KES 320,000",
+                estimatedDelivery: "3-5 weeks",
+                specs: {
+                    year: "2022",
+                    engine: "3.5L V6",
+                    fuel: "Petrol",
+                    transmission: "8-Speed Automatic",
+                    drive: "AWD",
+                    mileage: "3,500 km"
+                }
+            },
+            {
+                id: 106,
+                name: "Porsche Cayenne",
+                bodyType: "SUV",
+                image: "https://cdn.pixabay.com/photo/2018/12/13/20/53/porsche-3873401_1280.jpg",
+                price: "KES 22,500,000",
+                location: "Germany",
+                shippingFee: "KES 580,000",
+                estimatedDelivery: "5-7 weeks",
+                specs: {
+                    year: "2023",
+                    engine: "3.0L V6 Turbo",
+                    fuel: "Petrol",
+                    transmission: "8-Speed Automatic",
+                    drive: "AWD",
+                    mileage: "0 km"
+                }
+            }
+        ];
+
+        // NEW: Blog Posts Data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Audi's Struggle with Kenyan Floods",
+                image: "https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg",
+                excerpt: "How recent flooding in Kenya has impacted luxury car imports and what Audi owners need to know about water damage prevention...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/05/15/14/46/bmw-768770_1280.jpg" alt="Audi Floods" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>The recent unprecedented flooding in Kenya has had a significant impact on the automotive industry, particularly affecting luxury car imports. Audi, known for its sophisticated electronics and advanced systems, has been particularly vulnerable to water damage.</p>
+                        
+                        <p>At Celimax Motors, we've seen an increase in inquiries about flood-damaged vehicles and how to identify them. Water damage can be particularly insidious in luxury vehicles because it may not be immediately visible but can cause electrical issues months or even years later.</p>
+                        
+                        <h4>Identifying Flood-Damaged Vehicles</h4>
+                        <p>When inspecting a vehicle for potential flood damage, pay attention to these key indicators:</p>
+                        <ul>
+                            <li>Musty odor in the interior</li>
+                            <li>Water lines in the engine bay or trunk</li>
+                            <li>Rust in unusual places like seat brackets or pedal assemblies</li>
+                            <li>Fogging inside instrument clusters or headlights</li>
+                            <li>Malfunctioning electronics that can't be easily explained</li>
+                        </ul>
+                        
+                        <p>For Audi owners specifically, water damage can be particularly problematic due to the complex electrical systems and numerous control modules throughout the vehicle. A professional inspection is always recommended when purchasing any used luxury vehicle.</p>
+                        
+                        <h4>Prevention Tips</h4>
+                        <p>If you own an Audi or any luxury vehicle in flood-prone areas:</p>
+                        <ul>
+                            <li>Park on higher ground during heavy rains</li>
+                            <li>Consider waterproof undercoating</li>
+                            <li>Install water detection sensors in your garage</li>
+                            <li>Maintain comprehensive insurance coverage</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, all our vehicles undergo rigorous inspections to ensure they're free from flood damage and other issues. We provide complete vehicle history reports so you can buy with confidence.</p>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "5 Essential Car Maintenance Tips for Kenyan Roads",
+                image: "https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg",
+                excerpt: "Keep your vehicle in top condition with these practical maintenance tips tailored for Kenya's diverse road conditions...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/11/23/17/25/car-1853936_1280.jpg" alt="Car Maintenance" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Kenya's diverse road conditions - from smooth highways to challenging rural roads - require special attention to vehicle maintenance. Proper care not only extends your vehicle's lifespan but also ensures your safety on the road.</p>
+                        
+                        <h4>1. Regular Oil Changes</h4>
+                        <p>Dusty conditions common in many parts of Kenya can contaminate engine oil faster than normal. We recommend changing your oil every 5,000 km instead of the standard 10,000 km, especially if you frequently drive on unpaved roads.</p>
+                        
+                        <h4>2. Tire Care and Rotation</h4>
+                        <p>Kenya's varying road surfaces can cause uneven tire wear. Rotate your tires every 10,000 km and check pressure weekly. Consider all-terrain tires if you frequently drive on rough roads.</p>
+                        
+                        <h4>3. Suspension System Checks</h4>
+                        <p>Potholes and rough roads take a toll on your suspension. Have your shocks, struts, and bushings inspected every 15,000 km. Listen for unusual noises when driving over bumps.</p>
+                        
+                        <h4>4. Air Filter Maintenance</h4>
+                        <p>Dusty conditions mean your air filter works harder. Check and clean or replace your air filter every 10,000 km. A clogged filter reduces fuel efficiency and engine performance.</p>
+                        
+                        <h4>5. Brake System Attention</h4>
+                        <p>Kenya's hilly terrain and stop-and-go city traffic demand more from your brakes. Have your brake pads, rotors, and fluid checked regularly. Listen for squealing or grinding noises.</p>
+                        
+                        <p>At Celimax Motors, we offer comprehensive maintenance packages tailored for Kenyan driving conditions. Our certified technicians understand the unique challenges faced by vehicles in our region.</p>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "The Future of Electric Vehicles in Kenya",
+                image: "https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png",
+                excerpt: "As Kenya embraces renewable energy, we explore the growing market for electric vehicles and what it means for car buyers...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/04/01/12/16/car-1300629_1280.png" alt="Electric Vehicles" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Kenya is positioning itself as a leader in renewable energy in Africa, with over 90% of its electricity coming from green sources. This creates a perfect environment for electric vehicle (EV) adoption, and we're already seeing growing interest in EVs among Kenyan consumers.</p>
+                        
+                        <h4>Current EV Landscape in Kenya</h4>
+                        <p>While still in its early stages, Kenya's EV market is growing rapidly. Several companies have begun importing electric vehicles, and charging infrastructure is slowly expanding, particularly in urban centers like Nairobi and Mombasa.</p>
+                        
+                        <p>The government has shown support through reduced import duties on electric vehicles and components, making EVs more accessible to Kenyan buyers.</p>
+                        
+                        <h4>Benefits for Kenyan Drivers</h4>
+                        <p>Electric vehicles offer several advantages in the Kenyan context:</p>
+                        <ul>
+                            <li><strong>Lower operating costs:</strong> Electricity is cheaper than petrol or diesel</li>
+                            <li><strong>Reduced maintenance:</strong> Fewer moving parts mean less maintenance</li>
+                            <li><strong>Environmental benefits:</strong> Zero emissions align with Kenya's green energy focus</li>
+                            <li><strong>Performance:</strong> Instant torque provides excellent acceleration</li>
+                        </ul>
+                        
+                        <h4>Challenges and Considerations</h4>
+                        <p>Despite the advantages, there are challenges to widespread EV adoption in Kenya:</p>
+                        <ul>
+                            <li>Limited charging infrastructure outside major cities</li>
+                            <li>Higher upfront costs compared to conventional vehicles</li>
+                            <li>Limited model availability and after-sales support</li>
+                            <li>Range anxiety for long-distance travel</li>
+                        </ul>
+                        
+                        <h4>The Road Ahead</h4>
+                        <p>At Celimax Motors, we're excited about the future of electric vehicles in Kenya. We're closely monitoring developments in the EV space and plan to introduce electric models to our inventory as the market matures and infrastructure improves.</p>
+                        
+                        <p>For now, hybrid vehicles offer a practical middle ground, providing some electric benefits while maintaining the flexibility of petrol power. We have several hybrid models available that are perfect for Kenyan drivers looking to reduce their fuel consumption and environmental impact.</p>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Understanding Car Financing Options in Kenya",
+                image: "https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg",
+                excerpt: "A comprehensive guide to the various financing options available for car buyers in Kenya, from bank loans to hire purchase...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg" alt="Car Financing" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Purchasing a vehicle is a significant financial decision, and understanding your financing options is crucial. In Kenya, several financing methods are available to help you acquire your dream car.</p>
+                        
+                        <h4>1. Bank Loans</h4>
+                        <p>Most commercial banks in Kenya offer car loans with varying terms and interest rates. Typically, you'll need:</p>
+                        <ul>
+                            <li>Proof of income (payslips or business records)</li>
+                            <li>Bank statements (usually 3-6 months)</li>
+                            <li>Identification documents</li>
+                            <li>Down payment (usually 20-30% of the vehicle price)</li>
+                        </ul>
+                        
+                        <h4>2. Hire Purchase</h4>
+                        <p>Hire purchase agreements allow you to use the vehicle while paying for it in installments. The vehicle remains the property of the financier until the final payment is made. This option often requires less documentation than bank loans.</p>
+                        
+                        <h4>3. SACCO Loans</h4>
+                        <p>Many Savings and Credit Cooperative Organizations (SACCOs) offer vehicle loans to their members at competitive rates. These loans often have more flexible terms than traditional bank loans.</p>
+                        
+                        <h4>4. Dealer Financing</h4>
+                        <p>Some dealerships, including Celimax Motors, offer in-house financing options. These are often tailored specifically for car purchases and may have more flexible approval criteria.</p>
+                        
+                        <h4>5. Logbook Loans</h4>
+                        <p>If you already own a vehicle, you can use it as collateral for a loan to purchase another car. This option provides quick access to funds but typically comes with higher interest rates.</p>
+                        
+                        <h4>Tips for Choosing the Right Financing</h4>
+                        <ul>
+                            <li>Compare interest rates from multiple lenders</li>
+                            <li>Consider the total cost of the loan, not just monthly payments</li>
+                            <li>Check for hidden fees and charges</li>
+                            <li>Ensure the repayment period aligns with your financial goals</li>
+                            <li>Read and understand all terms and conditions before signing</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we work with several financial partners to help our customers find the best financing options for their needs. Our team can guide you through the process and help you understand the various options available.</p>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Car Insurance: What You Need to Know in Kenya",
+                image: "https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788747_1280.jpg",
+                excerpt: "Navigating the complexities of car insurance in Kenya - from comprehensive to third-party coverage and everything in between...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2015/05/28/23/12/auto-788747_1280.jpg" alt="Car Insurance" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Car insurance is not just a legal requirement in Kenya - it's essential financial protection for one of your most valuable assets. Understanding the different types of coverage available can help you make informed decisions about protecting your vehicle.</p>
+                        
+                        <h4>Types of Car Insurance in Kenya</h4>
+                        
+                        <h5>1. Third-Party Insurance</h5>
+                        <p>This is the minimum legal requirement for all vehicles in Kenya. It covers:</p>
+                        <ul>
+                            <li>Bodily injury to other people</li>
+                            <li>Damage to other people's property</li>
+                            <li>Death benefits for third parties</li>
+                        </ul>
+                        <p>It does not cover damage to your own vehicle or injuries to yourself.</p>
+                        
+                        <h5>2. Comprehensive Insurance</h5>
+                        <p>This provides the broadest coverage, including:</p>
+                        <ul>
+                            <li>All third-party coverage</li>
+                            <li>Damage to your own vehicle from accidents</li>
+                            <li>Theft and fire damage</li>
+                            <li>Natural disasters and vandalism</li>
+                            <li>Personal accident cover for driver and passengers</li>
+                        </ul>
+                        
+                        <h5>3. Third-Party, Fire and Theft</h5>
+                        <p>A middle ground between third-party and comprehensive coverage that adds protection against fire damage and theft to the basic third-party coverage.</p>
+                        
+                        <h4>Factors Affecting Insurance Premiums</h4>
+                        <p>Several factors influence how much you'll pay for car insurance:</p>
+                        <ul>
+                            <li><strong>Vehicle value:</strong> More expensive cars cost more to insure</li>
+                            <li><strong>Driver's age and experience:</strong> Younger, less experienced drivers pay higher premiums</li>
+                            <li><strong>Claims history:</strong> Drivers with previous claims may pay more</li>
+                            <li><strong>Vehicle use:</strong> Commercial vehicles typically have higher premiums</li>
+                            <li><strong>Security features:</strong> Anti-theft devices can lower premiums</li>
+                            <li><strong>Location:</strong> Areas with higher accident or theft rates may have higher premiums</li>
+                        </ul>
+                        
+                        <h4>Tips for Choosing the Right Insurance</h4>
+                        <ul>
+                            <li>Compare quotes from multiple insurers</li>
+                            <li>Consider the insurer's reputation and claims settlement process</li>
+                            <li>Understand the excess (deductible) amounts</li>
+                            <li>Check what additional benefits are included</li>
+                            <li>Review the policy annually to ensure it still meets your needs</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we can connect you with reputable insurance providers and help you understand the coverage options available for your new vehicle.</p>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "The Complete Guide to Importing a Car to Kenya",
+                image: "https://cdn.pixabay.com/photo/2016/12/07/21/01/car-1890494_1280.jpg",
+                excerpt: "Step-by-step guide to importing your dream car to Kenya, covering taxes, shipping, customs clearance, and registration...",
+                content: `
+                    <img src="https://cdn.pixabay.com/photo/2016/12/07/21/01/car-1890494_1280.jpg" alt="Car Import" class="blog-post-image">
+                    <div class="blog-post-text">
+                        <p>Importing a vehicle to Kenya can be a complex process, but with the right information and preparation, it can be a rewarding way to get exactly the car you want. This guide walks you through the entire process from start to finish.</p>
+                        
+                        <h4>Step 1: Research and Vehicle Selection</h4>
+                        <p>Before importing, consider:</p>
+                        <ul>
+                            <li>Vehicle availability in the local market</li>
+                            <li>Total cost including taxes and shipping</li>
+                            <li>Right-hand drive vs. left-hand drive (Kenya requires right-hand drive)</li>
+                            <li>Vehicle age restrictions (generally under 8 years for personal use)</li>
+                        </ul>
+                        
+                        <h4>Step 2: Calculate Total Costs</h4>
+                        <p>Beyond the purchase price, consider these additional costs:</p>
+                        <ul>
+                            <li>Import duty: 25% of CIF value</li>
+                            <li>Excise duty: 20% of CIF value</li>
+                            <li>VAT: 16% of CIF value plus import and excise duty</li>
+                            <li>Shipping costs: Varies by origin and vehicle size</li>
+                            <li>Insurance: During shipping</li>
+                            <li>Port handling fees</li>
+                            <li>Customs agency fees</li>
+                            <li>Registration and inspection fees</li>
+                        </ul>
+                        
+                        <h4>Step 3: Shipping and Documentation</h4>
+                        <p>You'll need to arrange shipping and prepare the necessary documents:</p>
+                        <ul>
+                            <li>Bill of Lading</li>
+                            <li>Commercial invoice</li>
+                            <li>Certificate of origin</li>
+                            <li>Export certificate</li>
+                            <li>Insurance documents</li>
+                        </ul>
+                        
+                        <h4>Step 4: Customs Clearance</h4>
+                        <p>This is the most complex part of the process:</p>
+                        <ul>
+                            <li>Submit documents to Kenya Revenue Authority (KRA)</li>
+                            <li>Pay all applicable taxes and duties</li>
+                            <li>Vehicle inspection by Kenya Bureau of Standards (KEBS)</li>
+                            <li>Clearance by customs</li>
+                        </ul>
+                        
+                        <h4>Step 5: Registration and Licensing</h4>
+                        <p>Once cleared through customs:</p>
+                        <ul>
+                            <li>Inspection by National Transport and Safety Authority (NTSA)</li>
+                            <li>Apply for logbook and number plates</li>
+                            <li>Get insurance coverage</li>
+                        </ul>
+                        
+                        <h4>Why Use a Professional Importer?</h4>
+                        <p>While it's possible to import a vehicle yourself, using a professional importer like Celimax Motors offers several advantages:</p>
+                        <ul>
+                            <li>Expertise in navigating complex regulations</li>
+                            <li>Established relationships with shipping companies and customs officials</li>
+                            <li>Ability to source quality vehicles from international markets</li>
+                            <li>Handling of all paperwork and logistics</li>
+                            <li>Quality assurance and inspection services</li>
+                        </ul>
+                        
+                        <p>At Celimax Motors, we specialize in importing quality vehicles for our customers. Our direct import service handles every step of the process, ensuring a smooth and hassle-free experience from selection to delivery.</p>
+                    </div>
+                `
+            }
         ];
 
         // DOM Elements for Car Listings
@@ -2356,6 +2182,59 @@
         const packageList = document.getElementById('packageList');
         const packagePrice = document.getElementById('packagePrice');
         const packageQuoteBtn = document.getElementById('packageQuoteBtn');
+
+        // NEW: DOM Elements for Direct Import
+        const directImportWindow = document.getElementById('directImportWindow');
+        const directImportGrid = document.getElementById('directImportGrid');
+        const backFromDirectImport = document.getElementById('backFromDirectImport');
+        const directImportLink = document.getElementById('directImportLink');
+        const directImportLink2 = document.getElementById('directImportLink2');
+        const mobileDirectImportLink = document.getElementById('mobileDirectImportLink');
+
+        // NEW: DOM Elements for Compare Feature
+        const compareWindow = document.getElementById('compareWindow');
+        const closeCompareModal = document.getElementById('closeCompareModal');
+        const compareCars = document.getElementById('compareCars');
+        const backFromCompare = document.getElementById('backFromCompare');
+
+        // NEW: DOM Elements for Advanced Filters
+        const sourceFilter = document.getElementById('sourceFilter');
+        const registrationFilter = document.getElementById('registrationFilter');
+        const fuelFilter = document.getElementById('fuelFilter');
+        const priceFilter = document.getElementById('priceFilter');
+
+        // NEW: DOM Elements for Full Screen Windows
+        const aboutWindow = document.getElementById('aboutWindow');
+        const blogWindow = document.getElementById('blogWindow');
+        const blogPostWindow = document.getElementById('blogPostWindow');
+        const blogPostTitle = document.getElementById('blogPostTitle');
+        const blogPostContent = document.getElementById('blogPostContent');
+        const backFromBlogPost = document.getElementById('backFromBlogPost');
+        const faqWindow = document.getElementById('faqWindow');
+        const contactWindow = document.getElementById('contactWindow');
+        const aboutLink = document.getElementById('aboutLink');
+        const blogsLink = document.getElementById('blogsLink');
+        const faqLink = document.getElementById('faqLink');
+        const contactLink = document.getElementById('contactLink');
+        const mobileAboutLink = document.getElementById('mobileAboutLink');
+        const mobileBlogsLink = document.getElementById('mobileBlogsLink');
+        const mobileFaqLink = document.getElementById('mobileFaqLink');
+        const mobileContactLink = document.getElementById('mobileContactLink');
+        const backFromAbout = document.getElementById('backFromAbout');
+        const backFromBlog = document.getElementById('backFromBlog');
+        const backFromFaq = document.getElementById('backFromFaq');
+        const backFromContact = document.getElementById('backFromContact');
+
+        // NEW: DOM Elements for Car Details Window
+        const carDetailsWindow = document.getElementById('carDetailsWindow');
+        const backToCarListings = document.getElementById('backToCarListings');
+        const carDetailsTitle = document.getElementById('carDetailsTitle');
+
+        // NEW: DOM Elements for Related Cars
+        const relatedCarsGrid = document.getElementById('relatedCarsGrid');
+
+        // NEW: Comparison Array
+        let comparisonCars = [];
 
         // Function to render star rating
         function renderStars(rating) {
@@ -2379,20 +2258,48 @@
             return 'Fair';
         }
 
-        // Function to display cars in the grid with filtering
+        // NEW: Function to display cars in the grid with filtering
         function displayCars(bodyType = 'all') {
             carsGrid.innerHTML = '';
             
-            const filteredCars = bodyType === 'all' 
+            // Get filter values
+            const sourceValue = sourceFilter.value;
+            const registrationValue = registrationFilter.value;
+            const fuelValue = fuelFilter.value;
+            const priceValue = priceFilter.value;
+            
+            let filteredCars = bodyType === 'all' 
                 ? cars 
                 : cars.filter(car => car.bodyType === bodyType);
+            
+            // Apply advanced filters
+            if (sourceValue !== 'all') {
+                filteredCars = filteredCars.filter(car => car.source === sourceValue);
+            }
+            
+            if (registrationValue !== 'all') {
+                const isRegistered = registrationValue === 'registered';
+                filteredCars = filteredCars.filter(car => car.registered === isRegistered);
+            }
+            
+            if (fuelValue !== 'all') {
+                filteredCars = filteredCars.filter(car => car.fuelType === fuelValue);
+            }
+            
+            if (priceValue !== 'all') {
+                const [min, max] = priceValue.split('-').map(val => parseInt(val));
+                filteredCars = filteredCars.filter(car => {
+                    const price = parseInt(car.price.replace(/[^\d]/g, ''));
+                    return price >= min && price <= max;
+                });
+            }
             
             if (filteredCars.length === 0) {
                 carsGrid.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--dark-gray);">
                         <i class="fas fa-car" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <h3>No cars found for this body type</h3>
-                        <p>Try selecting a different body type or check back later for new arrivals.</p>
+                        <h3>No cars found for this filter</h3>
+                        <p>Try selecting a different filter or check back later for new arrivals.</p>
                     </div>
                 `;
                 return;
@@ -2401,8 +2308,21 @@
             filteredCars.forEach(car => {
                 const carCard = document.createElement('div');
                 carCard.className = 'car-card';
+                
+                // Determine badge text
+                let badgeText = '';
+                if (car.source === 'fresh') {
+                    badgeText = 'Fresh Import';
+                } else if (car.source === 'local') {
+                    badgeText = 'Locally Used';
+                }
+                
+                // Determine registration status
+                const registrationStatus = car.registered ? 'Registered' : 'Unregistered';
+                
                 carCard.innerHTML = `
                     <img src="${car.image}" alt="${car.name}" class="car-image">
+                    ${badgeText ? `<div class="car-badge">${badgeText}</div>` : ''}
                     <div class="car-details">
                         <h3 class="car-name">${car.name}</h3>
                         <div class="car-body-type">${car.bodyType}</div>
@@ -2412,13 +2332,45 @@
                             </div>
                             <span class="condition-text">${getConditionText(car.condition)}</span>
                         </div>
+                        <div class="car-specs-mini">
+                            <div class="car-spec-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${car.specs.year}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${car.specs.mileage}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>${car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-file-alt"></i>
+                                <span>${registrationStatus}</span>
+                            </div>
+                            <!-- NEW: Color spec item -->
+                            <div class="car-spec-item">
+                                <i class="fas fa-palette"></i>
+                                <span>${car.color}</span>
+                            </div>
+                        </div>
                         <div class="car-price">${car.price}</div>
                         <div class="car-actions">
-                            <button class="details-btn" data-id="${car.id}">See Full Details</button>
-                            <button class="package-btn" data-id="${car.id}">Car Package</button>
-                            <button class="quote-btn" data-id="${car.id}">
-                                <i class="fab fa-whatsapp"></i> Get Quote
-                            </button>
+                            <!-- UPDATED: Car Package and See Full Details in same row -->
+                            <div class="car-action-row">
+                                <button class="package-btn" data-id="${car.id}">Car Package</button>
+                                <button class="details-btn" data-id="${car.id}">See Full Details</button>
+                            </div>
+                            <!-- Compare and Get Quote in same row -->
+                            <div class="car-action-row">
+                                <button class="compare-btn" data-id="${car.id}">
+                                    <i class="fas fa-exchange-alt"></i> Compare
+                                </button>
+                                <button class="quote-btn" data-id="${car.id}">
+                                    <i class="fab fa-whatsapp"></i> Get Quote
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -2429,7 +2381,7 @@
             document.querySelectorAll('.details-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const carId = parseInt(this.getAttribute('data-id'));
-                    showCarDetails(carId);
+                    showCarDetailsWindow(carId); // Updated to use new window
                 });
             });
 
@@ -2446,14 +2398,221 @@
                     redirectToWhatsApp(carId);
                 });
             });
+
+            // NEW: Add event listeners to compare buttons
+            document.querySelectorAll('.compare-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    addToComparison(carId, this);
+                });
+            });
         }
 
-        // NEW: Updated function to show car details with carousel
-        function showCarDetails(carId) {
+        // NEW: Function to display direct import cars
+        function displayDirectImportCars() {
+            directImportGrid.innerHTML = '';
+            
+            directImportCars.forEach(car => {
+                const importCarCard = document.createElement('div');
+                importCarCard.className = 'import-car-card';
+                importCarCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="import-car-image">
+                    <div class="import-location">${car.location}</div>
+                    <div class="import-car-details">
+                        <h3 class="import-car-name">${car.name}</h3>
+                        <div class="car-body-type">${car.bodyType}</div>
+                        <div class="import-car-price">${car.price}</div>
+                        <div class="import-shipping">
+                            <span>Shipping: ${car.shippingFee}</span>
+                            <span>Delivery: ${car.estimatedDelivery}</span>
+                        </div>
+                        <div class="car-specs-mini">
+                            <div class="car-spec-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${car.specs.year}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${car.specs.mileage}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>${car.specs.fuel}</span>
+                            </div>
+                        </div>
+                        <div class="import-actions">
+                            <button class="import-quote-btn" data-id="${car.id}">
+                                <i class="fab fa-whatsapp"></i> Get Full Quote
+                            </button>
+                        </div>
+                    </div>
+                `;
+                directImportGrid.appendChild(importCarCard);
+            });
+
+            // Add event listeners to import quote buttons
+            document.querySelectorAll('.import-quote-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    redirectToWhatsAppForImport(carId);
+                });
+            });
+        }
+
+        // NEW: Function to add car to comparison
+        function addToComparison(carId, button) {
+            const car = cars.find(c => c.id === carId);
+            if (!car) return;
+            
+            // Check if car is already in comparison
+            const existingIndex = comparisonCars.findIndex(c => c.id === carId);
+            
+            if (existingIndex !== -1) {
+                // Remove from comparison
+                comparisonCars.splice(existingIndex, 1);
+                button.classList.remove('selected');
+                button.innerHTML = '<i class="fas fa-exchange-alt"></i> Compare';
+            } else {
+                // Add to comparison (max 3 cars)
+                if (comparisonCars.length >= 3) {
+                    alert('You can compare up to 3 cars at a time. Please remove one to add another.');
+                    return;
+                }
+                
+                comparisonCars.push(car);
+                button.classList.add('selected');
+                button.innerHTML = '<i class="fas fa-check"></i> Added';
+            }
+            
+            // Update comparison button visibility
+            updateComparisonButton();
+        }
+
+        // NEW: Function to update comparison button
+        function updateComparisonButton() {
+            // Check if compare button already exists
+            let compareButton = document.querySelector('.compare-selected-btn');
+            
+            if (comparisonCars.length > 0) {
+                if (!compareButton) {
+                    compareButton = document.createElement('button');
+                    compareButton.className = 'compare-selected-btn';
+                    compareButton.innerHTML = `<i class="fas fa-exchange-alt"></i> Compare (${comparisonCars.length})`;
+                    compareButton.addEventListener('click', showComparison);
+                    
+                    // Position the button
+                    compareButton.style.position = 'fixed';
+                    compareButton.style.bottom = '120px';
+                    compareButton.style.right = '2rem';
+                    compareButton.style.zIndex = '1001';
+                    compareButton.style.backgroundColor = '#4A6FDC';
+                    compareButton.style.color = 'white';
+                    compareButton.style.border = 'none';
+                    compareButton.style.borderRadius = '8px';
+                    compareButton.style.padding = '1rem 1.5rem';
+                    compareButton.style.fontWeight = '600';
+                    compareButton.style.cursor = 'pointer';
+                    compareButton.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                    compareButton.style.transition = 'all 0.4s ease';
+                    
+                    compareButton.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.05)';
+                    });
+                    
+                    compareButton.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                    
+                    document.body.appendChild(compareButton);
+                } else {
+                    compareButton.innerHTML = `<i class="fas fa-exchange-alt"></i> Compare (${comparisonCars.length})`;
+                }
+            } else if (compareButton) {
+                compareButton.remove();
+            }
+        }
+
+        // NEW: Function to show comparison in full window
+        function showComparison() {
+            if (comparisonCars.length < 2) {
+                alert('Please select at least 2 cars to compare');
+                return;
+            }
+            
+            compareCars.innerHTML = '';
+            
+            comparisonCars.forEach(car => {
+                const compareCar = document.createElement('div');
+                compareCar.className = 'compare-car';
+                compareCar.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="compare-car-image">
+                    <h4 class="compare-car-name">${car.name}</h4>
+                    <div class="compare-specs">
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Price:</span>
+                            <span class="compare-spec-value">${car.price}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Body Type:</span>
+                            <span class="compare-spec-value">${car.bodyType}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Year:</span>
+                            <span class="compare-spec-value">${car.specs.year}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Engine:</span>
+                            <span class="compare-spec-value">${car.specs.engine}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Fuel:</span>
+                            <span class="compare-spec-value">${car.specs.fuel}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Transmission:</span>
+                            <span class="compare-spec-value">${car.specs.transmission}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Drive:</span>
+                            <span class="compare-spec-value">${car.specs.drive}</span>
+                        </div>
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Mileage:</span>
+                            <span class="compare-spec-value">${car.specs.mileage}</span>
+                        </div>
+                        <!-- NEW: Color in compare -->
+                        <div class="compare-spec-item">
+                            <span class="compare-spec-label">Color:</span>
+                            <span class="compare-spec-value">${car.color}</span>
+                        </div>
+                    </div>
+                `;
+                compareCars.appendChild(compareCar);
+            });
+            
+            // Show compare window and floating back button
+            compareWindow.classList.add('active');
+            floatingBack.classList.add('active');
+        }
+
+        // NEW: Function to redirect to WhatsApp for import cars
+        function redirectToWhatsAppForImport(carId) {
+            const car = directImportCars.find(c => c.id === carId);
+            if (!car) return;
+
+            const message = `Hello! I'm interested in importing the ${car.name} from ${car.location} priced at ${car.price} with shipping fee of ${car.shippingFee}. Can you provide more details about the import process?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/254703913841?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // NEW: Updated function to show car details in full window
+        function showCarDetailsWindow(carId) {
             const car = cars.find(c => c.id === carId);
             if (!car) return;
 
-            // Update modal title
+            // Update window title
             document.getElementById('carDetailsTitle').textContent = `${car.name} - Full Details`;
 
             // Set main image
@@ -2510,9 +2669,10 @@
             }
 
             // Clear previous specs
+            const carSpecs = document.getElementById('carSpecs');
             carSpecs.innerHTML = '';
 
-            // Add specs to modal
+            // Add specs to window
             for (const [key, value] of Object.entries(car.specs)) {
                 const specItem = document.createElement('div');
                 specItem.className = 'spec-item';
@@ -2524,13 +2684,62 @@
             }
 
             // Update price
-            modalPrice.textContent = car.price;
+            document.getElementById('modalPrice').textContent = car.price;
 
             // Set WhatsApp redirect for this car
-            modalQuoteBtn.setAttribute('data-id', car.id);
+            document.getElementById('modalQuoteBtn').setAttribute('data-id', car.id);
 
-            // Show modal
-            carDetailsModal.classList.add('active');
+            // Display related cars
+            displayRelatedCars(car);
+
+            // Show window and floating back button
+            carDetailsWindow.classList.add('active');
+            floatingBack.classList.add('active');
+        }
+
+        // NEW: Function to display related cars - UPDATED TO SHOW SAME BRAND
+        function displayRelatedCars(currentCar) {
+            const relatedCarsGrid = document.getElementById('relatedCarsGrid');
+            relatedCarsGrid.innerHTML = '';
+            
+            // Get the brand from the current car name (first word)
+            const currentBrand = currentCar.name.split(' ')[0];
+            
+            // Find related cars (same brand, excluding current car)
+            const relatedCars = cars.filter(car => 
+                car.id !== currentCar.id && 
+                car.name.split(' ')[0] === currentBrand
+            ).slice(0, 4); // Limit to 4 related cars
+            
+            if (relatedCars.length === 0) {
+                relatedCarsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--dark-gray);">
+                        <i class="fas fa-car" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h4>No related vehicles at the moment</h4>
+                        <p>Check back later for more ${currentBrand} vehicles.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            relatedCars.forEach(car => {
+                const relatedCarCard = document.createElement('div');
+                relatedCarCard.className = 'related-car-card';
+                relatedCarCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="related-car-image">
+                    <div class="related-car-details">
+                        <h4 class="related-car-name">${car.name}</h4>
+                        <div class="related-car-price">${car.price}</div>
+                    </div>
+                `;
+                relatedCarCard.addEventListener('click', () => {
+                    // Close current details window
+                    carDetailsWindow.classList.remove('active');
+                    // Show new car details
+                    showCarDetailsWindow(car.id);
+                });
+                relatedCarsGrid.appendChild(relatedCarCard);
+            });
         }
 
         // Function to show car package
@@ -2581,6 +2790,32 @@
                 .join(' ');
         }
 
+        // NEW: Initialize Blog Posts
+        function initBlogPosts() {
+            // Add event listeners to blog read more links
+            document.querySelectorAll('.blog-read-more').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const blogId = parseInt(this.getAttribute('data-blog-id'));
+                    showBlogPost(blogId);
+                });
+            });
+        }
+
+        // NEW: Function to show blog post in full window
+        function showBlogPost(blogId) {
+            const blogPost = blogPosts.find(blog => blog.id === blogId);
+            if (!blogPost) return;
+
+            // Update blog post title and content
+            blogPostTitle.textContent = blogPost.title;
+            blogPostContent.innerHTML = blogPost.content;
+
+            // Show blog post window and floating back button
+            blogPostWindow.classList.add('active');
+            floatingBack.classList.add('active');
+        }
+
         // Event Listeners for Available in the Yard links
         document.querySelectorAll('.yard-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -2594,15 +2829,174 @@
             });
         });
 
+        // NEW: Event Listeners for Direct Import links
+        directImportLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            directImportWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayDirectImportCars();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        directImportLink2.addEventListener('click', function(e) {
+            e.preventDefault();
+            directImportWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayDirectImportCars();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        mobileDirectImportLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            directImportWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            displayDirectImportCars();
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        // NEW: Event Listeners for Full Screen Windows
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        blogsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            blogWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        faqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            faqWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        contactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        // NEW: Event Listeners for Mobile Full Screen Windows
+        mobileAboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            aboutWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        mobileBlogsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            blogWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        mobileFaqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            faqWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
+        mobileContactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactWindow.classList.add('active');
+            floatingBack.classList.add('active');
+            
+            // Close mobile nav if open
+            mobileNav.classList.remove('active');
+        });
+
         // Back to Home button
         backToHome.addEventListener('click', function() {
             carListingWindow.classList.remove('active');
             floatingBack.classList.remove('active');
         });
 
+        // NEW: Back from Direct Import button
+        backFromDirectImport.addEventListener('click', function() {
+            directImportWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        // NEW: Back from Full Screen Windows
+        backFromAbout.addEventListener('click', function() {
+            aboutWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        backFromBlog.addEventListener('click', function() {
+            blogWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        backFromBlogPost.addEventListener('click', function() {
+            blogPostWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        backFromFaq.addEventListener('click', function() {
+            faqWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        backFromContact.addEventListener('click', function() {
+            contactWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        // NEW: Back from Compare Window
+        backFromCompare.addEventListener('click', function() {
+            compareWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
+        // NEW: Back to Car Listings button
+        backToCarListings.addEventListener('click', function() {
+            carDetailsWindow.classList.remove('active');
+            floatingBack.classList.remove('active');
+        });
+
         // Floating back button
         floatingBack.addEventListener('click', function() {
             carListingWindow.classList.remove('active');
+            directImportWindow.classList.remove('active');
+            aboutWindow.classList.remove('active');
+            blogWindow.classList.remove('active');
+            blogPostWindow.classList.remove('active');
+            faqWindow.classList.remove('active');
+            contactWindow.classList.remove('active');
+            compareWindow.classList.remove('active');
+            carDetailsWindow.classList.remove('active');
+            brandFilter.classList.remove('active');
+            bodyFilter.classList.remove('active');
             floatingBack.classList.remove('active');
         });
 
@@ -2623,6 +3017,31 @@
             });
         });
 
+        // NEW: Advanced filter change events
+        sourceFilter.addEventListener('change', function() {
+            const activeBodyType = document.querySelector('.body-type-btn.active');
+            const bodyType = activeBodyType ? activeBodyType.getAttribute('data-body-type') : 'all';
+            displayCars(bodyType);
+        });
+
+        registrationFilter.addEventListener('change', function() {
+            const activeBodyType = document.querySelector('.body-type-btn.active');
+            const bodyType = activeBodyType ? activeBodyType.getAttribute('data-body-type') : 'all';
+            displayCars(bodyType);
+        });
+
+        fuelFilter.addEventListener('change', function() {
+            const activeBodyType = document.querySelector('.body-type-btn.active');
+            const bodyType = activeBodyType ? activeBodyType.getAttribute('data-body-type') : 'all';
+            displayCars(bodyType);
+        });
+
+        priceFilter.addEventListener('change', function() {
+            const activeBodyType = document.querySelector('.body-type-btn.active');
+            const bodyType = activeBodyType ? activeBodyType.getAttribute('data-body-type') : 'all';
+            displayCars(bodyType);
+        });
+
         // Close modals
         closeDetailsModal.addEventListener('click', function() {
             carDetailsModal.classList.remove('active');
@@ -2630,6 +3049,11 @@
 
         closePackageModal.addEventListener('click', function() {
             carPackageModal.classList.remove('active');
+        });
+
+        // NEW: Close compare modal
+        closeCompareModal.addEventListener('click', function() {
+            compareModal.classList.remove('active');
         });
 
         // WhatsApp buttons in modals
@@ -2651,355 +3075,11 @@
             if (e.target === carPackageModal) {
                 carPackageModal.classList.remove('active');
             }
+            if (e.target === compareModal) {
+                compareModal.classList.remove('active');
+            }
         });
 
-        // NEW FUNCTIONALITY FOR ADDITIONAL WINDOWS
-        
-        // DOM Elements for new windows
-        const aboutWindow = document.getElementById('aboutWindow');
-        const blogsWindow = document.getElementById('blogsWindow');
-        const faqWindow = document.getElementById('faqWindow');
-        const blogGrid = document.getElementById('blogGrid');
-        const faqList = document.getElementById('faqList');
-        const quizQuestion = document.getElementById('quizQuestion');
-        const quizOptions = document.getElementById('quizOptions');
-        const quizSubmit = document.getElementById('quizSubmit');
-        const quizResult = document.getElementById('quizResult');
-        
-        const homeLink = document.getElementById('homeLink');
-        const aboutLink = document.getElementById('aboutLink');
-        const blogsLink = document.getElementById('blogsLink');
-        const contactLink = document.getElementById('contactLink');
-        const faqLink = document.getElementById('faqLink');
-        const mobileHomeLink = document.getElementById('mobileHomeLink');
-        const mobileAboutLink = document.getElementById('mobileAboutLink');
-        const mobileBlogsLink = document.getElementById('mobileBlogsLink');
-        const mobileContactLink = document.getElementById('mobileContactLink');
-        const mobileFaqLink = document.getElementById('mobileFaqLink');
-        const backFromAbout = document.getElementById('backFromAbout');
-        const backFromBlogs = document.getElementById('backFromBlogs');
-        const backFromFaq = document.getElementById('backFromFaq');
-        
-        // Blog data
-        const blogs = [
-            {
-                id: 1,
-                title: "Toyota's Acquisition of Subaru: A Strategic Move",
-                excerpt: "How Toyota's investment in Subaru has reshaped the automotive industry and what it means for consumers.",
-                image: "https://cdn.pixabay.com/photo/2021/05/24/07/17/car-6278062_1280.jpg",
-                fullContent: `
-                    <h2>Toyota's Acquisition of Subaru: A Strategic Move</h2>
-                    <img src="https://cdn.pixabay.com/photo/2017/10/28/15/18/toyota-2897313_1280.jpg" alt="Toyota and Subaru collaboration">
-                    <p>In recent years, Toyota has made strategic investments in Subaru, acquiring a significant stake in the company. This move has allowed both manufacturers to leverage each other's strengths in technology and manufacturing.</p>
-                    <p>Toyota brings its expertise in hybrid technology and global supply chains, while Subaru contributes its renowned all-wheel-drive systems and boxer engine technology. The collaboration has already produced successful models like the Toyota 86 and Subaru BRZ sports cars.</p>
-                    <h2>Benefits for Kenyan Consumers</h2>
-                    <p>For Kenyan car buyers, this partnership means access to more reliable vehicles with advanced safety features. Subaru's famous Symmetrical All-Wheel Drive combined with Toyota's reliability creates vehicles well-suited for Kenya's diverse road conditions.</p>
-                    <p>The shared technology also helps in reducing maintenance costs and improving parts availability, making these vehicles more practical for the Kenyan market.</p>
-                `
-            },
-            {
-                id: 2,
-                title: "Audi's Challenge with Kenya's Flood Conditions",
-                excerpt: "Why German luxury cars like Audi face unique challenges during Kenya's rainy seasons and flooding.",
-                image: "https://cdn.pixabay.com/photo/2021/01/12/14/46/audi-5911624_1280.jpg",
-                fullContent: `
-                    <h2>Audi's Challenge with Kenya's Flood Conditions</h2>
-                    <img src="https://cdn.pixabay.com/photo/2023/08/23/12/50/fog-8208493_1280.jpg" alt="Audi car in challenging conditions">
-                    <p>German luxury vehicles like Audi are engineered for precision performance on well-maintained roads, which presents challenges in regions experiencing frequent flooding like parts of Kenya during rainy seasons.</p>
-                    <p>Audi's low ground clearance, sophisticated electronics, and complex air intake systems can be vulnerable in flooded conditions. Water ingress can damage critical components, leading to expensive repairs.</p>
-                    <h2>Adaptation Strategies</h2>
-                    <p>Despite these challenges, Audi has been working on adaptations for markets with difficult road conditions. Newer models feature improved water sealing and raised air intakes in some SUV variants.</p>
-                    <p>For Kenyan Audi owners, preventive measures like avoiding flooded areas, regular undercarriage cleaning, and comprehensive insurance are essential for protecting these premium vehicles.</p>
-                `
-            },
-            {
-                id: 3,
-                title: "Mercedes-Benz: The Evolution of Luxury in Kenya",
-                excerpt: "How Mercedes-Benz has maintained its luxury status while adapting to the Kenyan market's unique demands.",
-                image: "https://cdn.pixabay.com/photo/2018/07/10/10/40/mercedes-3528323_1280.jpg",
-                fullContent: `
-                    <h2>Mercedes-Benz: The Evolution of Luxury in Kenya</h2>
-                    <img src="https://cdn.pixabay.com/photo/2016/06/16/15/30/mercedes-benz-1461510_1280.jpg" alt="Mercedes-Benz luxury vehicle">
-                    <p>Mercedes-Benz has long been synonymous with luxury and engineering excellence worldwide, including in Kenya. However, the brand has had to adapt its offerings to suit local conditions while maintaining its premium positioning.</p>
-                    <p>The introduction of more robust SUV models like the G-Class and GLE has helped Mercedes maintain relevance in regions with challenging road infrastructure. These vehicles combine luxury with improved ground clearance and durability.</p>
-                    <h2>Service and Maintenance in Kenya</h2>
-                    <p>Mercedes-Benz has established authorized service centers in major Kenyan cities, ensuring that owners have access to genuine parts and trained technicians. This network is crucial for maintaining the vehicles' performance and value.</p>
-                    <p>For prospective buyers, certified pre-owned Mercedes-Benz vehicles offer a more accessible entry point into ownership while still providing the brand's signature luxury and performance.</p>
-                `
-            }
-        ];
-        
-        // FAQ data
-        const faqs = [
-            {
-                question: "What documents do I need to purchase a car in Celimax Motors?",
-                answer: "You need a valid Kenyan ID or passport, a KRA PIN certificate, and proof of income if applying for financing. For used cars, ensure the logbook is genuine and the seller has proper ownership documents."
-            },
-            {
-                question: "How can I verify if a used car is not stolen?",
-                answer: "Check the vehicle's details with the National Transport and Safety Authority (NTSA) using the registration number. You can do this online through the NTSA portal or visit their offices for verification."
-            },
-            {
-                question: "What is the average cost of car insurance in Kenya?",
-                answer: "Insurance costs vary based on the car's value, type of coverage, and driver's history. Third-party insurance starts from around KES 5,000 annually, while comprehensive coverage typically ranges from 2-5% of the car's value."
-            },
-            {
-                question: "Should I import a car or buy locally?",
-                answer: "Buying locally from reputable dealers like Celimax Motors offers advantages like immediate availability, local warranty, and easier after-sales support. Importing can sometimes be cheaper but involves more paperwork, longer wait times, and potential hidden costs."
-            },
-            {
-                question: "What maintenance should I perform regularly on my car?",
-                answer: "Regular oil changes every 5,000-10,000 km, tire rotation and pressure checks, brake inspections, fluid top-ups, and filter replacements are essential. Follow the manufacturer's recommended service schedule for optimal performance."
-            }
-        ];
-        
-        // Quiz data
-        const quiz = {
-            question: "What is the most important factor to consider when buying a used car in Kenya?",
-            options: [
-                { text: "The color and appearance", correct: false },
-                { text: "Vehicle service history and mechanical condition", correct: true },
-                { text: "The sound system quality", correct: false },
-                { text: "Number of previous owners", correct: false }
-            ]
-        };
-        
-        // Function to display blogs
-        function displayBlogs() {
-            blogGrid.innerHTML = '';
-            
-            blogs.forEach(blog => {
-                const blogCard = document.createElement('div');
-                blogCard.className = 'blog-card';
-                blogCard.innerHTML = `
-                    <img src="${blog.image}" alt="${blog.title}" class="blog-image">
-                    <div class="blog-details">
-                        <h3 class="blog-title">${blog.title}</h3>
-                        <p class="blog-excerpt">${blog.excerpt}</p>
-                        <button class="read-more-btn" data-id="${blog.id}">Read More</button>
-                    </div>
-                `;
-                blogGrid.appendChild(blogCard);
-            });
-            
-            // Add event listeners to read more buttons
-            document.querySelectorAll('.read-more-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const blogId = parseInt(this.getAttribute('data-id'));
-                    showFullBlog(blogId);
-                });
-            });
-        }
-        
-        // Function to show full blog article
-        function showFullBlog(blogId) {
-            const blog = blogs.find(b => b.id === blogId);
-            if (!blog) return;
-            
-            // Create a new window for the full blog
-            const blogWindow = document.createElement('div');
-            blogWindow.className = 'content-window active';
-            blogWindow.innerHTML = `
-                <div class="content-header">
-                    <h2 class="content-title">${blog.title}</h2>
-                    <button class="back-to-home" id="backFromFullBlog">
-                        <i class="fas fa-arrow-left"></i> Back to Blogs
-                    </button>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-article">
-                        ${blog.fullContent}
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(blogWindow);
-            
-            // Add event listener to back button
-            document.getElementById('backFromFullBlog').addEventListener('click', function() {
-                blogWindow.remove();
-            });
-        }
-        
-        // Function to display FAQs
-        function displayFAQs() {
-            faqList.innerHTML = '';
-            
-            faqs.forEach((faq, index) => {
-                const faqItem = document.createElement('div');
-                faqItem.className = 'faq-item';
-                faqItem.innerHTML = `
-                    <div class="faq-question" data-index="${index}">
-                        <span>${faq.question}</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>${faq.answer}</p>
-                    </div>
-                `;
-                faqList.appendChild(faqItem);
-            });
-            
-            // Add event listeners to FAQ questions
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', function() {
-                    const index = this.getAttribute('data-index');
-                    const answer = this.nextElementSibling;
-                    
-                    // Toggle active class
-                    answer.classList.toggle('active');
-                    
-                    // Rotate chevron icon
-                    const icon = this.querySelector('i');
-                    icon.classList.toggle('fa-chevron-down');
-                    icon.classList.toggle('fa-chevron-up');
-                });
-            });
-        }
-        
-        // Function to setup quiz
-        function setupQuiz() {
-            quizQuestion.textContent = quiz.question;
-            quizOptions.innerHTML = '';
-            
-            quiz.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'quiz-option';
-                optionElement.innerHTML = `
-                    <input type="radio" id="option${index}" name="quiz" value="${index}">
-                    <label for="option${index}">${option.text}</label>
-                `;
-                quizOptions.appendChild(optionElement);
-            });
-            
-            // Add event listener to quiz submit button
-            quizSubmit.addEventListener('click', function() {
-                const selectedOption = document.querySelector('input[name="quiz"]:checked');
-                
-                if (!selectedOption) {
-                    alert('Please select an answer');
-                    return;
-                }
-                
-                const optionIndex = parseInt(selectedOption.value);
-                const isCorrect = quiz.options[optionIndex].correct;
-                
-                if (isCorrect) {
-                    quizResult.textContent = 'Correct! Vehicle service history and mechanical condition are crucial for a reliable used car.';
-                    quizResult.className = 'quiz-result correct';
-                } else {
-                    quizResult.textContent = 'Incorrect. The most important factor is the vehicle service history and mechanical condition.';
-                    quizResult.className = 'quiz-result incorrect';
-                }
-            });
-        }
-        
-        // Event listeners for navigation
-        homeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Scroll to top of page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        mobileHomeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Scroll to top of page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        aboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            aboutWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        mobileAboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            aboutWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        blogsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            blogsWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            displayBlogs();
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        mobileBlogsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            blogsWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            displayBlogs();
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        contactLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Scroll to contact section
-            document.getElementById('contactSection').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        mobileContactLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Scroll to contact section
-            document.getElementById('contactSection').scrollIntoView({ behavior: 'smooth' });
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        faqLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            faqWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            displayFAQs();
-            setupQuiz();
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        mobileFaqLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            faqWindow.classList.add('active');
-            floatingBack.classList.add('active');
-            displayFAQs();
-            setupQuiz();
-            
-            // Close mobile nav if open
-            mobileNav.classList.remove('active');
-        });
-        
-        // Back buttons for new windows
-        backFromAbout.addEventListener('click', function() {
-            aboutWindow.classList.remove('active');
-            floatingBack.classList.remove('active');
-        });
-        
-        backFromBlogs.addEventListener('click', function() {
-            blogsWindow.classList.remove('active');
-            floatingBack.classList.remove('active');
-        });
-        
-        backFromFaq.addEventListener('click', function() {
-            faqWindow.classList.remove('active');
-            floatingBack.classList.remove('active');
-        });
-        
         // Function to display filtered cars
         function displayFilteredCars(filteredCars, filterTitle) {
             // Update title to reflect filter
@@ -3028,8 +3108,21 @@
             filteredCars.forEach(car => {
                 const carCard = document.createElement('div');
                 carCard.className = 'car-card';
+                
+                // Determine badge text
+                let badgeText = '';
+                if (car.source === 'fresh') {
+                    badgeText = 'Fresh Import';
+                } else if (car.source === 'local') {
+                    badgeText = 'Locally Used';
+                }
+                
+                // Determine registration status
+                const registrationStatus = car.registered ? 'Registered' : 'Unregistered';
+                
                 carCard.innerHTML = `
                     <img src="${car.image}" alt="${car.name}" class="car-image">
+                    ${badgeText ? `<div class="car-badge">${badgeText}</div>` : ''}
                     <div class="car-details">
                         <h3 class="car-name">${car.name}</h3>
                         <div class="car-body-type">${car.bodyType}</div>
@@ -3039,13 +3132,45 @@
                             </div>
                             <span class="condition-text">${getConditionText(car.condition)}</span>
                         </div>
+                        <div class="car-specs-mini">
+                            <div class="car-spec-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${car.specs.year}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>${car.specs.mileage}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <span>${car.fuelType.charAt(0).toUpperCase() + car.fuelType.slice(1)}</span>
+                            </div>
+                            <div class="car-spec-item">
+                                <i class="fas fa-file-alt"></i>
+                                <span>${registrationStatus}</span>
+                            </div>
+                            <!-- NEW: Color spec item -->
+                            <div class="car-spec-item">
+                                <i class="fas fa-palette"></i>
+                                <span>${car.color}</span>
+                            </div>
+                        </div>
                         <div class="car-price">${car.price}</div>
                         <div class="car-actions">
-                            <button class="details-btn" data-id="${car.id}">See Full Details</button>
-                            <button class="package-btn" data-id="${car.id}">Car Package</button>
-                            <button class="quote-btn" data-id="${car.id}">
-                                <i class="fab fa-whatsapp"></i> Get Quote
-                            </button>
+                            <!-- UPDATED: Car Package and See Full Details in same row -->
+                            <div class="car-action-row">
+                                <button class="package-btn" data-id="${car.id}">Car Package</button>
+                                <button class="details-btn" data-id="${car.id}">See Full Details</button>
+                            </div>
+                            <!-- Compare and Get Quote in same row -->
+                            <div class="car-action-row">
+                                <button class="compare-btn" data-id="${car.id}">
+                                    <i class="fas fa-exchange-alt"></i> Compare
+                                </button>
+                                <button class="quote-btn" data-id="${car.id}">
+                                    <i class="fab fa-whatsapp"></i> Get Quote
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -3056,7 +3181,7 @@
             document.querySelectorAll('.details-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const carId = parseInt(this.getAttribute('data-id'));
-                    showCarDetails(carId);
+                    showCarDetailsWindow(carId);
                 });
             });
 
@@ -3073,4 +3198,34 @@
                     redirectToWhatsApp(carId);
                 });
             });
+
+            // NEW: Add event listeners to compare buttons
+            document.querySelectorAll('.compare-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = parseInt(this.getAttribute('data-id'));
+                    addToComparison(carId, this);
+                });
+            });
         }
+
+        // NEW: Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        document.getElementById('contactFormFull').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Display initial cars
+            displayCars();
+            
+            // Display direct import cars
+            displayDirectImportCars();
+        });

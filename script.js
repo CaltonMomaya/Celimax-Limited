@@ -563,7 +563,7 @@
                     "images/forester_black.jpg"
                 ],
                 condition: 5,
-                price: "KES 3,900,000",
+                price: "KES 3,500,000",
                 source: "fresh", // NEW: locally used or fresh import
                 registered: true, // NEW: registered or unregistered
                 fuelType: "petrol", // NEW: petrol, diesel, hybrid, electric
@@ -648,7 +648,7 @@
                     ".."
                 ],
                 condition: 4,
-                price: "KES 1,200,000",
+                price: "KES 1,300,000",
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
@@ -687,7 +687,7 @@
                     "images/harrier4.jpg"
                 ],
                 condition: 5,
-                price: "KES 3,200,000",
+                price: "KES 3,400,000",
                 source: "fresh",
                 registered: false,
                 fuelType: "petrol",
@@ -727,7 +727,7 @@
                     "images/honda_red2.jpg"
                 ],
                 condition: 4,
-                price: "KES 1,300,000",
+                price: "KES 1,400,000",
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
@@ -766,7 +766,7 @@
                     "images/xtrail1.jpg"
                 ],
                 condition: 4,
-                price: "KES 3,500,000",
+                price: "KES 2,500,000",
                 source: "fresh",
                 registered: false,
                 fuelType: "petrol",

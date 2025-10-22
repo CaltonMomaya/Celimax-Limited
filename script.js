@@ -2235,6 +2235,46 @@
                     "Touchscreen Infotainment",
                     "All-Wheel Drive"
                 ]
+            },
+             {
+                id: 40,
+                name: "TOYOTA HARRIER",
+                bodyType: "SUV",
+                image: "images 3/harrier_front.jpg",
+                images: [
+                    "images 3/harrier_back.jpg",
+                    "images 3/harrier_left.jpg"
+                ],
+                condition: 5,
+                price: "KES 3,400,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
             }
 
 
@@ -2260,60 +2300,60 @@
 
         ];
 
-        // NEW: Direct Import Car Data
+        //  Direct Imports Car Data
         const directImportCars = [
             {
                 id: 101,
-                name: "Toyota Land Cruiser 300",
-                bodyType: "SUV",
-                image: "https://cdn.pixabay.com/photo/2021/09/07/07/11/car-6602386_1280.jpg",
-                price: "KES 18,500,000",
-                location: "Japan",
-                shippingFee: "KES 450,000",
+                name: "TOYOTA ALPHARD",
+                bodyType: "MPV",
+                image: "imports/alphard.jpg",
+                price: "USD 13,361",
+                location: "JAPAN",
+                Inspection: "Mombasa",
                 estimatedDelivery: "4-6 weeks",
                 specs: {
-                    year: "2023",
-                    engine: "3.5L V6 Twin Turbo",
+                    year: "2019",
+                    engine: "2490cc",
                     fuel: "Petrol",
                     transmission: "10-Speed Automatic",
                     drive: "4WD",
-                    mileage: "0 km"
+                    mileage: "131,210 km"
                 }
             },
             {
                 id: 102,
-                name: "Mercedes-Benz GLE 450",
-                bodyType: "SUV",
-                image: "https://cdn.pixabay.com/photo/2019/08/15/08/25/mercedes-benz-4407420_1280.jpg",
-                price: "KES 12,800,000",
-                location: "Germany",
-                shippingFee: "KES 380,000",
+                name: "TOYOTA SIENTA",
+                bodyType: "MPV",
+                image: "imports/sienta.jpg",
+                price: "USD 8,360",
+                location: "JAPAN",
+                Inspection: "Mombasa",
                 estimatedDelivery: "3-5 weeks",
                 specs: {
                     year: "2022",
-                    engine: "3.0L Inline-6 Turbo",
+                    engine: "1500cc",
                     fuel: "Petrol",
                     transmission: "9-Speed Automatic",
                     drive: "4MATIC",
-                    mileage: "5,000 km"
+                    mileage: "108,475 km"
                 }
             },
             {
                 id: 103,
-                name: "BMW X5 M Competition",
-                bodyType: "SUV",
-                image: "https://cdn.pixabay.com/photo/2021/01/11/14/56/bmw-5908993_1280.jpg",
-                price: "KES 16,200,000",
-                location: "USA",
-                shippingFee: "KES 520,000",
+                name: "TOYOTA NOAH",
+                bodyType: "MPV",
+                image: "imports/noah.jpg",
+                price: "USD 7,800",
+                location: "JAPAN",
+                Inspection: "Mombasa",
                 estimatedDelivery: "5-7 weeks",
                 specs: {
-                    year: "2022",
+                    year: "2018",
                     engine: "4.4L V8 Twin Turbo",
                     fuel: "Petrol",
                     transmission: "8-Speed Automatic",
                     drive: "xDrive",
-                    mileage: "2,500 km"
+                    mileage: "168,000 km"
                 }
             },
             {

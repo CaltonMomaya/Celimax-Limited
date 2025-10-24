@@ -2275,7 +2275,276 @@
                     "Touchscreen Infotainment",
                     "All-Wheel Drive"
                 ]
+            },
+            {
+                id: 41,
+                name: "MAZDA CX5",
+                bodyType: "SUV",
+                image: "images4/cx555.jpg",
+                images: [
+                    "images4/cx5side.jpg",
+                    "images4/cx5_right.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+             {
+                id: 42,
+                name: "TOYOTA FIELDER",
+                bodyType: "Staion Wagon",
+                image: "images4/fielder front.jpg",
+                images: [
+                    "images4/fielder_back.jpg",
+                    "images4/fielder_boot.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Red", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 42,
+                name: "TOYOTA FIELDER",
+                bodyType: "Staion Wagon",
+                image: "images4/fielder_blakfront.jpg",
+                images: [
+                    "images4/fielder_blak_ack.jpg",
+                    "images4/fielder_black_side.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,800,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 43,
+                name: "MITSUBISHI DELICA",
+                bodyType: "Staion Wagon",
+                image: "images4/mitsubishi_delica.jpg",
+                images: [
+                    "images4/mitsubishidelica_side.jpg",
+                    ".."
+                ],
+                condition: 5,
+                price: "KES 1,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Silver", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 43,
+                name: "TOYOTA PROBOX",
+                bodyType: "VAN",
+                image: "images4/toyota_probox.jpg",
+                images: [
+                    "images4/proboxleft.jpg",
+                    "images4/toyotaprobox_2.jpg"
+                ],
+                condition: 5,
+                price: "KES 1,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "White", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
+            },
+            {
+                id: 43,
+                name: "TOYOTA NOAH",
+                bodyType: "MPV",
+                image: "images4/noahfront.jpg",
+                images: [
+                    "images4/noahright.jpg",
+                    "images4/noah_side.jpg"
+                ],
+                condition: 5,
+                price: "KES 2,300,000",
+                source: "fresh",
+                registered: false,
+                fuelType: "petrol",
+                color: "Black", // NEW: Color property
+                specs: {
+                    year: "2019",
+                    location: "Celimax Motors",
+                    drive: "AWD",
+                    mileage: "32,000 km",
+                    engine: "2.5L",
+                    fuel: "Petrol",
+                    horsepower: "175 hp",
+                    transmission: "CVT",
+                    torque: "235 Nm",
+                    aspiration: "Naturally Aspirated",
+                    acceleration: "(0-100kph) 9.5 secs",
+                    color: "Green" // NEW: Added color to specs
+                },
+                package: [
+                    "Leather Seats",
+                    "Alloy Wheels",
+                    "Roof Rails",
+                    "Reverse Camera",
+                    "Power Windows",
+                    "Keyless Entry",
+                    "Touchscreen Infotainment",
+                    "All-Wheel Drive"
+                ]
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

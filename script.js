@@ -731,7 +731,7 @@
                 source: "fresh",
                 registered: true,
                 fuelType: "petrol",
-                color: "Red", // NEW: Color property
+                color: "Redd", // NEW: Color property
                 specs: {
                     year: "2017",
                     location: "Celimax Motors",
